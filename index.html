@@ -275,6 +275,167 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/10/二分查找及其变种/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mao Zezhong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://i4.bvimg.com/640273/a3e318c5f543615e.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zezhong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/10/二分查找及其变种/" itemprop="url">二分查找及其变种</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T17:06:52+08:00">
+                2018-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/基础-经典算法/" itemprop="url" rel="index">
+                    <span itemprop="name">基础/经典算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="二分模板"><a href="#二分模板" class="headerlink" title="二分模板"></a>二分模板</h2><pre><code>int binarySearch(vector&lt;int&gt;nums, int key)
+{
+    int left = 0, right = nums.size()-1;
+    while(left&lt;=right)
+    {
+        int mid = left+(right-left)/2;
+        if(key ? nums[mid]){
+            right = mid-1;
+        }else{
+            left = mid+1;
+        }
+    }
+    //可能还得加判断left，right是否在范围内
+    return left or right;
+}
+</code></pre>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/10/二分查找及其变种/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/10/FaceNet论文笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -367,9 +528,8 @@
 
       
         
-          
-            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol>
-<li>论文链接: <a href="https://arxiv.org/pdf/1503.03832.pdf" target="_blank" rel="noopener">FaceNet: A Unified Embedding for Face Recognition and Clustering </a></li>
+          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol>
+<li>论文: <a href="https://arxiv.org/pdf/1503.03832.pdf" target="_blank" rel="noopener">FaceNet: A Unified Embedding for Face Recognition and Clustering </a></li>
 <li>代码地址: <a href="https://github.com/davidsandberg/facenet" target="_blank" rel="noopener">Github</a></li>
 </ol>
 <h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><ol>
@@ -379,38 +539,13 @@
 <li>文章采用的deepCNN的结构为：1）<a href="http://xueshu.baidu.com/s?wd=paperuri%3A%280882d7f52c6b2fdc8ff7ec6bf82d43a1%29&amp;filter=sc_long_sign&amp;tn=SE_xueshusource_2kduw22v&amp;sc_vurl=http%3A%2F%2Farxiv.org%2Fabs%2F1311.2901&amp;ie=utf-8&amp;sc_us=6841396535689362271" target="_blank" rel="noopener">Zeiler&amp;Fergus</a>加上额外的1x1xN的卷积层,2）<a href="http://xueshu.baidu.com/s?wd=paperuri%3A%280d1d21a45ce19226f41a913c5b417900%29&amp;filter=sc_long_sign&amp;tn=SE_xueshusource_2kduw22v&amp;sc_vurl=http%3A%2F%2Farxiv.org%2Fabs%2F1409.4842&amp;ie=utf-8&amp;sc_us=4256509119270230074" target="_blank" rel="noopener">inception model</a> </li>
 <li>该算法在LFW数据集上实现了99.63%的精确度，在YouTube脸库数据集上实现了95.12%的精确度，准确度比以往算法提升了30%</li>
 </ol>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><ul>
-<li><p>模型结构<br>  <img src="http://i1.bvimg.com/640273/34135a3d394a42d1.png" alt=""> </p>
-</li>
-<li><p>triplet损失函数(三联子)</p>
-<div align="center"><br><img src="http://i1.bvimg.com/640273/48d9a0242e839644.png"><br><img src="http://i1.bvimg.com/640273/41a07d506d75f67f.png"><br><img src="http://i1.bvimg.com/640273/dcff4c17d3e8750f.png"><br></div>
-</li>
-<li><p>triplet选择</p>
-<ul>
-<li>计算argmax和argmin<div align="center"><br><img src="http://i1.bvimg.com/640273/38a4e93f9c07069b.png"><br><img src="http://i1.bvimg.com/640273/d06d4b57f57f733a.png"><br></div></li>
-<li>方案一：每n步产生triplets，使用数据的子集计算argmax, argmin;方案二(论文中采取的方案)：在线生成triplets, 在mini-batch中计算argmax和argmin，论文中一个mini-batch每个人选了40张脸图，并且额外增加了随机的负样本脸图</li>
-<li>选择hardest的负样本在实际中会导致训练时候在早起就陷入局部最优，所以论文中采用semi-hard的策略<ul>
-<li><img src="http://i2.bvimg.com/640273/9a9d9410ccc7d7cb.png" alt=""></li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>评估标准</p>
-<ul>
-<li>true accept<br>  <img src="http://i2.bvimg.com/640273/cddd3c013993c08b.png" alt=""></li>
-<li>false accept<br>  <img src="http://i2.bvimg.com/640273/72b8e00585ad4148.png" alt="Markdown"></li>
-<li>validation rate &amp;&amp; false accept rate<br>  <img src="http://i2.bvimg.com/640273/59f9f10e55f4f857.png" alt="Markdown">  </li>
-</ul>
-</li>
-</ul>
-<h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><ul>
-<li>不同模型对比<div align="center"><br><img src="http://i1.bvimg.com/640273/a5f0eaa57f8a19de.png"><br></div></li>
-<li>不同图片质量对比<div align="center"><br><img src="http://i1.bvimg.com/640273/c8cc52ff8453d40d.png"><br></div></li>
-<li>不同embedding维度对比<div align="center"><br><img src="http://i1.bvimg.com/640273/8568aef6a4e51720.png"><br></div></li>
-<li>不同训练集数量对比<div align="center"><br><img src="http://i1.bvimg.com/640273/2bfa262300bf7a41.png"><br></div></li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/10/FaceNet论文笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -494,7 +629,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -504,10 +639,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">1</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -515,10 +650,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">1</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
