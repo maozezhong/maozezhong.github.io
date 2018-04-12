@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[相似图片搜索]]></title>
+    <url>%2F2018%2F04%2F12%2F%E7%9B%B8%E4%BC%BC%E5%9B%BE%E7%89%87%E6%90%9C%E7%B4%A2%2F</url>
+    <content type="text"><![CDATA[原文链接 相似图片搜索的原理–阮一峰 相似图片搜索的原理(二)–阮一峰 图片搜索方法简述1.感知哈希算法(perceputal hash algorithm) 原理：对每张图片生成一个“指纹”字符串，然后比较不同图片的指纹。结果越相近，就说明图片越相似 步骤： step1: 缩小尺寸，将图片缩小到8x8大小，摒弃图片的细节，只保留结构、明暗等特征 step2: 简化色彩，图片转为64度灰，即所有像素点总共只有64种颜色。(原灰度图每个像素范围为0~255，表示256度灰，那么每个像素值除以4就得到了64度灰) step3: 计算平均值，计算所有64个像素的灰度平均值 step4: 比较像素的灰度，将每个像素的灰度都与平均值比较，大于平均值的记1，不然记0 step5: 计算哈希值，将上一步的比较结果组合构成64位的整数，这就是图片的指纹 step6: 通过计算汉明距离得到图片相似度 代码实现：imghash 优缺点：简单快速，不受图片大小的缩放影响，缺点是图片的内容不能变更。如果在图片上加几个文字，它就认不出来了。所以，它的最佳用途是根据缩略图，找出原图。 2.颜色分布法 原理：任何颜色都是由RGB三原色构成，所以一张图片会有4张直方图（三原色直方图+最后合成的直方图。如果每种原色都可以取256个值，可以将0～255分成四个区：0～63为第0区，64～127为第1区，128～191为第2区，192～255为第3区。这意味着红绿蓝分别有4个区，总共可以构成64种组合（4的3次方），任何一种颜色必然属于这64种组合种的一种，这样就可以统计每一种组合包含的像素数，形成一个长度位64的特征向量。 3.内容特征法 步骤： 将原图转换为1张较小的灰度图像，比如5050像素。（Gray = R\0.299 + G*0.587 + B*0.114） 确定一个阈值，将灰度图片转换为黑白轮廓图片。 核心：如何确定阈值-&gt;“大津法” 假设一张图片共有n个像素，其中灰度值小于阈值的像素为n1个，大于等于的为n2个。则可以计算得到两种像素各自的比重。 w1 = n1 / n ; w2 = n2 / n 假设所有灰度值小于阈值的像素的平均值和标准差为u1和delta1，所有大于等于阈值的像素的平均值和方差为u2和delta2。则类内差异 = w1*（delta1的平方） + w2*(delta2的平方)；类间差异 = w1*w2*(u1-u2)^2。可以证明得到类内差异的最小值等同于得到类间差异的最大值,证明见下图。 用穷举法得到阈值。阈值从灰度的最低值到最高值依次取一遍，带入使得类内差异最小或者类外差异最大的值即为最终的阈值。]]></content>
+      <categories>
+        <category>图片处理</category>
+      </categories>
+      <tags>
+        <tag>图片搜索</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[MTCNN论文笔记]]></title>
     <url>%2F2018%2F04%2F11%2FMTCNN%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[脸部检测及landmarks标记 背景 论文: Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks 代码地址: Github 作者博客 概况 论文提出了一种深层的级联multi-task框架 分三个阶段的深度卷积网络由粗到细的检测人脸及预测landmark location 论文提出了一种有效的online hard sample mining的策略来提升性能.(在每个mini-batch中选择前向计算误差前70%大的样本用来BP) 方法1.总体框架 2.三步骤 pre：先将图片resize，叠成“金字塔” stage1：采用P-Net获得候选窗口以及bounding box回归向量，然后用估计的bounding box回归向量去校准候选窗口。然后使用非极大值抑制(NMS,non-maximum supression)来合并高度重合的候选窗口。（非极大值抑制：首先对每个窗口按照score（置信度）进行递降排序，取score最大的窗口，然后计算剩下的与最大的窗口之间的IOU，也就是重叠面积，如果大于一定阈值就将框删除，然后一直重复上述步骤直到候选窗口为空） stage2：将所有的候选数据喂给R-Net进一步消除不合适的候选窗口，并且通过bounding box回归及NMS去校准 stage3：与2类似，不同的是这一阶段的目的是输出脸部细节，即五个脸部的landmarks位置 3.CNN结构 将5x5大小的滤波窗口减小到3x3大小的滤波窗口以减少计算 增加深度以更好的提取特征 4.训练 face classification损失函数(2分类，交叉熵损失) bounding box regression损失(计算预测坐标向量和真实坐标向量的欧氏距离) facial landmark localization损失(欧式距离) multi-source，alpha为任务重要性，beta为样本类型索引取值为0或1，样本种类包括{negative(IoU&lt;0.3), positive(IoU&gt;0.65), part face(0.4&lt;IoU&lt;0.65), landmark face}；在计算训练的总体损失的时候，classifier, bounding box regression和landmarks detection的权重是不一样的；训练数据共分为4类，比例为 online hard sample mining,在每个mini-batch中选择前向计算误差前70%大的样本用来BP) 实验结果 online hard sample mining效果 联合检测及校准的效果 检验脸部检测的效果 检验脸部校准的效果]]></content>
