@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="二分查找," />
+  <meta name="keywords" content="softmax," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="二分模板int binarySearch(vector&amp;lt;int&amp;gt;nums, int key) {     int left = 0, right = nums.size()-1;     while(left&amp;lt;=right)     {         int mid = left+(right-left)/2;         if(key ? nums[mid]){">
-<meta name="keywords" content="二分查找">
+<meta name="description" content="使用tensorflow实现softmax分类">
+<meta name="keywords" content="softmax">
 <meta property="og:type" content="article">
-<meta property="og:title" content="二分查找及其变种">
-<meta property="og:url" content="http://yoursite.com/2018/04/10/二分查找及其变种/index.html">
+<meta property="og:title" content="tensorflow实现softmax分类">
+<meta property="og:url" content="http://yoursite.com/2018/04/15/tensorflow实现softmax分类/index.html">
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
-<meta property="og:description" content="二分模板int binarySearch(vector&amp;lt;int&amp;gt;nums, int key) {     int left = 0, right = nums.size()-1;     while(left&amp;lt;=right)     {         int mid = left+(right-left)/2;         if(key ? nums[mid]){">
+<meta property="og:description" content="使用tensorflow实现softmax分类">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-10T11:24:32.996Z">
+<meta property="og:updated_time" content="2018-04-15T15:22:27.804Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="二分查找及其变种">
-<meta name="twitter:description" content="二分模板int binarySearch(vector&amp;lt;int&amp;gt;nums, int key) {     int left = 0, right = nums.size()-1;     while(left&amp;lt;=right)     {         int mid = left+(right-left)/2;         if(key ? nums[mid]){">
+<meta name="twitter:title" content="tensorflow实现softmax分类">
+<meta name="twitter:description" content="使用tensorflow实现softmax分类">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/10/二分查找及其变种/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/15/tensorflow实现softmax分类/"/>
 
 
 
 
 
-  <title>二分查找及其变种 | Zezhong's Blog</title>
+  <title>tensorflow实现softmax分类 | Zezhong's Blog</title>
   
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/10/二分查找及其变种/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/15/tensorflow实现softmax分类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mao Zezhong">
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">二分查找及其变种</h1>
+          <h1 class="post-title" itemprop="name headline">tensorflow实现softmax分类</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T17:06:52+08:00">
-                2018-04-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T23:14:31+08:00">
+                2018-04-15
               </time>
             
 
@@ -331,8 +331,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/基础-经典算法/" itemprop="url" rel="index">
-                    <span itemprop="name">基础/经典算法</span>
+                  <a href="/categories/tensorflow实现XX/" itemprop="url" rel="index">
+                    <span itemprop="name">tensorflow实现XX</span>
                   </a>
                 </span>
 
@@ -348,7 +348,7 @@
 
           
           
-             <span id="/2018/04/10/二分查找及其变种/" class="leancloud_visitors" data-flag-title="二分查找及其变种">
+             <span id="/2018/04/15/tensorflow实现softmax分类/" class="leancloud_visitors" data-flag-title="tensorflow实现softmax分类">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  947字
+                  360字
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5分钟
+                  2分钟
                 </span>
               
             </div>
@@ -411,286 +411,58 @@
       
 
       
-        <h2 id="二分模板"><a href="#二分模板" class="headerlink" title="二分模板"></a>二分模板</h2><pre><code>int binarySearch(vector&lt;int&gt;nums, int key)
-{
-    int left = 0, right = nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid = left+(right-left)/2;
-        if(key ? nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    //可能还得加判断left，right是否在范围内
-    return left or right;
-}
-</code></pre><a id="more"></a>
-<h2 id="标准二分查找"><a href="#标准二分查找" class="headerlink" title="标准二分查找"></a>标准二分查找</h2><pre><code>//1.标准二分
-int binarySearch_1(vector&lt;int&gt; nums, int key)
-{
-    int left = 0, right=nums.size()-1;    
-    while(left&lt;=right)
-    {
-        int mid = left + (right-left)/2;
-        if(key&lt;nums[mid]){
-            right = mid-1;
-        }else if(key&gt;nums[mid]){
-            left = mid+1;
-        }else{
-            return mid;
-        }
-    }
-    return -1;
-}
-</code></pre><h2 id="二分查找变种"><a href="#二分查找变种" class="headerlink" title="二分查找变种"></a>二分查找变种</h2><h4 id="1-最后一个小于key的元素"><a href="#1-最后一个小于key的元素" class="headerlink" title="1.最后一个小于key的元素"></a>1.最后一个小于key的元素</h4><pre><code>//2.最后一个小于key的元素
-int binarySearch_2(vector&lt;int&gt; nums, int key)
-{
-    int left = 0, right = nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid = left + (right-left)/2;
-        if(key&lt;=nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    if(right&gt;=0)
-        return right;
-    else
-        return -1;
-}
-</code></pre><h4 id="2-第一个大于key的元素"><a href="#2-第一个大于key的元素" class="headerlink" title="2.第一个大于key的元素"></a>2.第一个大于key的元素</h4><pre><code>//3.第一个大于key的值
-int binarySearch_3(vector&lt;int&gt; nums, int key)
-{
-    int left = 0, right = nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid  = left + (right-left)/2;
-        if(key&lt;nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    if(left&lt;nums.size())
-        return left;
-    else
-        return -1;
-}
-</code></pre><h4 id="3-最后一个小于等于key的元素"><a href="#3-最后一个小于等于key的元素" class="headerlink" title="3.最后一个小于等于key的元素"></a>3.最后一个小于等于key的元素</h4><pre><code>//4.最后一个小于等于key的值
-int binarySearch_4(vector&lt;int&gt; nums, int key)
-{
-    int left = 0, right = nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid = left + (right-left)/2;
-        if(key&lt;nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    return right;
-}
-</code></pre><h4 id="4-第一个大于等于key的元素"><a href="#4-第一个大于等于key的元素" class="headerlink" title="4.第一个大于等于key的元素"></a>4.第一个大于等于key的元素</h4><pre><code>//5.第一个大于等于key的元素
-int binarySearch_5(vector&lt;int&gt; nums, int key)
-{
-    int left = 0,right=nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid = left + (right-left)/2;
-        if(key&lt;=nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    return left;
-}
-</code></pre><h4 id="5-第一个与key相等的元素"><a href="#5-第一个与key相等的元素" class="headerlink" title="5.第一个与key相等的元素"></a>5.第一个与key相等的元素</h4><pre><code>//6.第一个与key相等的元素
-int binarySearch_6(vector&lt;int&gt;nums, int key)
-{
-    int left = 0, right = nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid = left + (right-left)/2;
-        if(key&lt;=nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    if(left&lt;nums.size() &amp;&amp; nums[left]==key)
-        return left;
-    return -1;
-}
-</code></pre><h4 id="6-最后一个与key相等的元素"><a href="#6-最后一个与key相等的元素" class="headerlink" title="6.最后一个与key相等的元素"></a>6.最后一个与key相等的元素</h4><pre><code>//7.最后一个与key相等的元素
-int binarySearch_7(vector&lt;int&gt; nums, int key)
-{
-    int left = 0, right = nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid = left + (right-left)/2;
-        if(key&lt;nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    if(right&gt;=0 &amp;&amp; nums[right]==key)
-        return right;
-    return -1;
-}
-</code></pre><h2 id="完整测试代码"><a href="#完整测试代码" class="headerlink" title="完整测试代码"></a>完整测试代码</h2><pre><code>#include&lt;iostream&gt;
-#include&lt;vector&gt;
-using namespace std;
+        <blockquote>
+<p>使用tensorflow实现softmax分类</p>
+</blockquote>
+<a id="more"></a>
+<pre><code>from tensorflow.examples.tutorials.mnist import input_data
+mnist = input_data.read_data_sets(&quot;MNIST_data/&quot;, one_hot=True)
 
-//1.标准二分
-int binarySearch_1(vector&lt;int&gt; nums, int key)
-{
-    int left = 0, right=nums.size()-1;    
-    while(left&lt;=right)
-    {
-        int mid = left + (right-left)/2;
-        if(key&lt;nums[mid]){
-            right = mid-1;
-        }else if(key&gt;nums[mid]){
-            left = mid+1;
-        }else{
-            return mid;
-        }
-    }
-    return -1;
-}
+import tensorflow as tf
 
-//2.最后一个小于key的元素
-int binarySearch_2(vector&lt;int&gt; nums, int key)
-{
-    int left = 0, right = nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid = left + (right-left)/2;
-        if(key&lt;=nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    if(right&gt;=0)
-        return right;
-    else
-        return -1;
-}
+#创建输入和输出的占位符，数据类型为float
+x  = tf.placeholder(&quot;float&quot;, [None, 784])
+y_ = tf.placeholder(&quot;float&quot;, [None, 10])
 
-//3.第一个大于key的值
-int binarySearch_3(vector&lt;int&gt; nums, int key)
-{
-    int left = 0, right = nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid  = left + (right-left)/2;
-        if(key&lt;nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    if(left&lt;nums.size())
-        return left;
-    else
-        return -1;
-}
+#创建权值变量w和b
+#y = xw+b,所以w的维度为[784,10], b的维度为[,10]
+w = tf.Variable(tf.random_normal([784, 10], name=&quot;weights&quot;))
+b = tf.Variable(tf.random_normal([10], name=&quot;bias&quot;))
 
+#softmax回归模型
+#tf.multiply(x,y)是x和y的元素级别的相乘；tf.matmul为矩阵相乘
+#y = tf.nn.softmax(tf.matmul(x, w)+b)
+y = tf.matmul(x,w)+b
 
-//4.最后一个小于等于key的值
-int binarySearch_4(vector&lt;int&gt; nums, int key)
-{
-    int left = 0, right = nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid = left + (right-left)/2;
-        if(key&lt;nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    return right;
-}
+#定义损失函数，使用交叉熵作为损失
+#cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_*tf.log(y), reduction_indices=1))
+#cross_entropy = -tf.reduce_sum(y_*tf.log(y), reduction_indices=1)
+cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y)
 
-//5.第一个大于等于key的元素
-int binarySearch_5(vector&lt;int&gt; nums, int key)
-{
-    int left = 0,right=nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid = left + (right-left)/2;
-        if(key&lt;=nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    return left;
-}
+#训练
+lr_rate = 0.01
+#train_step = tf.train.AdamOptimizer(lr_rate).minimize(cost)
+train_step = tf.train.GradientDescentOptimizer(lr_rate).minimize(cross_entropy)
+init= tf.initialize_all_variables()
+with tf.Session() as sess:
+    sess.run(init)
 
-//6.第一个与key相等的元素
-int binarySearch_6(vector&lt;int&gt;nums, int key)
-{
-    int left = 0, right = nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid = left + (right-left)/2;
-        if(key&lt;=nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    if(left&lt;nums.size() &amp;&amp; nums[left]==key)
-        return left;
-    return -1;
-}
+    for epoch in range(100000):
+        x_batch, y_batch = mnist.train.next_batch(100)
+        sess.run(train_step, feed_dict={x : x_batch, y_ : y_batch })
+        #训练精确度， training acc
+        correct_prediction = tf.equal(tf.argmax(y_,1), tf.argmax(y,1))
+        acc = tf.reduce_mean(tf.cast(correct_prediction, &quot;float&quot;))
+        if epoch%1000==0:
+            print(&quot;step : &quot;+str(epoch)+&quot; training accuracy is : &quot;+str(acc.eval(feed_dict={x:x_batch, y_:y_batch})))
 
-//7.最后一个与key相等的元素
-int binarySearch_7(vector&lt;int&gt; nums, int key)
-{
-    int left = 0, right = nums.size()-1;
-    while(left&lt;=right)
-    {
-        int mid = left + (right-left)/2;
-        if(key&lt;nums[mid]){
-            right = mid-1;
-        }else{
-            left = mid+1;
-        }
-    }
-    if(right&gt;=0 &amp;&amp; nums[right]==key)
-        return right;
-    return -1;
-}
-
-void test()
-{
-    //int test_arr[] = {1,2,2,2,3,4,5};//test1
-    //int test_arr[] = {2,2,2,4,3};//test2
-    //int test_arr[] = {1,2,2,2};//test3
-    //int test_arr[] = {1,2,2,2};//test4
-    //int test_arr[] = {1,2,3,4};//test5
-    //int test_arr[] = {1,2,3,5};//test6
-    int test_arr[] = {1,2,2,5};//test7
-    vector&lt;int&gt; test_vec(test_arr, test_arr+sizeof(test_arr)/sizeof(int));
-    cout&lt;&lt;binarySearch_7(test_vec,3)&lt;&lt;endl;
-}
-
-int main()
-{
-    test();
-    return 0;
-}
+    #评估
+    ##比较一下预测值和真实值，如果一致则返回true，否则返回false
+    correct_prediction = tf.equal(tf.argmax(y_,1), tf.argmax(y,1))
+    ##计算准确率tf.cast是转换数据格式，如下是转换为float
+    ##计算均值tf.reduce_mean
+    accuracy = tf.reduce_mean(tf.cast(correct_prediction, &quot;float&quot;))
+    print(&quot;accuracy : &quot;+str(sess.run(accuracy, feed_dict={x : mnist.test.images, y_ : mnist.test.labels})))
 </code></pre>
       
     </div>
@@ -708,7 +480,7 @@ int main()
       
         <div class="post-tags">
           
-            <a href="/tags/二分查找/" rel="tag"># 二分查找</a>
+            <a href="/tags/softmax/" rel="tag"># softmax</a>
           
         </div>
       
@@ -721,8 +493,8 @@ int main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/10/FaceNet论文笔记/" rel="next" title="FaceNet论文笔记">
-                <i class="fa fa-chevron-left"></i> FaceNet论文笔记
+              <a href="/2018/04/14/SIFT特征提取分析算法/" rel="next" title="SIFT特征提取分析算法">
+                <i class="fa fa-chevron-left"></i> SIFT特征提取分析算法
               </a>
             
           </div>
@@ -730,10 +502,6 @@ int main()
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/11/MTCNN论文笔记/" rel="prev" title="MTCNN论文笔记">
-                MTCNN论文笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -811,17 +579,8 @@ var jiathis_config={
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -923,22 +682,6 @@ var jiathis_config={
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#二分模板"><span class="nav-number">1.</span> <span class="nav-text">二分模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准二分查找"><span class="nav-number">2.</span> <span class="nav-text">标准二分查找</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分查找变种"><span class="nav-number">3.</span> <span class="nav-text">二分查找变种</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-最后一个小于key的元素"><span class="nav-number">3.0.1.</span> <span class="nav-text">1.最后一个小于key的元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-第一个大于key的元素"><span class="nav-number">3.0.2.</span> <span class="nav-text">2.第一个大于key的元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-最后一个小于等于key的元素"><span class="nav-number">3.0.3.</span> <span class="nav-text">3.最后一个小于等于key的元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-第一个大于等于key的元素"><span class="nav-number">3.0.4.</span> <span class="nav-text">4.第一个大于等于key的元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-第一个与key相等的元素"><span class="nav-number">3.0.5.</span> <span class="nav-text">5.第一个与key相等的元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-最后一个与key相等的元素"><span class="nav-number">3.0.6.</span> <span class="nav-text">6.最后一个与key相等的元素</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#完整测试代码"><span class="nav-number">4.</span> <span class="nav-text">完整测试代码</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
