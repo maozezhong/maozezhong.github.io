@@ -275,6 +275,285 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/构造哈弗曼树（转）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mao Zezhong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180419/HLjKj2G0g1.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zezhong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/21/构造哈弗曼树（转）/" itemprop="url">构造哈弗曼树（转）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T21:41:09+08:00">
+                2018-04-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/基础-经典算法/" itemprop="url" rel="index">
+                    <span itemprop="name">基础/经典算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/21/构造哈弗曼树（转）/" class="leancloud_visitors" data-flag-title="构造哈弗曼树（转）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  509字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="转自哈夫曼树算法及C-实现"><a href="#转自哈夫曼树算法及C-实现" class="headerlink" title="转自哈夫曼树算法及C++实现"></a>转自<a href="https://www.cnblogs.com/smile233/p/8184492.html" target="_blank" rel="noopener">哈夫曼树算法及C++实现</a></h2><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include&lt;iostream&gt;
+#include &lt;iomanip&gt;//这个头文件是声明一些 “流操作符”的
+//比较常用的有:setw(int);//设置显示宽度，left//right//设置左右对齐。 setprecision(int);//设置浮点数的精确度。
+
+using namespace std;
+// 哈夫曼树的结点结构
+struct element
+{
+    int weight;        // 权值域
+    int lchild, rchild, parent;  // 该结点的左、右、双亲结点在数组中的下标
+};
+
+// 选取权值最小的两个结点
+void selectMin(element a[],int n, int &amp;s1, int &amp;s2)
+{
+    for (int i = 0; i &lt; n; i++)
+    {
+        if (a[i].parent == -1)// 初始化s1,s1的双亲为-1
+        {
+            s1 = i;
+            break;
+        }
+    }
+    for (int i = 0; i &lt; n; i++)// s1为权值最小的下标
+    {
+        if (a[i].parent == -1 &amp;&amp; a[s1].weight &gt; a[i].weight)
+            s1 = i;
+    }
+    for (int j = 0; j &lt; n; j++)
+    {
+        if (a[j].parent == -1&amp;&amp;j!=s1)// 初始化s2,s2的双亲为-1
+        {
+            s2 = j;
+            break;
+        }
+    }
+    for (int j = 0; j &lt; n; j++)// s2为另一个权值最小的结点
+    {
+        if (a[j].parent == -1 &amp;&amp; a[s2].weight &gt; a[j].weight&amp;&amp;j != s1)
+            s2 = j;
+    }
+}
+
+// 哈夫曼算法
+// n个叶子结点的权值保存在数组w中
+void HuffmanTree(element huftree[], int w[], int n)
+{
+    for (int i = 0; i &lt; 2*n-1; i++)    // 初始化，所有结点均没有双亲和孩子
+    {
+        huftree[i].parent = -1;
+        huftree[i].lchild = -1;
+        huftree[i].rchild = -1;
+    }
+    for (int i = 0; i &lt; n; i++)    // 构造只有根节点的n棵二叉树
+    {
+        huftree[i].weight = w[i];
+    }
+    for (int k = n; k &lt; 2 * n - 1; k++) // n-1次合并
+    {
+        int i1, i2; 
+        selectMin(huftree, k, i1, i2); // 查找权值最小的俩个根节点，下标为i1,i2
+        // 将i1，i2合并，且i1和i2的双亲为k
+        huftree[i1].parent = k;
+        huftree[i2].parent = k;
+        huftree[k].lchild = i1;
+        huftree[k].rchild = i2;
+        huftree[k].weight = huftree[i1].weight + huftree[i2].weight;
+    }
+
+}
+
+// 打印哈夫曼树
+void print(element hT[],int n)
+{
+    cout &lt;&lt; &quot;index weight parent lChild rChild&quot; &lt;&lt; endl;
+    cout &lt;&lt; left;    // 左对齐输出 
+    for (int i = 0; i &lt; n; ++i) 
+    {
+        cout &lt;&lt; setw(5) &lt;&lt; i &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; setw(6) &lt;&lt; hT[i].weight &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; setw(6) &lt;&lt; hT[i].parent &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; setw(6) &lt;&lt; hT[i].lchild &lt;&lt; &quot; &quot;;
+        cout &lt;&lt; setw(6) &lt;&lt; hT[i].rchild &lt;&lt; endl;
+    }
+}
+
+int main()
+{
+    int x[] = { 5,29,7,8,14,23,3,11 };        // 权值集合
+    element *hufftree=new element[2*8-1];    // 动态创建数组
+    HuffmanTree(hufftree, x, 8);
+    print(hufftree,15);
+    system(&quot;pause&quot;);
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/19/hash表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1879,7 +2158,7 @@ unsigned int BKDR_hash(char *str)
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1901,7 +2180,7 @@ unsigned int BKDR_hash(char *str)
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1990,7 +2269,7 @@ unsigned int BKDR_hash(char *str)
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">6.7k</span>
+    <span title="Site words total count">7.2k</span>
   
 </div>
 
