@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
 <meta property="og:description" content="背景 官网：YOLO: Real-Time Object Detection 官方代码：github 非官方代码：github">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-29T10:02:43.575Z">
+<meta property="og:updated_time" content="2018-04-29T10:37:54.979Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yolo系列（1）：使用yolov3检测红绿灯">
 <meta name="twitter:description" content="背景 官网：YOLO: Real-Time Object Detection 官方代码：github 非官方代码：github">
@@ -436,17 +436,17 @@
 <li>训练图片格式类似000001.jpg、000002.jpg</li>
 <li><p>按照voc数据集的结构放置图像文件。1）Annotation中主要存放xml文件，每一个xml对应一张图像，并且每个xml中存放的是标记的各个目标的位置和类别信息，命名通常与对应的原始图像一样;2)ImageSets我们只需要用到Main文件夹，这里面存放的是一些文本文件，通常为train.txt、test.txt等，该文本文件里面的内容是需要用来训练或测试的图像的名字;3）JPEGImages文件夹中放我们已按统一规则命名好的原始图像。</p>
 <blockquote>
-</blockquote>
-<p>  –VOC  </p>
-<pre><code>--Annotations  
---ImageSets  
-  --Main  
-  --Layout  
-  --Segmentation  
---JPEGImages  
---SegmentationClass//暂时可有可无 
---SegmentationObject //暂时可有可无
-</code></pre></li>
+<pre><code>--VOC  
+  --Annotations  
+  --ImageSets  
+    --Main  
+    --Layout  
+    --Segmentation  
+  --JPEGImages  
+  --SegmentationClass//暂时可有可无 
+  --SegmentationObject //暂时可有可无
+</code></pre></blockquote>
+</li>
 <li><p>将新建的voc文件夹放到scripts/VOCdevkit/目录下，若无VOCdevkit文件夹则新建一个。</p>
 </li>
 <li>用labelImg标注图像,<a href="https://blog.csdn.net/luckwinner/article/details/72898367" target="_blank" rel="noopener">windows版本</a>;<a href="https://www.cnblogs.com/new-age/p/7071289.html" target="_blank" rel="noopener">linux版本</a>。会自己生成相关标签的xml文件，很好用。</li>
