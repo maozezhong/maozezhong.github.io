@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
 <meta property="og:description" content="背景 官网：YOLO: Real-Time Object Detection 官方代码：github 非官方代码：github">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-29T09:40:51.003Z">
+<meta property="og:updated_time" content="2018-04-29T10:02:43.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yolo系列（1）：使用yolov3检测红绿灯">
 <meta name="twitter:description" content="背景 官网：YOLO: Real-Time Object Detection 官方代码：github 非官方代码：github">
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,024字
+                  1,181字
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  5分钟
                 </span>
               
             </div>
@@ -474,7 +474,31 @@
 <li><strong>测试</strong>：运行<code>./darknet detector test cfg/voc.data cfg/yolov3-voc.cfg yolov3.weights</code>;yolov3.weights为你训练好的模型权重，之前存在.name文件中设置的backup路径中</li>
 </ul>
 <hr>
-<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h4 id="1-理解yolo的输出含义（译文）"><a href="#1-理解yolo的输出含义（译文）" class="headerlink" title="1.理解yolo的输出含义（译文）"></a>1.<a href="https://blog.csdn.net/dcrmg/article/details/78565440" target="_blank" rel="noopener">理解yolo的输出含义（译文）</a></h4><h4 id="2-批量测试yolo模型效果"><a href="#2-批量测试yolo模型效果" class="headerlink" title="2.批量测试yolo模型效果"></a>2.<a href="https://blog.csdn.net/lucky__ing/article/details/78310510?utm_source=debugrun&amp;utm_medium=referral" target="_blank" rel="noopener">批量测试yolo模型效果</a></h4><h4 id="3-遇到的问题"><a href="#3-遇到的问题" class="headerlink" title="3.遇到的问题"></a>3.遇到的问题</h4><ul>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h4 id="1-理解yolo的输出含义（译文）"><a href="#1-理解yolo的输出含义（译文）" class="headerlink" title="1.理解yolo的输出含义（译文）"></a>1.<a href="https://blog.csdn.net/dcrmg/article/details/78565440" target="_blank" rel="noopener">理解yolo的输出含义（译文）</a></h4><h4 id="2-批量测试yolo模型效果"><a href="#2-批量测试yolo模型效果" class="headerlink" title="2.批量测试yolo模型效果"></a>2.<a href="https://blog.csdn.net/lucky__ing/article/details/78310510?utm_source=debugrun&amp;utm_medium=referral" target="_blank" rel="noopener">批量测试yolo模型效果</a></h4><h4 id="3-别的一些训练数据集"><a href="#3-别的一些训练数据集" class="headerlink" title="3. 别的一些训练数据集"></a>3. 别的一些训练数据集</h4><ul>
+<li>常用图像数据集<ul>
+<li><a href="https://blog.csdn.net/lansatiankongxxc/article/details/12978207" target="_blank" rel="noopener">常用图像数据集</a></li>
+<li><a href="http://www.cvpapers.com/datasets.html" target="_blank" rel="noopener">CV Datasets on the web</a> </li>
+</ul>
+</li>
+<li>车辆检测相关数据集<ul>
+<li><a href="https://blog.csdn.net/linolzhang/article/details/55276830" target="_blank" rel="noopener">机器学习实践系列之7 - 车辆检测</a></li>
+</ul>
+</li>
+<li>行人检测<ul>
+<li><a href="https://blog.csdn.net/a2008301610258/article/details/45873867" target="_blank" rel="noopener">行人检测——Caltech Pedestrian Dataset 数据集的使用</a></li>
+</ul>
+</li>
+<li>自动驾驶数据集<ul>
+<li><a href="http://apolloscape.auto/scene.html" target="_blank" rel="noopener">apollow scape数据集</a></li>
+<li><a href="https://blog.csdn.net/garfielder007/article/details/51519531" target="_blank" rel="noopener">交通信号灯识别公开数据集 Traffic Lights Recognition (TLR) public benchmarks</a></li>
+<li><a href="http://cg.cs.tsinghua.edu.cn/traffic-sign/" target="_blank" rel="noopener">Traffic-Sign Detection and Classification in the Wild（交通标志）</a></li>
+<li><a href="http://trafficdata.xjtu.edu.cn/index.do?method=download_id_content&amp;id=43" target="_blank" rel="noopener">交通场景数据集(打不开，不知道是不是网络原因)</a></li>
+<li><a href="https://github.com/udacity/self-driving-car" target="_blank" rel="noopener">udacity/self-driving-car</a></li>
+<li><a href="https://www.zhihu.com/question/53655758/answer/156701855" target="_blank" rel="noopener">自己学习深度学习时，有哪些途径寻找数据集？</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="4-训练中遇到的问题"><a href="#4-训练中遇到的问题" class="headerlink" title="4.训练中遇到的问题"></a>4.训练中遇到的问题</h4><ul>
 <li>————————————2018.4.28————————————<ul>
 <li>Q1： region82和region94都为nan</li>
 <li>A1：可能是框太小之后就不能识别了</li>
@@ -724,7 +748,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用yolov3检测红绿灯"><span class="nav-number">2.</span> <span class="nav-text">使用yolov3检测红绿灯</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#机器配置"><span class="nav-number">2.0.1.</span> <span class="nav-text">机器配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#环境配置"><span class="nav-number">2.0.2.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装darknet及下载yolov3与训练权重"><span class="nav-number">2.0.3.</span> <span class="nav-text">安装darknet及下载yolov3与训练权重</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#voc格式数据集制作"><span class="nav-number">2.0.4.</span> <span class="nav-text">voc格式数据集制作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#训练以及检测"><span class="nav-number">2.0.5.</span> <span class="nav-text">训练以及检测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-number">3.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-理解yolo的输出含义（译文）"><span class="nav-number">3.0.1.</span> <span class="nav-text">1.理解yolo的输出含义（译文）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-批量测试yolo模型效果"><span class="nav-number">3.0.2.</span> <span class="nav-text">2.批量测试yolo模型效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-遇到的问题"><span class="nav-number">3.0.3.</span> <span class="nav-text">3.遇到的问题</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用yolov3检测红绿灯"><span class="nav-number">2.</span> <span class="nav-text">使用yolov3检测红绿灯</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#机器配置"><span class="nav-number">2.0.1.</span> <span class="nav-text">机器配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#环境配置"><span class="nav-number">2.0.2.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装darknet及下载yolov3与训练权重"><span class="nav-number">2.0.3.</span> <span class="nav-text">安装darknet及下载yolov3与训练权重</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#voc格式数据集制作"><span class="nav-number">2.0.4.</span> <span class="nav-text">voc格式数据集制作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#训练以及检测"><span class="nav-number">2.0.5.</span> <span class="nav-text">训练以及检测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-number">3.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-理解yolo的输出含义（译文）"><span class="nav-number">3.0.1.</span> <span class="nav-text">1.理解yolo的输出含义（译文）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-批量测试yolo模型效果"><span class="nav-number">3.0.2.</span> <span class="nav-text">2.批量测试yolo模型效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-别的一些训练数据集"><span class="nav-number">3.0.3.</span> <span class="nav-text">3. 别的一些训练数据集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-训练中遇到的问题"><span class="nav-number">3.0.4.</span> <span class="nav-text">4.训练中遇到的问题</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -758,7 +782,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">8.2k</span>
+    <span title="Site words total count">8.4k</span>
   
 </div>
 
