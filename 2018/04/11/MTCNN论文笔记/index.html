@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="&amp;gt;脸部检测及landmarks标记">
+<meta name="description" content="脸部检测及landmarks标记">
 <meta name="keywords" content="mtcnn">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MTCNN论文笔记">
 <meta property="og:url" content="http://yoursite.com/2018/04/11/MTCNN论文笔记/index.html">
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
-<meta property="og:description" content="&amp;gt;脸部检测及landmarks标记">
+<meta property="og:description" content="脸部检测及landmarks标记">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180419/Keikllk5HK.png?imageslim">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180419/5Lak7bi2dj.png?imageslim">
@@ -98,10 +98,10 @@
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180419/4ghCGce9b1.png?imageslim">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180419/C0JmFeIbdc.png?imageslim">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180419/D1HGGGk7G9.png?imageslim">
-<meta property="og:updated_time" content="2018-04-19T03:24:24.918Z">
+<meta property="og:updated_time" content="2018-04-29T09:41:29.785Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MTCNN论文笔记">
-<meta name="twitter:description" content="&amp;gt;脸部检测及landmarks标记">
+<meta name="twitter:description" content="脸部检测及landmarks标记">
 <meta name="twitter:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180419/Keikllk5HK.png?imageslim">
 
 
@@ -423,7 +423,23 @@
       
 
       
-        <div align="center"><br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180419/Keikllk5HK.png?imageslim"><br></div><br>&gt;脸部检测及landmarks标记<br><br><a id="more"></a><br><br>## 背景<br>1. 论文: <a href="https://arxiv.org/ftp/arxiv/papers/1604/1604.02878.pdf" target="_blank" rel="noopener">Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks</a><br>2. 代码地址: <a href="https://github.com/kpzhang93/MTCNN_face_detection_alignment" target="_blank" rel="noopener">Github</a><br>3. <a href="https://kpzhang93.github.io/MTCNN_face_detection_alignment/index.html?from=timeline&amp;isappinstalled=1" target="_blank" rel="noopener">作者博客</a><br><br>## 概况<br>- 论文提出了一种深层的<strong>级联multi-task框架</strong><br>- 分<strong>三个阶段</strong>的深度卷积网络<strong>由粗到细</strong>的检测人脸及预测landmark location<br>- 论文提出了一种有效的<strong>online hard sample mining</strong>的策略来提升性能.(在每个mini-batch中选择前向计算误差前70%大的样本用来BP)<br><br>## 方法<br>##### 1.总体框架<br><br><div align="center"><br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180419/5Lak7bi2dj.png?imageslim"><br></div>
+        <div align="center"><br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180419/Keikllk5HK.png?imageslim"><br></div>
+
+<blockquote>
+<p>脸部检测及landmarks标记</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol>
+<li>论文: <a href="https://arxiv.org/ftp/arxiv/papers/1604/1604.02878.pdf" target="_blank" rel="noopener">Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks</a></li>
+<li>代码地址: <a href="https://github.com/kpzhang93/MTCNN_face_detection_alignment" target="_blank" rel="noopener">Github</a></li>
+<li><a href="https://kpzhang93.github.io/MTCNN_face_detection_alignment/index.html?from=timeline&amp;isappinstalled=1" target="_blank" rel="noopener">作者博客</a></li>
+</ol>
+<h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><ul>
+<li>论文提出了一种深层的<strong>级联multi-task框架</strong></li>
+<li>分<strong>三个阶段</strong>的深度卷积网络<strong>由粗到细</strong>的检测人脸及预测landmark location</li>
+<li>论文提出了一种有效的<strong>online hard sample mining</strong>的策略来提升性能.(在每个mini-batch中选择前向计算误差前70%大的样本用来BP)</li>
+</ul>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h5 id="1-总体框架"><a href="#1-总体框架" class="headerlink" title="1.总体框架"></a>1.总体框架</h5><div align="center"><br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180419/5Lak7bi2dj.png?imageslim"><br></div>
 
 <h5 id="2-三步骤"><a href="#2-三步骤" class="headerlink" title="2.三步骤"></a>2.三步骤</h5><ul>
 <li>pre：先将图片resize，叠成“金字塔”</li>
@@ -599,7 +615,7 @@ var jiathis_config={
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -610,7 +626,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -621,7 +637,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -692,7 +708,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-三步骤"><span class="nav-number">1.</span> <span class="nav-text">2.三步骤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-CNN结构"><span class="nav-number">2.</span> <span class="nav-text">3.CNN结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-训练"><span class="nav-number">3.</span> <span class="nav-text">4.训练</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number"></span> <span class="nav-text">实验结果</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概况"><span class="nav-number">2.</span> <span class="nav-text">概况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-总体框架"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">1.总体框架</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-三步骤"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">2.三步骤</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-CNN结构"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">3.CNN结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-训练"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">4.训练</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">4.</span> <span class="nav-text">实验结果</span></a></li></ol></div>
             
 
           </div>
@@ -726,7 +742,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">7.2k</span>
+    <span title="Site words total count">8.2k</span>
   
 </div>
 

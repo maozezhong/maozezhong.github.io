@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="softmax," />
+  <meta name="keywords" content="yolo," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="使用tensorflow实现softmax分类">
-<meta name="keywords" content="softmax">
+<meta name="description" content="背景 官网：YOLO: Real-Time Object Detection 官方代码：github 非官方代码：github">
+<meta name="keywords" content="yolo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="tensorflow实现softmax分类">
-<meta property="og:url" content="http://yoursite.com/2018/04/15/tensorflow实现softmax分类/index.html">
+<meta property="og:title" content="yolo系列（1）：使用yolov3检测红绿灯">
+<meta property="og:url" content="http://yoursite.com/2018/04/29/yolo系列（1）：使用yolov3检测红绿灯/index.html">
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
-<meta property="og:description" content="使用tensorflow实现softmax分类">
+<meta property="og:description" content="背景 官网：YOLO: Real-Time Object Detection 官方代码：github 非官方代码：github">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-15T15:22:27.804Z">
+<meta property="og:updated_time" content="2018-04-29T09:40:51.003Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tensorflow实现softmax分类">
-<meta name="twitter:description" content="使用tensorflow实现softmax分类">
+<meta name="twitter:title" content="yolo系列（1）：使用yolov3检测红绿灯">
+<meta name="twitter:description" content="背景 官网：YOLO: Real-Time Object Detection 官方代码：github 非官方代码：github">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/15/tensorflow实现softmax分类/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/29/yolo系列（1）：使用yolov3检测红绿灯/"/>
 
 
 
 
 
-  <title>tensorflow实现softmax分类 | Zezhong's Blog</title>
+  <title>yolo系列（1）：使用yolov3检测红绿灯 | Zezhong's Blog</title>
   
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/15/tensorflow实现softmax分类/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/29/yolo系列（1）：使用yolov3检测红绿灯/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mao Zezhong">
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">tensorflow实现softmax分类</h1>
+          <h1 class="post-title" itemprop="name headline">yolo系列（1）：使用yolov3检测红绿灯</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-15T23:14:31+08:00">
-                2018-04-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T17:33:37+08:00">
+                2018-04-29
               </time>
             
 
@@ -331,8 +331,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tensorflow实现XX/" itemprop="url" rel="index">
-                    <span itemprop="name">tensorflow实现XX</span>
+                  <a href="/categories/yolo系列/" itemprop="url" rel="index">
+                    <span itemprop="name">yolo系列</span>
                   </a>
                 </span>
 
@@ -348,7 +348,7 @@
 
           
           
-             <span id="/2018/04/15/tensorflow实现softmax分类/" class="leancloud_visitors" data-flag-title="tensorflow实现softmax分类">
+             <span id="/2018/04/29/yolo系列（1）：使用yolov3检测红绿灯/" class="leancloud_visitors" data-flag-title="yolo系列（1）：使用yolov3检测红绿灯">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  360字
+                  1,024字
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2分钟
+                  4分钟
                 </span>
               
             </div>
@@ -411,59 +411,82 @@
       
 
       
-        <blockquote>
-<p>使用tensorflow实现softmax分类</p>
-</blockquote>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol>
+<li>官网：<a href="https://pjreddie.com/darknet/yolo/" target="_blank" rel="noopener">YOLO: Real-Time Object Detection</a></li>
+<li>官方代码：<a href="https://github.com/pjreddie/darknet" target="_blank" rel="noopener">github</a></li>
+<li>非官方代码：<a href="https://github.com/maozezhong/darknet" target="_blank" rel="noopener">github</a></li>
+</ol>
 <a id="more"></a>
-<pre><code>from tensorflow.examples.tutorials.mnist import input_data
-mnist = input_data.read_data_sets(&quot;MNIST_data/&quot;, one_hot=True)
+<h2 id="使用yolov3检测红绿灯"><a href="#使用yolov3检测红绿灯" class="headerlink" title="使用yolov3检测红绿灯"></a>使用yolov3检测红绿灯</h2><h4 id="机器配置"><a href="#机器配置" class="headerlink" title="机器配置"></a>机器配置</h4><ol>
+<li>GPU：GeForce GTX 1060 6GB/PCIe/SSE2</li>
+<li>内存：7.7 GiB</li>
+<li>环境：unbuntu 16.04</li>
+</ol>
+<h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><ol>
+<li><a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=nvidia%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85&amp;oq=nvidia%25E5%25AE%2598%25E7%25BD%2591&amp;rsv_pq=d2b696eb00003d80&amp;rsv_t=1c1fkmu%2BRXo4o6gp1hBvjwT0yLpDE%2FOQCqfp5%2Fi1BUUzm9%2BWYKF0FwVozPg&amp;rqlang=cn&amp;rsv_enter=0&amp;inputT=3747&amp;rsv_sug3=46&amp;rsv_sug1=20&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=4695" target="_blank" rel="noopener">显卡驱动安装</a></li>
+<li><a href="https://blog.csdn.net/u014595019/article/details/53732015" target="_blank" rel="noopener">CUDA和CUDNN（非必须,我这边跑yolov3的时候没有配置这个）安装</a></li>
+</ol>
+<h4 id="安装darknet及下载yolov3与训练权重"><a href="#安装darknet及下载yolov3与训练权重" class="headerlink" title="安装darknet及下载yolov3与训练权重"></a>安装darknet及下载yolov3与训练权重</h4><ul>
+<li>按照官网教程来, <a href="https://pjreddie.com/darknet/install/" target="_blank" rel="noopener">darknet安装</a> ; <a href="https://pjreddie.com/darknet/yolo/" target="_blank" rel="noopener">权重下载</a></li>
+</ul>
+<h4 id="voc格式数据集制作"><a href="#voc格式数据集制作" class="headerlink" title="voc格式数据集制作"></a>voc格式数据集制作</h4><ol>
+<li><p>voc格式</p>
+<ul>
+<li>参考<a href="https://www.cnblogs.com/antflow/p/7350274.html" target="_blank" rel="noopener">YOLOv2训练自己的数据集（VOC格式）</a>;<a href="http://lib.csdn.net/article/deeplearning/57863?knId=1726" target="_blank" rel="noopener">【YOLO学习】使用YOLO v2训练自己的数据</a></li>
+<li>训练图片格式类似000001.jpg、000002.jpg</li>
+<li><p>按照voc数据集的结构放置图像文件。1）Annotation中主要存放xml文件，每一个xml对应一张图像，并且每个xml中存放的是标记的各个目标的位置和类别信息，命名通常与对应的原始图像一样;2)ImageSets我们只需要用到Main文件夹，这里面存放的是一些文本文件，通常为train.txt、test.txt等，该文本文件里面的内容是需要用来训练或测试的图像的名字;3）JPEGImages文件夹中放我们已按统一规则命名好的原始图像。</p>
+<blockquote>
+</blockquote>
+<p>  –VOC  </p>
+<pre><code>--Annotations  
+--ImageSets  
+  --Main  
+  --Layout  
+  --Segmentation  
+--JPEGImages  
+--SegmentationClass//暂时可有可无 
+--SegmentationObject //暂时可有可无
+</code></pre></li>
+<li><p>将新建的voc文件夹放到scripts/VOCdevkit/目录下，若无VOCdevkit文件夹则新建一个。</p>
+</li>
+<li>用labelImg标注图像,<a href="https://blog.csdn.net/luckwinner/article/details/72898367" target="_blank" rel="noopener">windows版本</a>;<a href="https://www.cnblogs.com/new-age/p/7071289.html" target="_blank" rel="noopener">linux版本</a>。会自己生成相关标签的xml文件，很好用。</li>
+<li>根据自己情况修改/scripts/voc_label.py脚本并运行，将xml文件转换成yolo格式的txt文件。同时会在scripts文件夹下生成labels文件夹。</li>
+</ul>
+</li>
+<li><p>本次实验采用的是<a href="http://www.lara.prd.fr/benchmarks/trafficlightsrecognition" target="_blank" rel="noopener">交通信号灯识别公开数据集 Traffic Lights Recognition (TLR) public benchmarks</a>，该数据集有提供相应动GroundTruth，所以不需要自己标注了，但是所提供的标签格式与yolov3要求动有点区别，可以使用<a href="https://github.com/maozezhong/darknet/blob/master/your_training_data/preprocess.py" target="_blank" rel="noopener">preprocess脚本</a>对图像格式以及label格式进行转换。通过<a href="https://github.com/maozezhong/darknet/blob/master/scripts/VOCdevkit/VOC2018/generate_train_validation.py" target="_blank" rel="noopener">generate_train_validation脚本</a>将总的数据集分为训练集和验证集。</p>
+</li>
+<li><p>修改配置文件</p>
+<ul>
+<li><strong>修改</strong>/cfg/voc.data文件，class为类别数目，train为训练数据txt所放的位置，valid为validation数据txt所放的位置，names为voc.names所放的位置，backup为模型训练过程中存储模型参数的位置</li>
+<li><strong>修改</strong>/data/voc.name文件，一行一个类别标签</li>
+<li><strong>修改</strong>/cfg/yolov3-voc.cfg，用的哪个模型就修改哪个模型的.cfg文件，这边用动是yolov3-voc。1）修改batchsize=64和subdivisions=8,batch_size表示每一个批次用来训练的图片张数，subdivisions表示一个批分成几组导入训练。若出现GPU训练动时候提示memory_out可以修改这两个参数试试;2）filters=75-&gt;filters=27,计算公式为filters=3x(classes数目+5);3）[yolo]子参数下，classes大小改成你的训练数据的类别数目，这边为4，random改成0（关闭多尺度训练，如果显存足够可以置为1）</li>
+</ul>
+</li>
+<li><p>修改使yolov3在GPU上运行</p>
+<ul>
+<li>将makefile中的第一行改成GPU=1</li>
+<li>重新make一下</li>
+</ul>
+</li>
+</ol>
+<h4 id="训练以及检测"><a href="#训练以及检测" class="headerlink" title="训练以及检测"></a>训练以及检测</h4><ul>
+<li><strong>训练</strong>：运行<code>./darknet detector train cfg/voc.data cfg/yolov3-voc.cfg darknet53.conv.74</code></li>
+<li><strong>测试</strong>：运行<code>./darknet detector test cfg/voc.data cfg/yolov3-voc.cfg yolov3.weights</code>;yolov3.weights为你训练好的模型权重，之前存在.name文件中设置的backup路径中</li>
+</ul>
+<hr>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h4 id="1-理解yolo的输出含义（译文）"><a href="#1-理解yolo的输出含义（译文）" class="headerlink" title="1.理解yolo的输出含义（译文）"></a>1.<a href="https://blog.csdn.net/dcrmg/article/details/78565440" target="_blank" rel="noopener">理解yolo的输出含义（译文）</a></h4><h4 id="2-批量测试yolo模型效果"><a href="#2-批量测试yolo模型效果" class="headerlink" title="2.批量测试yolo模型效果"></a>2.<a href="https://blog.csdn.net/lucky__ing/article/details/78310510?utm_source=debugrun&amp;utm_medium=referral" target="_blank" rel="noopener">批量测试yolo模型效果</a></h4><h4 id="3-遇到的问题"><a href="#3-遇到的问题" class="headerlink" title="3.遇到的问题"></a>3.遇到的问题</h4><ul>
+<li>————————————2018.4.28————————————<ul>
+<li>Q1： region82和region94都为nan</li>
+<li>A1：可能是框太小之后就不能识别了</li>
+<li>Q2：- darknet已经训练了5000轮差不多，想看下测试效果;在继续训练的情下运行<code>./darknet dector test cfg/voc.data cfg/yolov3-voc.cfg yolov3-voc.wegiths /data/red.jpg</code>的时候报错：<code>CUDA Error: __global__ function call is not configured
+darknet: ./src/cuda.c:36: check_error: Assertion 0 failed.已放弃 (核心已转储)</code> ;</li>
+<li>A2： 在命令前面加上<code>sudo</code></li>
+<li>Q3：CUDA Error: out of memory darknet: ./src/cuda.c:36: check_error: Assertion `0’ failed.</li>
+<li>A3：显存不够，降低batchsize </li>
+</ul>
+</li>
+</ul>
 
-import tensorflow as tf
-
-#创建输入和输出的占位符，数据类型为float
-x  = tf.placeholder(&quot;float&quot;, [None, 784])
-y_ = tf.placeholder(&quot;float&quot;, [None, 10])
-
-#创建权值变量w和b
-#y = xw+b,所以w的维度为[784,10], b的维度为[,10]
-w = tf.Variable(tf.random_normal([784, 10], name=&quot;weights&quot;))
-b = tf.Variable(tf.random_normal([10], name=&quot;bias&quot;))
-
-#softmax回归模型
-#tf.multiply(x,y)是x和y的元素级别的相乘；tf.matmul为矩阵相乘
-#y = tf.nn.softmax(tf.matmul(x, w)+b)
-y = tf.matmul(x,w)+b
-
-#定义损失函数，使用交叉熵作为损失
-#cross_entropy = tf.reduce_mean(-tf.reduce_sum(y_*tf.log(y), reduction_indices=1))
-#cross_entropy = -tf.reduce_sum(y_*tf.log(y), reduction_indices=1)
-cross_entropy = tf.nn.softmax_cross_entropy_with_logits(labels=y_, logits=y)
-
-#训练
-lr_rate = 0.01
-#train_step = tf.train.AdamOptimizer(lr_rate).minimize(cost)
-train_step = tf.train.GradientDescentOptimizer(lr_rate).minimize(cross_entropy)
-init= tf.initialize_all_variables()
-with tf.Session() as sess:
-    sess.run(init)
-
-    for epoch in range(100000):
-        x_batch, y_batch = mnist.train.next_batch(100)
-        sess.run(train_step, feed_dict={x : x_batch, y_ : y_batch })
-        #训练精确度， training acc
-        correct_prediction = tf.equal(tf.argmax(y_,1), tf.argmax(y,1))
-        acc = tf.reduce_mean(tf.cast(correct_prediction, &quot;float&quot;))
-        if epoch%1000==0:
-            print(&quot;step : &quot;+str(epoch)+&quot; training accuracy is : &quot;+str(acc.eval(feed_dict={x:x_batch, y_:y_batch})))
-
-    #评估
-    ##比较一下预测值和真实值，如果一致则返回true，否则返回false
-    correct_prediction = tf.equal(tf.argmax(y_,1), tf.argmax(y,1))
-    ##计算准确率tf.cast是转换数据格式，如下是转换为float
-    ##计算均值tf.reduce_mean
-    accuracy = tf.reduce_mean(tf.cast(correct_prediction, &quot;float&quot;))
-    print(&quot;accuracy : &quot;+str(sess.run(accuracy, feed_dict={x : mnist.test.images, y_ : mnist.test.labels})))
-</code></pre>
       
     </div>
     
@@ -480,7 +503,7 @@ with tf.Session() as sess:
       
         <div class="post-tags">
           
-            <a href="/tags/softmax/" rel="tag"># softmax</a>
+            <a href="/tags/yolo/" rel="tag"># yolo</a>
           
         </div>
       
@@ -493,8 +516,8 @@ with tf.Session() as sess:
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/14/SIFT特征提取分析算法/" rel="next" title="SIFT特征提取分析算法">
-                <i class="fa fa-chevron-left"></i> SIFT特征提取分析算法
+              <a href="/2018/04/21/构造哈弗曼树（转）/" rel="next" title="构造哈弗曼树（转）">
+                <i class="fa fa-chevron-left"></i> 构造哈弗曼树（转）
               </a>
             
           </div>
@@ -502,10 +525,6 @@ with tf.Session() as sess:
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/19/hash表/" rel="prev" title="hash表">
-                hash表 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -583,8 +602,17 @@ var jiathis_config={
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -686,6 +714,22 @@ var jiathis_config={
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用yolov3检测红绿灯"><span class="nav-number">2.</span> <span class="nav-text">使用yolov3检测红绿灯</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#机器配置"><span class="nav-number">2.0.1.</span> <span class="nav-text">机器配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#环境配置"><span class="nav-number">2.0.2.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装darknet及下载yolov3与训练权重"><span class="nav-number">2.0.3.</span> <span class="nav-text">安装darknet及下载yolov3与训练权重</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#voc格式数据集制作"><span class="nav-number">2.0.4.</span> <span class="nav-text">voc格式数据集制作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#训练以及检测"><span class="nav-number">2.0.5.</span> <span class="nav-text">训练以及检测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-number">3.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-理解yolo的输出含义（译文）"><span class="nav-number">3.0.1.</span> <span class="nav-text">1.理解yolo的输出含义（译文）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-批量测试yolo模型效果"><span class="nav-number">3.0.2.</span> <span class="nav-text">2.批量测试yolo模型效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-遇到的问题"><span class="nav-number">3.0.3.</span> <span class="nav-text">3.遇到的问题</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
