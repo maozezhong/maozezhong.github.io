@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
 <meta property="og:description" content="转自哈夫曼树算法及C++实现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-21T13:47:50.828Z">
+<meta property="og:updated_time" content="2018-05-01T03:36:53.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="构造哈弗曼树（转）">
 <meta name="twitter:description" content="转自哈夫曼树算法及C++实现">
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  509字
+                  755字
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3分钟
+                  4分钟
                 </span>
               
             </div>
@@ -507,7 +507,88 @@ int main()
     system(&quot;pause&quot;);
     return 0;
 }
-</code></pre>
+</code></pre><p>——————————————- 2018年5月1日11:36:09更新 ——————————————-</p>
+<h2 id="代码题目"><a href="#代码题目" class="headerlink" title="代码题目"></a>代码题目</h2><pre><code>//给你一个数组，返回哈弗曼树的头结点
+#include&lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+struct TreeNode{
+    TreeNode* left;
+    TreeNode* right;
+    int val;
+    TreeNode(int value):val(value),left(NULL),right(NULL){};
+};
+
+vector&lt;int&gt; pickTwoMin(vector&lt;TreeNode*&gt; nums, vector&lt;bool&gt; &amp;visited)
+{
+    vector&lt;int&gt; res(2);
+    int i1, i2;
+    for(int i=0;i&lt;nums.size();i++)
+    {
+        if(!visited[i])
+        {
+            i1 = i;
+            break;
+        }
+    }
+    for(int i=0;i&lt;nums.size();i++)
+    {
+        if(!visited[i] &amp;&amp; nums[i]&lt;nums[i1])
+            i1 = i;
+    }
+    for(int i=0;i&lt;nums.size();i++)
+    {
+        if(!visited[i]&amp;&amp;i!=i1)
+        {
+            i2 = i;
+            break;
+        }
+    }
+    for(int i=0;i&lt;nums.size();i++)
+    {
+        if(!visited[i] &amp;&amp; i!=i1 &amp;&amp; nums[i]&lt;nums[i2])
+            i2 = i;
+    }
+    res[0] = i1;
+    res[1] = i2;
+    return res;
+}
+
+TreeNode* getHaffMan(vector&lt;TreeNode*&gt; &amp;nums)
+{
+    vector&lt;bool&gt; visited(2*nums.size()-1, false);
+    int times = nums.size();
+    for(int i=0;i&lt;times-1;i++)
+    {
+        vector&lt;int&gt; indexs = pickTwoMin(nums, visited);
+        visited[indexs[0]] = true;
+        visited[indexs[1]] = true;
+        TreeNode* head = new TreeNode(nums[indexs[0]]-&gt;val+nums[indexs[1]]-&gt;val);
+        head-&gt;left = nums[indexs[0]];
+        head-&gt;right = nums[indexs[1]];
+        nums.push_back(head);
+    }
+    return nums[nums.size()-1];
+}
+
+int main()
+{
+    int n;
+    cin&gt;&gt;n;
+    vector&lt;TreeNode*&gt; nums;
+    for (int i=0;i&lt;n;i++)
+    {
+        int val;
+        cin&gt;&gt;val;
+        nums.push_back(new TreeNode(val));
+    }
+    TreeNode* h1 = getHaffMan(nums);
+    system(&quot;pause&quot;);
+    return 0;
+</code></pre><p>}</p>
+
       
     </div>
     
@@ -749,7 +830,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#转自哈夫曼树算法及C-实现"><span class="nav-number">1.</span> <span class="nav-text">转自哈夫曼树算法及C++实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#转自哈夫曼树算法及C-实现"><span class="nav-number">1.</span> <span class="nav-text">转自哈夫曼树算法及C++实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码题目"><span class="nav-number">3.</span> <span class="nav-text">代码题目</span></a></li></ol></div>
             
 
           </div>
@@ -783,7 +864,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">8.4k</span>
+    <span title="Site words total count">8.6k</span>
   
 </div>
 
