@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="哈弗曼树," />
+  <meta name="keywords" content="tensorflow模型," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="转自哈夫曼树算法及C++实现">
-<meta name="keywords" content="哈弗曼树">
+<meta name="description" content="tensorflow保存模型及重载模型">
+<meta name="keywords" content="tensorflow模型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="构造哈弗曼树（转）">
-<meta property="og:url" content="http://yoursite.com/2018/04/21/构造哈弗曼树（转）/index.html">
+<meta property="og:title" content="tensorflow保存模型及重载模型">
+<meta property="og:url" content="http://yoursite.com/2018/05/03/tensorflow保存模型及重载模型/index.html">
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
-<meta property="og:description" content="转自哈夫曼树算法及C++实现">
+<meta property="og:description" content="tensorflow保存模型及重载模型">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-01T03:36:53.576Z">
+<meta property="og:updated_time" content="2018-05-03T15:05:42.776Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="构造哈弗曼树（转）">
-<meta name="twitter:description" content="转自哈夫曼树算法及C++实现">
+<meta name="twitter:title" content="tensorflow保存模型及重载模型">
+<meta name="twitter:description" content="tensorflow保存模型及重载模型">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/21/构造哈弗曼树（转）/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/03/tensorflow保存模型及重载模型/"/>
 
 
 
 
 
-  <title>构造哈弗曼树（转） | Zezhong's Blog</title>
+  <title>tensorflow保存模型及重载模型 | Zezhong's Blog</title>
   
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/构造哈弗曼树（转）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/tensorflow保存模型及重载模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mao Zezhong">
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">构造哈弗曼树（转）</h1>
+          <h1 class="post-title" itemprop="name headline">tensorflow保存模型及重载模型</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T21:41:09+08:00">
-                2018-04-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T22:45:11+08:00">
+                2018-05-03
               </time>
             
 
@@ -331,8 +331,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/基础-经典算法/" itemprop="url" rel="index">
-                    <span itemprop="name">基础/经典算法</span>
+                  <a href="/categories/tensorflow/" itemprop="url" rel="index">
+                    <span itemprop="name">tensorflow</span>
                   </a>
                 </span>
 
@@ -348,7 +348,7 @@
 
           
           
-             <span id="/2018/04/21/构造哈弗曼树（转）/" class="leancloud_visitors" data-flag-title="构造哈弗曼树（转）">
+             <span id="/2018/05/03/tensorflow保存模型及重载模型/" class="leancloud_visitors" data-flag-title="tensorflow保存模型及重载模型">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  755字
+                  308字
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  2分钟
                 </span>
               
             </div>
@@ -411,183 +411,65 @@
       
 
       
-        <h2 id="转自哈夫曼树算法及C-实现"><a href="#转自哈夫曼树算法及C-实现" class="headerlink" title="转自哈夫曼树算法及C++实现"></a>转自<a href="https://www.cnblogs.com/smile233/p/8184492.html" target="_blank" rel="noopener">哈夫曼树算法及C++实现</a></h2><a id="more"></a>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include&lt;iostream&gt;
-#include &lt;iomanip&gt;//这个头文件是声明一些 “流操作符”的
-//比较常用的有:setw(int);//设置显示宽度，left//right//设置左右对齐。 setprecision(int);//设置浮点数的精确度。
+        <blockquote>
+<p>tensorflow保存模型及重载模型</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="保存模型及重载部分模型"><a href="#保存模型及重载部分模型" class="headerlink" title="保存模型及重载部分模型"></a>保存模型及重载部分模型</h2><pre><code># -*- coding=utf-8 -*-
+import tensorflow as tf  
+from tensorflow.python import pywrap_tensorflow
 
-using namespace std;
-// 哈夫曼树的结点结构
-struct element
-{
-    int weight;        // 权值域
-    int lchild, rchild, parent;  // 该结点的左、右、双亲结点在数组中的下标
-};
+#---------------------------------------------保存模型---------------------------------------------
+&apos;&apos;&apos;
+v1= tf.Variable(tf.random_normal([784, 200], stddev=0.35), name=&quot;v1&quot;)  
+v2= tf.Variable(tf.zeros([200]), name=&quot;v2&quot;)  
+#v3= tf.Variable(tf.zeros([100]), name=&quot;v3&quot;) 
+saver = tf.train.Saver()  
+with tf.Session() as sess:  
+     init_op = tf.global_variables_initializer()  
+     sess.run(init_op)  
+     saver.save(sess,&quot;checkpoint/model_test&quot;,global_step=1)
+&apos;&apos;&apos;
 
-// 选取权值最小的两个结点
-void selectMin(element a[],int n, int &amp;s1, int &amp;s2)
-{
-    for (int i = 0; i &lt; n; i++)
-    {
-        if (a[i].parent == -1)// 初始化s1,s1的双亲为-1
-        {
-            s1 = i;
-            break;
-        }
-    }
-    for (int i = 0; i &lt; n; i++)// s1为权值最小的下标
-    {
-        if (a[i].parent == -1 &amp;&amp; a[s1].weight &gt; a[i].weight)
-            s1 = i;
-    }
-    for (int j = 0; j &lt; n; j++)
-    {
-        if (a[j].parent == -1&amp;&amp;j!=s1)// 初始化s2,s2的双亲为-1
-        {
-            s2 = j;
-            break;
-        }
-    }
-    for (int j = 0; j &lt; n; j++)// s2为另一个权值最小的结点
-    {
-        if (a[j].parent == -1 &amp;&amp; a[s2].weight &gt; a[j].weight&amp;&amp;j != s1)
-            s2 = j;
-    }
-}
+#---------------------------------------------重载部分模型---------------------------------------------
+v1= tf.Variable(tf.random_normal([784, 200], stddev=0.35), name=&quot;v1&quot;)  
+v2= tf.Variable(tf.zeros([200]), name=&quot;v2&quot;)  
+v3= tf.Variable(tf.zeros([100]), name=&quot;v3&quot;)  
+#saver = tf.train.Saver()  
+#saver1 = tf.train.Saver([v1])  
+#saver2 = tf.train.Saver([v2]+[v3])  
 
-// 哈夫曼算法
-// n个叶子结点的权值保存在数组w中
-void HuffmanTree(element huftree[], int w[], int n)
-{
-    for (int i = 0; i &lt; 2*n-1; i++)    // 初始化，所有结点均没有双亲和孩子
-    {
-        huftree[i].parent = -1;
-        huftree[i].lchild = -1;
-        huftree[i].rchild = -1;
-    }
-    for (int i = 0; i &lt; n; i++)    // 构造只有根节点的n棵二叉树
-    {
-        huftree[i].weight = w[i];
-    }
-    for (int k = n; k &lt; 2 * n - 1; k++) // n-1次合并
-    {
-        int i1, i2; 
-        selectMin(huftree, k, i1, i2); // 查找权值最小的俩个根节点，下标为i1,i2
-        // 将i1，i2合并，且i1和i2的双亲为k
-        huftree[i1].parent = k;
-        huftree[i2].parent = k;
-        huftree[k].lchild = i1;
-        huftree[k].rchild = i2;
-        huftree[k].weight = huftree[i1].weight + huftree[i2].weight;
-    }
+## 获得保存的模型中的tensor名字
+checkpoint_path = &apos;/home/maozezhong/Desktop/bank_competition/cnn-text-classification-tf/checkpoint&apos;
+ckpt = tf.train.get_checkpoint_state(checkpoint_path)
+reader = pywrap_tensorflow.NewCheckpointReader(ckpt.model_checkpoint_path)
+var_to_shape_map = reader.get_variable_to_shape_map()
+point_name_list = []
+for key in var_to_shape_map:
+    point_name_list.append(key)
+print(point_name_list)
 
-}
-
-// 打印哈夫曼树
-void print(element hT[],int n)
-{
-    cout &lt;&lt; &quot;index weight parent lChild rChild&quot; &lt;&lt; endl;
-    cout &lt;&lt; left;    // 左对齐输出 
-    for (int i = 0; i &lt; n; ++i) 
-    {
-        cout &lt;&lt; setw(5) &lt;&lt; i &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; setw(6) &lt;&lt; hT[i].weight &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; setw(6) &lt;&lt; hT[i].parent &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; setw(6) &lt;&lt; hT[i].lchild &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; setw(6) &lt;&lt; hT[i].rchild &lt;&lt; endl;
-    }
-}
-
-int main()
-{
-    int x[] = { 5,29,7,8,14,23,3,11 };        // 权值集合
-    element *hufftree=new element[2*8-1];    // 动态创建数组
-    HuffmanTree(hufftree, x, 8);
-    print(hufftree,15);
-    system(&quot;pause&quot;);
-    return 0;
-}
-</code></pre><p>——————————————- 2018年5月1日11:36:09更新 ——————————————-</p>
-<h2 id="代码题目"><a href="#代码题目" class="headerlink" title="代码题目"></a>代码题目</h2><pre><code>//给你一个数组，返回哈弗曼树的头结点
-#include&lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;vector&gt;
-using namespace std;
-
-struct TreeNode{
-    TreeNode* left;
-    TreeNode* right;
-    int val;
-    TreeNode(int value):val(value),left(NULL),right(NULL){};
-};
-
-vector&lt;int&gt; pickTwoMin(vector&lt;TreeNode*&gt; nums, vector&lt;bool&gt; &amp;visited)
-{
-    vector&lt;int&gt; res(2);
-    int i1, i2;
-    for(int i=0;i&lt;nums.size();i++)
-    {
-        if(!visited[i])
-        {
-            i1 = i;
-            break;
-        }
-    }
-    for(int i=0;i&lt;nums.size();i++)
-    {
-        if(!visited[i] &amp;&amp; nums[i]&lt;nums[i1])
-            i1 = i;
-    }
-    for(int i=0;i&lt;nums.size();i++)
-    {
-        if(!visited[i]&amp;&amp;i!=i1)
-        {
-            i2 = i;
-            break;
-        }
-    }
-    for(int i=0;i&lt;nums.size();i++)
-    {
-        if(!visited[i] &amp;&amp; i!=i1 &amp;&amp; nums[i]&lt;nums[i2])
-            i2 = i;
-    }
-    res[0] = i1;
-    res[1] = i2;
-    return res;
-}
-
-TreeNode* getHaffMan(vector&lt;TreeNode*&gt; &amp;nums)
-{
-    vector&lt;bool&gt; visited(2*nums.size()-1, false);
-    int times = nums.size();
-    for(int i=0;i&lt;times-1;i++)
-    {
-        vector&lt;int&gt; indexs = pickTwoMin(nums, visited);
-        visited[indexs[0]] = true;
-        visited[indexs[1]] = true;
-        TreeNode* head = new TreeNode(nums[indexs[0]]-&gt;val+nums[indexs[1]]-&gt;val);
-        head-&gt;left = nums[indexs[0]];
-        head-&gt;right = nums[indexs[1]];
-        nums.push_back(head);
-    }
-    return nums[nums.size()-1];
-}
-
-int main()
-{
-    int n;
-    cin&gt;&gt;n;
-    vector&lt;TreeNode*&gt; nums;
-    for (int i=0;i&lt;n;i++)
-    {
-        int val;
-        cin&gt;&gt;val;
-        nums.push_back(new TreeNode(val));
-    }
-    TreeNode* h1 = getHaffMan(nums);
-    system(&quot;pause&quot;);
-    return 0;
-</code></pre><p>}</p>
+## 若全局变量的名称中包含保存的模型的tensor名称则重载
+var_to_restore = [] #需要重载的模型参数的tensor名称
+var = tf.global_variables()
+for val in var:
+    print(val.name)
+    for point in point_name_list:
+        if point in val.name:
+            var_to_restore.append(val)
+            break
+print(var_to_restore)
+saver1 = tf.train.Saver(var_to_restore) 
+with tf.Session() as sess:  
+    # init_op = tf.global_variables_initializer()  
+    # sess.run(init_op)  
+    saver1.restore(sess, &quot;checkpoint/model_test-1&quot;)  
+    #saver2.restore(sess, &quot;checkpoint/model_test-1&quot;)  
+    # saver.save(sess,&quot;checkpoint/model_test&quot;,global_step=1)
+</code></pre><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://blog.csdn.net/i_like_qjm/article/details/79393930" target="_blank" rel="noopener">tensorflow: 保存和加载模型, 参数；以及使用预训练参数方法</a></li>
+<li><a href="https://blog.csdn.net/qq_25737169/article/details/78125061" target="_blank" rel="noopener">tensorflow 加载部分变量</a></li>
+</ul>
 
       
     </div>
@@ -605,7 +487,7 @@ int main()
       
         <div class="post-tags">
           
-            <a href="/tags/哈弗曼树/" rel="tag"># 哈弗曼树</a>
+            <a href="/tags/tensorflow模型/" rel="tag"># tensorflow模型</a>
           
         </div>
       
@@ -618,8 +500,8 @@ int main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/19/hash表/" rel="next" title="hash表">
-                <i class="fa fa-chevron-left"></i> hash表
+              <a href="/2018/04/29/yolo系列（1）：使用yolov3检测红绿灯/" rel="next" title="yolo系列（1）：使用yolov3检测红绿灯">
+                <i class="fa fa-chevron-left"></i> yolo系列（1）：使用yolov3检测红绿灯
               </a>
             
           </div>
@@ -628,8 +510,8 @@ int main()
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/29/yolo系列（1）：使用yolov3检测红绿灯/" rel="prev" title="yolo系列（1）：使用yolov3检测红绿灯">
-                yolo系列（1）：使用yolov3检测红绿灯 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/03/跑tensorflow踩过的坑/" rel="prev" title="跑tensorflow踩过的坑">
+                跑tensorflow踩过的坑 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -830,7 +712,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#转自哈夫曼树算法及C-实现"><span class="nav-number">1.</span> <span class="nav-text">转自哈夫曼树算法及C++实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码题目"><span class="nav-number">3.</span> <span class="nav-text">代码题目</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#保存模型及重载部分模型"><span class="nav-number">1.</span> <span class="nav-text">保存模型及重载部分模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

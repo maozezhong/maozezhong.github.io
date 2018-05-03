@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="哈弗曼树," />
+  <meta name="keywords" content="yolo," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="转自哈夫曼树算法及C++实现">
-<meta name="keywords" content="哈弗曼树">
+<meta name="description" content="背景 最近项目需要用yolov3检测红绿灯，然后移植到ros上，但是yolo是纯c编写的，所幸作者留了了个python接口。不过接口没有定义画图的方法，所以搜集了这边文章">
+<meta name="keywords" content="yolo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="构造哈弗曼树（转）">
-<meta property="og:url" content="http://yoursite.com/2018/04/21/构造哈弗曼树（转）/index.html">
+<meta property="og:title" content="yolo系列（1）续：python调用yolov3并作图（转）">
+<meta property="og:url" content="http://yoursite.com/2018/05/03/yolo系列（1）续：python调用yolov3并作图/index.html">
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
-<meta property="og:description" content="转自哈夫曼树算法及C++实现">
+<meta property="og:description" content="背景 最近项目需要用yolov3检测红绿灯，然后移植到ros上，但是yolo是纯c编写的，所幸作者留了了个python接口。不过接口没有定义画图的方法，所以搜集了这边文章">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-01T03:36:53.576Z">
+<meta property="og:updated_time" content="2018-05-03T15:17:13.186Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="构造哈弗曼树（转）">
-<meta name="twitter:description" content="转自哈夫曼树算法及C++实现">
+<meta name="twitter:title" content="yolo系列（1）续：python调用yolov3并作图（转）">
+<meta name="twitter:description" content="背景 最近项目需要用yolov3检测红绿灯，然后移植到ros上，但是yolo是纯c编写的，所幸作者留了了个python接口。不过接口没有定义画图的方法，所以搜集了这边文章">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/21/构造哈弗曼树（转）/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/03/yolo系列（1）续：python调用yolov3并作图/"/>
 
 
 
 
 
-  <title>构造哈弗曼树（转） | Zezhong's Blog</title>
+  <title>yolo系列（1）续：python调用yolov3并作图（转） | Zezhong's Blog</title>
   
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/构造哈弗曼树（转）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/yolo系列（1）续：python调用yolov3并作图/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mao Zezhong">
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">构造哈弗曼树（转）</h1>
+          <h1 class="post-title" itemprop="name headline">yolo系列（1）续：python调用yolov3并作图（转）</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T21:41:09+08:00">
-                2018-04-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T23:07:24+08:00">
+                2018-05-03
               </time>
             
 
@@ -331,8 +331,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/基础-经典算法/" itemprop="url" rel="index">
-                    <span itemprop="name">基础/经典算法</span>
+                  <a href="/categories/yolo系列/" itemprop="url" rel="index">
+                    <span itemprop="name">yolo系列</span>
                   </a>
                 </span>
 
@@ -348,7 +348,7 @@
 
           
           
-             <span id="/2018/04/21/构造哈弗曼树（转）/" class="leancloud_visitors" data-flag-title="构造哈弗曼树（转）">
+             <span id="/2018/05/03/yolo系列（1）续：python调用yolov3并作图/" class="leancloud_visitors" data-flag-title="yolo系列（1）续：python调用yolov3并作图（转）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  755字
+                  803字
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  5分钟
                 </span>
               
             </div>
@@ -411,183 +411,194 @@
       
 
       
-        <h2 id="转自哈夫曼树算法及C-实现"><a href="#转自哈夫曼树算法及C-实现" class="headerlink" title="转自哈夫曼树算法及C++实现"></a>转自<a href="https://www.cnblogs.com/smile233/p/8184492.html" target="_blank" rel="noopener">哈夫曼树算法及C++实现</a></h2><a id="more"></a>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include&lt;iostream&gt;
-#include &lt;iomanip&gt;//这个头文件是声明一些 “流操作符”的
-//比较常用的有:setw(int);//设置显示宽度，left//right//设置左右对齐。 setprecision(int);//设置浮点数的精确度。
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li>最近项目需要用yolov3检测红绿灯，然后移植到ros上，但是yolo是纯c编写的，所幸作者留了了个python接口。不过接口没有定义画图的方法，所以搜集了这边文章</li>
+</ul>
+<a id="more"></a>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><ul>
+<li>对<a href="https://github.com/maozezhong/darknet/blob/master/python/darknet.py" target="_blank" rel="noopener">darknet.py</a>进行更改，在其中增加showPicResult函数</li>
+</ul>
+<p>#-<em>- coding=utf-8 -</em>-<br>    from ctypes import *<br>    import math<br>    import random<br>    import cv2<br>    from os import getcwd</p>
+<pre><code>def sample(probs):
+    s = sum(probs)
+    probs = [a/s for a in probs]
+    r = random.uniform(0, 1)
+    for i in range(len(probs)):
+        r = r - probs[i]
+        if r &lt;= 0:
+            return i
+    return len(probs)-1
 
-using namespace std;
-// 哈夫曼树的结点结构
-struct element
-{
-    int weight;        // 权值域
-    int lchild, rchild, parent;  // 该结点的左、右、双亲结点在数组中的下标
-};
+def c_array(ctype, values):
+    arr = (ctype*len(values))()
+    arr[:] = values
+    return arr
 
-// 选取权值最小的两个结点
-void selectMin(element a[],int n, int &amp;s1, int &amp;s2)
-{
-    for (int i = 0; i &lt; n; i++)
-    {
-        if (a[i].parent == -1)// 初始化s1,s1的双亲为-1
-        {
-            s1 = i;
-            break;
-        }
-    }
-    for (int i = 0; i &lt; n; i++)// s1为权值最小的下标
-    {
-        if (a[i].parent == -1 &amp;&amp; a[s1].weight &gt; a[i].weight)
-            s1 = i;
-    }
-    for (int j = 0; j &lt; n; j++)
-    {
-        if (a[j].parent == -1&amp;&amp;j!=s1)// 初始化s2,s2的双亲为-1
-        {
-            s2 = j;
-            break;
-        }
-    }
-    for (int j = 0; j &lt; n; j++)// s2为另一个权值最小的结点
-    {
-        if (a[j].parent == -1 &amp;&amp; a[s2].weight &gt; a[j].weight&amp;&amp;j != s1)
-            s2 = j;
-    }
-}
+class BOX(Structure):
+    _fields_ = [(&quot;x&quot;, c_float),
+                (&quot;y&quot;, c_float),
+                (&quot;w&quot;, c_float),
+                (&quot;h&quot;, c_float)]
 
-// 哈夫曼算法
-// n个叶子结点的权值保存在数组w中
-void HuffmanTree(element huftree[], int w[], int n)
-{
-    for (int i = 0; i &lt; 2*n-1; i++)    // 初始化，所有结点均没有双亲和孩子
-    {
-        huftree[i].parent = -1;
-        huftree[i].lchild = -1;
-        huftree[i].rchild = -1;
-    }
-    for (int i = 0; i &lt; n; i++)    // 构造只有根节点的n棵二叉树
-    {
-        huftree[i].weight = w[i];
-    }
-    for (int k = n; k &lt; 2 * n - 1; k++) // n-1次合并
-    {
-        int i1, i2; 
-        selectMin(huftree, k, i1, i2); // 查找权值最小的俩个根节点，下标为i1,i2
-        // 将i1，i2合并，且i1和i2的双亲为k
-        huftree[i1].parent = k;
-        huftree[i2].parent = k;
-        huftree[k].lchild = i1;
-        huftree[k].rchild = i2;
-        huftree[k].weight = huftree[i1].weight + huftree[i2].weight;
-    }
+class DETECTION(Structure):
+    _fields_ = [(&quot;bbox&quot;, BOX),
+                (&quot;classes&quot;, c_int),
+                (&quot;prob&quot;, POINTER(c_float)),
+                (&quot;mask&quot;, POINTER(c_float)),
+                (&quot;objectness&quot;, c_float),
+                (&quot;sort_class&quot;, c_int)]
 
-}
 
-// 打印哈夫曼树
-void print(element hT[],int n)
-{
-    cout &lt;&lt; &quot;index weight parent lChild rChild&quot; &lt;&lt; endl;
-    cout &lt;&lt; left;    // 左对齐输出 
-    for (int i = 0; i &lt; n; ++i) 
-    {
-        cout &lt;&lt; setw(5) &lt;&lt; i &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; setw(6) &lt;&lt; hT[i].weight &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; setw(6) &lt;&lt; hT[i].parent &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; setw(6) &lt;&lt; hT[i].lchild &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; setw(6) &lt;&lt; hT[i].rchild &lt;&lt; endl;
-    }
-}
+class IMAGE(Structure):
+    _fields_ = [(&quot;w&quot;, c_int),
+                (&quot;h&quot;, c_int),
+                (&quot;c&quot;, c_int),
+                (&quot;data&quot;, POINTER(c_float))]
 
-int main()
-{
-    int x[] = { 5,29,7,8,14,23,3,11 };        // 权值集合
-    element *hufftree=new element[2*8-1];    // 动态创建数组
-    HuffmanTree(hufftree, x, 8);
-    print(hufftree,15);
-    system(&quot;pause&quot;);
-    return 0;
-}
-</code></pre><p>——————————————- 2018年5月1日11:36:09更新 ——————————————-</p>
-<h2 id="代码题目"><a href="#代码题目" class="headerlink" title="代码题目"></a>代码题目</h2><pre><code>//给你一个数组，返回哈弗曼树的头结点
-#include&lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;vector&gt;
-using namespace std;
+class METADATA(Structure):
+    _fields_ = [(&quot;classes&quot;, c_int),
+                (&quot;names&quot;, POINTER(c_char_p))]
 
-struct TreeNode{
-    TreeNode* left;
-    TreeNode* right;
-    int val;
-    TreeNode(int value):val(value),left(NULL),right(NULL){};
-};
 
-vector&lt;int&gt; pickTwoMin(vector&lt;TreeNode*&gt; nums, vector&lt;bool&gt; &amp;visited)
-{
-    vector&lt;int&gt; res(2);
-    int i1, i2;
-    for(int i=0;i&lt;nums.size();i++)
-    {
-        if(!visited[i])
-        {
-            i1 = i;
-            break;
-        }
-    }
-    for(int i=0;i&lt;nums.size();i++)
-    {
-        if(!visited[i] &amp;&amp; nums[i]&lt;nums[i1])
-            i1 = i;
-    }
-    for(int i=0;i&lt;nums.size();i++)
-    {
-        if(!visited[i]&amp;&amp;i!=i1)
-        {
-            i2 = i;
-            break;
-        }
-    }
-    for(int i=0;i&lt;nums.size();i++)
-    {
-        if(!visited[i] &amp;&amp; i!=i1 &amp;&amp; nums[i]&lt;nums[i2])
-            i2 = i;
-    }
-    res[0] = i1;
-    res[1] = i2;
-    return res;
-}
 
-TreeNode* getHaffMan(vector&lt;TreeNode*&gt; &amp;nums)
-{
-    vector&lt;bool&gt; visited(2*nums.size()-1, false);
-    int times = nums.size();
-    for(int i=0;i&lt;times-1;i++)
-    {
-        vector&lt;int&gt; indexs = pickTwoMin(nums, visited);
-        visited[indexs[0]] = true;
-        visited[indexs[1]] = true;
-        TreeNode* head = new TreeNode(nums[indexs[0]]-&gt;val+nums[indexs[1]]-&gt;val);
-        head-&gt;left = nums[indexs[0]];
-        head-&gt;right = nums[indexs[1]];
-        nums.push_back(head);
-    }
-    return nums[nums.size()-1];
-}
+#lib = CDLL(&quot;/home/pjreddie/documents/darknet/libdarknet.so&quot;, RTLD_GLOBAL)
+wd = getcwd()
+lib_path = wd + &apos;/libdarknet.so&apos;
+lib = CDLL(lib_path, RTLD_GLOBAL)
+lib.network_width.argtypes = [c_void_p]
+lib.network_width.restype = c_int
+lib.network_height.argtypes = [c_void_p]
+lib.network_height.restype = c_int
 
-int main()
-{
-    int n;
-    cin&gt;&gt;n;
-    vector&lt;TreeNode*&gt; nums;
-    for (int i=0;i&lt;n;i++)
-    {
-        int val;
-        cin&gt;&gt;val;
-        nums.push_back(new TreeNode(val));
-    }
-    TreeNode* h1 = getHaffMan(nums);
-    system(&quot;pause&quot;);
-    return 0;
-</code></pre><p>}</p>
+predict = lib.network_predict
+predict.argtypes = [c_void_p, POINTER(c_float)]
+predict.restype = POINTER(c_float)
+
+set_gpu = lib.cuda_set_device
+set_gpu.argtypes = [c_int]
+
+make_image = lib.make_image
+make_image.argtypes = [c_int, c_int, c_int]
+make_image.restype = IMAGE
+
+get_network_boxes = lib.get_network_boxes
+get_network_boxes.argtypes = [c_void_p, c_int, c_int, c_float, c_float, POINTER(c_int), c_int, POINTER(c_int)]
+get_network_boxes.restype = POINTER(DETECTION)
+
+make_network_boxes = lib.make_network_boxes
+make_network_boxes.argtypes = [c_void_p]
+make_network_boxes.restype = POINTER(DETECTION)
+
+free_detections = lib.free_detections
+free_detections.argtypes = [POINTER(DETECTION), c_int]
+
+free_ptrs = lib.free_ptrs
+free_ptrs.argtypes = [POINTER(c_void_p), c_int]
+
+network_predict = lib.network_predict
+network_predict.argtypes = [c_void_p, POINTER(c_float)]
+
+reset_rnn = lib.reset_rnn
+reset_rnn.argtypes = [c_void_p]
+
+load_net = lib.load_network
+load_net.argtypes = [c_char_p, c_char_p, c_int]
+load_net.restype = c_void_p
+
+do_nms_obj = lib.do_nms_obj
+do_nms_obj.argtypes = [POINTER(DETECTION), c_int, c_int, c_float]
+
+do_nms_sort = lib.do_nms_sort
+do_nms_sort.argtypes = [POINTER(DETECTION), c_int, c_int, c_float]
+
+free_image = lib.free_image
+free_image.argtypes = [IMAGE]
+
+letterbox_image = lib.letterbox_image
+letterbox_image.argtypes = [IMAGE, c_int, c_int]
+letterbox_image.restype = IMAGE
+
+load_meta = lib.get_metadata
+lib.get_metadata.argtypes = [c_char_p]
+lib.get_metadata.restype = METADATA
+
+load_image = lib.load_image_color
+load_image.argtypes = [c_char_p, c_int, c_int]
+load_image.restype = IMAGE
+
+rgbgr_image = lib.rgbgr_image
+rgbgr_image.argtypes = [IMAGE]
+
+predict_image = lib.network_predict_image
+predict_image.argtypes = [c_void_p, IMAGE]
+predict_image.restype = POINTER(c_float)
+
+def classify(net, meta, im):
+    out = predict_image(net, im)#得到的是各个类别的概率值
+    #print(out)
+    res = []
+    for i in range(meta.classes):
+        res.append((meta.names[i], out[i]))
+    res = sorted(res, key=lambda x: -x[1])
+    return res
+
+def detect(net, meta, image, thresh=.5, hier_thresh=.5, nms=.45):
+    im = load_image(image, 0, 0)
+    num = c_int(0)
+    pnum = pointer(num)
+    predict_image(net, im)
+    dets = get_network_boxes(net, im.w, im.h, thresh, hier_thresh, None, 0, pnum)
+    num = pnum[0]
+    if (nms): do_nms_obj(dets, num, meta.classes, nms);
+
+    res = []
+    for j in range(num):
+        for i in range(meta.classes):
+            if dets[j].prob[i] &gt; 0:
+                b = dets[j].bbox
+                res.append((meta.names[i], dets[j].prob[i], (b.x, b.y, b.w, b.h)))
+    res = sorted(res, key=lambda x: -x[1])
+    free_image(im)
+    free_detections(dets, num)
+    return res
+
+# display the pic after detecting. 2018.04.25  
+def showPicResult(image, r, out_img=&quot;./predictions.jpg&quot;):  
+    img = cv2.imread(image)  
+    cv2.imwrite(out_img, img)  
+    for i in range(len(r)):  
+        x1=r[i][2][0]-r[i][2][2]/2  
+        y1=r[i][2][1]-r[i][2][3]/2  
+        x2=r[i][2][0]+r[i][2][2]/2  
+        y2=r[i][2][1]+r[i][2][3]/2  
+        im = cv2.imread(out_img)  
+        cv2.rectangle(im,(int(x1),int(y1)),(int(x2),int(y2)),(0,255,0),3)  
+        #This is a method that works well.   
+        cv2.imwrite(out_img, im)  
+    cv2.imshow(&apos;yolo_image_detector&apos;, cv2.imread(out_img))  
+    cv2.waitKey(1)  
+    #cv2.destroyAllWindows()  
+
+if __name__ == &quot;__main__&quot;:
+    #net = load_net(&quot;cfg/densenet201.cfg&quot;, &quot;/home/pjreddie/trained/densenet201.weights&quot;, 0)
+    #im = load_image(&quot;data/wolf.jpg&quot;, 0, 0)
+    #meta = load_meta(&quot;cfg/imagenet1k.data&quot;)
+    #r = classify(net, meta, im)
+    #print r[:10]
+    wd = getcwd()
+    net = load_net(wd+&quot;/cfg/yolov3-voc.cfg&quot;, wd+&quot;/yolov3-voc.weights&quot;, 0)
+    meta = load_meta(wd+&quot;/cfg/voc.data&quot;)
+    image_path = wd+&quot;/009535.jpg&quot;
+    #im = cv2.imread(image_path)
+    #cv2.imshow(&quot;ori_pic&quot;,im)
+    r = detect(net, meta, image_path) #return [class_name, pro, [x,y,w,h]], [x,y] is center point, [w,h] is width and high of box
+    #r = classify(net, meta, im) #return [[class_name1, pro1],...,[class_name2, pro2]]
+    print(r)
+    showPicResult(image_path, r) 
+</code></pre><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://blog.csdn.net/LutherK/article/details/80114599" target="_blank" rel="noopener">简介yolo在python下对图片的检测及画框</a></li>
+<li><a href="https://blog.csdn.net/LutherK/article/details/80151514" target="_blank" rel="noopener">学习笔记：简介yolo在python下识别本地视频</a></li>
+</ul>
 
       
     </div>
@@ -605,7 +616,7 @@ int main()
       
         <div class="post-tags">
           
-            <a href="/tags/哈弗曼树/" rel="tag"># 哈弗曼树</a>
+            <a href="/tags/yolo/" rel="tag"># yolo</a>
           
         </div>
       
@@ -618,8 +629,8 @@ int main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/19/hash表/" rel="next" title="hash表">
-                <i class="fa fa-chevron-left"></i> hash表
+              <a href="/2018/05/03/跑tensorflow踩过的坑/" rel="next" title="跑tensorflow踩过的坑">
+                <i class="fa fa-chevron-left"></i> 跑tensorflow踩过的坑
               </a>
             
           </div>
@@ -628,8 +639,8 @@ int main()
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/29/yolo系列（1）：使用yolov3检测红绿灯/" rel="prev" title="yolo系列（1）：使用yolov3检测红绿灯">
-                yolo系列（1）：使用yolov3检测红绿灯 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/03/python运行命令行-sudo/" rel="prev" title="python运行命令行,sudo">
+                python运行命令行,sudo <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -830,7 +841,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#转自哈夫曼树算法及C-实现"><span class="nav-number">1.</span> <span class="nav-text">转自哈夫曼树算法及C++实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码题目"><span class="nav-number">3.</span> <span class="nav-text">代码题目</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
