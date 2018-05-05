@@ -89,9 +89,10 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180505/7acBI1721h.png?imageslim">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180505/G35icF660K.png?imageslim">
+<meta property="og:image" content="https://img-blog.csdn.net/20170117220248335?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVzc2VfTXg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180505/JFdmmEaBiA.png?imageslim">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180505/B1G4k3L6Kd.png?imageslim">
-<meta property="og:updated_time" content="2018-05-05T03:53:51.578Z">
+<meta property="og:updated_time" content="2018-05-05T03:57:45.223Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yolov系列(2)：yolovv3论文笔记">
 <meta name="twitter:description" content="又是被自己菜醒的一天">
@@ -390,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  884字
+                  858字
                 </span>
               
 
@@ -458,12 +459,11 @@
 <h5 id="3-box的跨尺度预测（针对之前yolo小目标检测不到的诟病）"><a href="#3-box的跨尺度预测（针对之前yolo小目标检测不到的诟病）" class="headerlink" title="3. box的跨尺度预测（针对之前yolo小目标检测不到的诟病）"></a>3. box的跨尺度预测（针对之前yolo小目标检测不到的诟病）</h5><ul>
 <li><p>yolov3在三个尺度上做预测</p>
 <ul>
-<li>参考的FPN网络，下图引自<a href="https://blog.csdn.net/dcxhun3/article/details/59055974" target="_blank" rel="noopener">FPN最新的目标检测算法</a>。每种尺度预测三个box，anchor的设计方式仍然使用聚类的方法得到9 个聚类中心，再将其按照大小均分给3种尺度。尺度1：在基础网络之后添加一些卷积层再输出box信息；尺度2：从尺度1中的倒数第二层的卷积层上采样再与最后一个16×16大小的特征图相加，再次通过多个卷积层后输出box信息，相比尺度1变大两倍；尺度3：与尺度2类似使用了32×32大小的特征图。可以参考网络结构定义文件yolov3.cfg。<blockquote>
+<li><p>参考的FPN网络，下图引自<a href="https://blog.csdn.net/dcxhun3/article/details/59055974" target="_blank" rel="noopener">FPN最新的目标检测算法</a>。每种尺度预测三个box，anchor的设计方式仍然使用聚类的方法得到9 个聚类中心，再将其按照大小均分给3种尺度。尺度1：在基础网络之后添加一些卷积层再输出box信息；尺度2：从尺度1中的倒数第二层的卷积层上采样再与最后一个16×16大小的特征图相加，再次通过多个卷积层后输出box信息，相比尺度1变大两倍；尺度3：与尺度2类似使用了32×32大小的特征图。可以参考网络结构定义文件yolov3.cfg。</p>
+<blockquote>
 <p>把高层特征做2倍上采样（最邻近上采样法），然后将其和对应的前一层特征结合（前一层要经过1 * 1的卷积核才能用，目的是改变channels，应该是要和后一层的channels相同），结合方式就是做像素间的加法。重复迭代该过程，直至生成最精细的特征图。</p>
-<pre><code>&lt;div align=&quot;center&quot;&gt;
-&lt;img src=&quot;https://img-blog.csdn.net/20170117220248335?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVzc2VfTXg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast&quot; &gt;
-&lt;/div&gt;
-</code></pre></blockquote>
+  <div align="center"><br>  <img src="https://img-blog.csdn.net/20170117220248335?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVzc2VfTXg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast"><br>  </div>
+</blockquote>
 </li>
 </ul>
 </li>
