@@ -87,10 +87,14 @@
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
 <meta property="og:description" content="背景 项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录  方案方案1: Hough检直线 参考road_lane_line_detection 步骤： 过滤颜色（github教程中图片是车辆道路线，分为黄，白，所以只过滤留下黄白就行）；cv.inrange()造掩膜，cv.bitwise_and()去淹膜外背景。 图片灰度化 高斯模糊（平滑）：中心点的像素值为周围点像素值的加权平均，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-13T02:29:39.246Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/maozezhong/road_lane_line_detection/master/laneLines_thirdPass.jpg">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180513/KALmgFacD3.jpg?imageslim">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180513/meHfL2lJhk.jpg?imageslim">
+<meta property="og:updated_time" content="2018-05-13T04:14:36.814Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="人行道检线算法">
 <meta name="twitter:description" content="背景 项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录  方案方案1: Hough检直线 参考road_lane_line_detection 步骤： 过滤颜色（github教程中图片是车辆道路线，分为黄，白，所以只过滤留下黄白就行）；cv.inrange()造掩膜，cv.bitwise_and()去淹膜外背景。 图片灰度化 高斯模糊（平滑）：中心点的像素值为周围点像素值的加权平均，">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/maozezhong/road_lane_line_detection/master/laneLines_thirdPass.jpg">
 
 
 
@@ -374,7 +378,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  493字
+                  530字
                 </span>
               
 
@@ -446,7 +450,15 @@
 </li>
 <li><p>检测结果</p>
 <ul>
-<li>效果并不好，只能检查出几条线，看后续再调整代码</li>
+<li>官方检测图片<img src="https://raw.githubusercontent.com/maozezhong/road_lane_line_detection/master/laneLines_thirdPass.jpg" alt=""></li>
+<li>跑斑马线的效果并不好，只能检查出几条线，调整了：<ul>
+<li>min_line_length = 10 -&gt; 200</li>
+<li>draw_lines -&gt; draw_lines_1(画出所有的直线)</li>
+<li>filter_colors里面白色的阈值从200-&gt;185</li>
+</ul>
+</li>
+<li>斑马线原图<br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180513/KALmgFacD3.jpg?imageslim" alt="mark"></li>
+<li>检测图片<br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180513/meHfL2lJhk.jpg?imageslim" alt="mark"></li>
 </ul>
 </li>
 </ul>
