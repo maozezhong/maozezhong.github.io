@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="yolo," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="背景 官网：YOLO: Real-Time Object Detection 官方代码：github 非官方代码：github">
+<meta name="keywords" content="yolo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yolo系列(1)：使用yolov3检测红绿灯">
+<meta property="og:url" content="http://yoursite.com/2018/04/29/yolo系列/yolo系列(1)：使用yolov3检测红绿灯/index.html">
+<meta property="og:site_name" content="Zezhong&#39;s Blog">
+<meta property="og:description" content="背景 官网：YOLO: Real-Time Object Detection 官方代码：github 非官方代码：github">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-13T07:25:26.821Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="yolo系列(1)：使用yolov3检测红绿灯">
+<meta name="twitter:description" content="背景 官网：YOLO: Real-Time Object Detection 官方代码：github 非官方代码：github">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/29/yolo系列/yolo系列(1)：使用yolov3检测红绿灯/"/>
+
+
+
+
+
+  <title>yolo系列(1)：使用yolov3检测红绿灯 | Zezhong's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+	
+	<a href="https://github.com/maozezhong" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+	
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Zezhong's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Happy Coding</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th-list"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/29/yolo系列/yolo系列(1)：使用yolov3检测红绿灯/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mao Zezhong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180419/HLjKj2G0g1.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zezhong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">yolo系列(1)：使用yolov3检测红绿灯</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-29T17:33:37+08:00">
+                2018-04-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/yolo系列/" itemprop="url" rel="index">
+                    <span itemprop="name">yolo系列</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/04/29/yolo系列/yolo系列(1)：使用yolov3检测红绿灯/" class="leancloud_visitors" data-flag-title="yolo系列(1)：使用yolov3检测红绿灯">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,260字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol>
+<li>官网：<a href="https://pjreddie.com/darknet/yolo/" target="_blank" rel="noopener">YOLO: Real-Time Object Detection</a></li>
+<li>官方代码：<a href="https://github.com/pjreddie/darknet" target="_blank" rel="noopener">github</a></li>
+<li>非官方代码：<a href="https://github.com/maozezhong/darknet" target="_blank" rel="noopener">github</a></li>
+</ol>
+<a id="more"></a>
+<h2 id="使用yolov3检测红绿灯"><a href="#使用yolov3检测红绿灯" class="headerlink" title="使用yolov3检测红绿灯"></a>使用yolov3检测红绿灯</h2><h4 id="机器配置"><a href="#机器配置" class="headerlink" title="机器配置"></a>机器配置</h4><ol>
+<li>GPU：GeForce GTX 1060 6GB/PCIe/SSE2</li>
+<li>内存：7.7 GiB</li>
+<li>环境：unbuntu 16.04</li>
+</ol>
+<h4 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h4><ol>
+<li><a href="https://www.baidu.com/s?ie=utf-8&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=1&amp;tn=baidu&amp;wd=nvidia%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85&amp;oq=nvidia%25E5%25AE%2598%25E7%25BD%2591&amp;rsv_pq=d2b696eb00003d80&amp;rsv_t=1c1fkmu%2BRXo4o6gp1hBvjwT0yLpDE%2FOQCqfp5%2Fi1BUUzm9%2BWYKF0FwVozPg&amp;rqlang=cn&amp;rsv_enter=0&amp;inputT=3747&amp;rsv_sug3=46&amp;rsv_sug1=20&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=4695" target="_blank" rel="noopener">显卡驱动安装</a></li>
+<li><a href="https://blog.csdn.net/u014595019/article/details/53732015" target="_blank" rel="noopener">CUDA和CUDNN（非必须,我这边跑yolov3的时候没有配置这个）安装</a></li>
+</ol>
+<h4 id="安装darknet及下载yolov3与训练权重"><a href="#安装darknet及下载yolov3与训练权重" class="headerlink" title="安装darknet及下载yolov3与训练权重"></a>安装darknet及下载yolov3与训练权重</h4><ul>
+<li>按照官网教程来, <a href="https://pjreddie.com/darknet/install/" target="_blank" rel="noopener">darknet安装</a> ; <a href="https://pjreddie.com/darknet/yolo/" target="_blank" rel="noopener">权重下载</a></li>
+</ul>
+<h4 id="voc格式数据集制作"><a href="#voc格式数据集制作" class="headerlink" title="voc格式数据集制作"></a>voc格式数据集制作</h4><ol>
+<li><p>voc格式</p>
+<ul>
+<li>参考<a href="https://www.cnblogs.com/antflow/p/7350274.html" target="_blank" rel="noopener">YOLOv2训练自己的数据集（VOC格式）</a>;<a href="http://lib.csdn.net/article/deeplearning/57863?knId=1726" target="_blank" rel="noopener">【YOLO学习】使用YOLO v2训练自己的数据</a></li>
+<li>训练图片格式类似000001.jpg、000002.jpg</li>
+<li><p>按照voc数据集的结构放置图像文件。1）Annotation中主要存放xml文件，每一个xml对应一张图像，并且每个xml中存放的是标记的各个目标的位置和类别信息，命名通常与对应的原始图像一样;2)ImageSets我们只需要用到Main文件夹，这里面存放的是一些文本文件，通常为train.txt、test.txt等，该文本文件里面的内容是需要用来训练或测试的图像的名字;3）JPEGImages文件夹中放我们已按统一规则命名好的原始图像。</p>
+<blockquote>
+<pre><code>--VOC  
+  --Annotations  
+  --ImageSets  
+    --Main  
+    --Layout  
+    --Segmentation  
+  --JPEGImages  
+  --SegmentationClass//暂时可有可无 
+  --SegmentationObject //暂时可有可无
+</code></pre></blockquote>
+</li>
+<li><p>将新建的voc文件夹放到scripts/VOCdevkit/目录下，若无VOCdevkit文件夹则新建一个。</p>
+</li>
+<li>用labelImg标注图像,<a href="https://blog.csdn.net/luckwinner/article/details/72898367" target="_blank" rel="noopener">windows版本</a>;<a href="https://www.cnblogs.com/new-age/p/7071289.html" target="_blank" rel="noopener">linux版本</a>。会自己生成相关标签的xml文件，很好用。</li>
+<li>根据自己情况修改/scripts/voc_label.py脚本并运行，将xml文件转换成yolo格式的txt文件。同时会在scripts文件夹下生成labels文件夹。</li>
+</ul>
+</li>
+<li><p>本次实验采用的是<a href="http://www.lara.prd.fr/benchmarks/trafficlightsrecognition" target="_blank" rel="noopener">交通信号灯识别公开数据集 Traffic Lights Recognition (TLR) public benchmarks</a>，该数据集有提供相应动GroundTruth，所以不需要自己标注了，但是所提供的标签格式与yolov3要求动有点区别，可以使用<a href="https://github.com/maozezhong/darknet/blob/master/your_training_data/preprocess.py" target="_blank" rel="noopener">preprocess脚本</a>对图像格式以及label格式进行转换。通过<a href="https://github.com/maozezhong/darknet/blob/master/scripts/VOCdevkit/VOC2018/generate_train_validation.py" target="_blank" rel="noopener">generate_train_validation脚本</a>将总的数据集分为训练集和验证集。</p>
+</li>
+<li><p>修改配置文件</p>
+<ul>
+<li><strong>修改</strong>/cfg/voc.data文件，class为类别数目，train为训练数据txt所放的位置，valid为validation数据txt所放的位置，names为voc.names所放的位置，backup为模型训练过程中存储模型参数的位置</li>
+<li><strong>修改</strong>/data/voc.name文件，一行一个类别标签</li>
+<li><strong>修改</strong>/cfg/yolov3-voc.cfg，用的哪个模型就修改哪个模型的.cfg文件，这边用动是yolov3-voc。1）修改batchsize=64和subdivisions=8,batch_size表示每一个批次用来训练的图片张数，subdivisions表示一个批分成几组导入训练。若出现GPU训练动时候提示memory_out可以修改这两个参数试试;2）filters=75-&gt;filters=27,计算公式为filters=3x(classes数目+5);3）[yolo]子参数下，classes大小改成你的训练数据的类别数目，这边为4，random改成0（关闭多尺度训练，如果显存足够可以置为1）</li>
+</ul>
+</li>
+<li><p>修改使yolov3在GPU上运行</p>
+<ul>
+<li>将makefile中的第一行改成GPU=1</li>
+<li>重新make一下</li>
+</ul>
+</li>
+</ol>
+<h4 id="训练以及检测"><a href="#训练以及检测" class="headerlink" title="训练以及检测"></a>训练以及检测</h4><ul>
+<li><strong>训练</strong>：运行<code>./darknet detector train cfg/voc.data cfg/yolov3-voc.cfg darknet53.conv.74</code></li>
+<li><strong>测试</strong>：运行<code>./darknet detector test cfg/voc.data cfg/yolov3-voc.cfg yolov3.weights</code>;yolov3.weights为你训练好的模型权重，之前存在.name文件中设置的backup路径中</li>
+</ul>
+<hr>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h4 id="1-理解yolo的输出含义（译文）"><a href="#1-理解yolo的输出含义（译文）" class="headerlink" title="1.理解yolo的输出含义（译文）"></a>1.<a href="https://blog.csdn.net/dcrmg/article/details/78565440" target="_blank" rel="noopener">理解yolo的输出含义（译文）</a></h4><h4 id="2-批量测试yolo模型效果"><a href="#2-批量测试yolo模型效果" class="headerlink" title="2.批量测试yolo模型效果"></a>2.<a href="https://blog.csdn.net/lucky__ing/article/details/78310510?utm_source=debugrun&amp;utm_medium=referral" target="_blank" rel="noopener">批量测试yolo模型效果</a></h4><h4 id="3-别的一些训练数据集"><a href="#3-别的一些训练数据集" class="headerlink" title="3. 别的一些训练数据集"></a>3. 别的一些训练数据集</h4><ul>
+<li>常用图像数据集<ul>
+<li><a href="https://blog.csdn.net/lansatiankongxxc/article/details/12978207" target="_blank" rel="noopener">常用图像数据集</a></li>
+<li><a href="http://www.cvpapers.com/datasets.html" target="_blank" rel="noopener">CV Datasets on the web</a> </li>
+</ul>
+</li>
+<li>车辆检测相关数据集<ul>
+<li><a href="https://blog.csdn.net/linolzhang/article/details/55276830" target="_blank" rel="noopener">机器学习实践系列之7 - 车辆检测</a></li>
+</ul>
+</li>
+<li>行人检测<ul>
+<li><a href="https://blog.csdn.net/a2008301610258/article/details/45873867" target="_blank" rel="noopener">行人检测——Caltech Pedestrian Dataset 数据集的使用</a></li>
+</ul>
+</li>
+<li>自动驾驶数据集<ul>
+<li><a href="http://apolloscape.auto/scene.html" target="_blank" rel="noopener">apollow scape数据集</a></li>
+<li><a href="https://blog.csdn.net/garfielder007/article/details/51519531" target="_blank" rel="noopener">交通信号灯识别公开数据集 Traffic Lights Recognition (TLR) public benchmarks</a></li>
+<li><a href="http://cg.cs.tsinghua.edu.cn/traffic-sign/" target="_blank" rel="noopener">Traffic-Sign Detection and Classification in the Wild（交通标志）</a></li>
+<li><a href="http://trafficdata.xjtu.edu.cn/index.do?method=download_id_content&amp;id=43" target="_blank" rel="noopener">交通场景数据集(打不开，不知道是不是网络原因)</a></li>
+<li><a href="https://github.com/udacity/self-driving-car" target="_blank" rel="noopener">udacity/self-driving-car</a></li>
+<li><a href="https://www.zhihu.com/question/53655758/answer/156701855" target="_blank" rel="noopener">自己学习深度学习时，有哪些途径寻找数据集？</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="4-训练中遇到的问题"><a href="#4-训练中遇到的问题" class="headerlink" title="4.训练中遇到的问题"></a>4.训练中遇到的问题</h4><ul>
+<li>————————————2018.4.28————————————<ul>
+<li>Q1： region82和region94都为nan</li>
+<li>A1：可能是框太小之后就不能识别了</li>
+<li>Q2：- darknet已经训练了5000轮差不多，想看下测试效果;在继续训练的情下运行<code>./darknet dector test cfg/voc.data cfg/yolov3-voc.cfg yolov3-voc.wegiths /data/red.jpg</code>的时候报错：<code>CUDA Error: __global__ function call is not configured
+darknet: ./src/cuda.c:36: check_error: Assertion 0 failed.已放弃 (核心已转储)</code> ;</li>
+<li>A2： 在命令前面加上<code>sudo</code></li>
+<li>Q3：CUDA Error: out of memory darknet: ./src/cuda.c:36: check_error: Assertion `0’ failed.</li>
+<li>A3：显存不够，降低batchsize </li>
+</ul>
+</li>
+</ul>
+<h4 id="5-再拓展"><a href="#5-再拓展" class="headerlink" title="5. 再拓展"></a>5. 再拓展</h4><ul>
+<li>————————————2018.5.13————————————<ul>
+<li>在Jetson TX2上部署yolov3,<a href="https://jkjung-avt.github.io/yolov3/" target="_blank" rel="noopener">YOLOv3 on Jetson TX2</a></li>
+<li>后续测试发现TX2上摄像头实时检测速率只有3FPS左右，因此后续考虑部署tensorrt</li>
+<li>使用tensorrt加速参考:<a href="https://zhuanlan.zhihu.com/p/36207779" target="_blank" rel="noopener">TensorRT 3.0在Jetson TX2部署实战</a>,使用tensorRT后速度能提升到10fps，参考<a href="https://github.com/pjreddie/darknet/issues/576" target="_blank" rel="noopener">jetson tx2 3fps why? </a></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/yolo/" rel="tag"># yolo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/21/基础_经典算法/构造哈弗曼树（转）/" rel="next" title="构造哈弗曼树（转）">
+                <i class="fa fa-chevron-left"></i> 构造哈弗曼树（转）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/03/tensorflow/tensorflow保存模型及重载模型/" rel="prev" title="tensorflow保存模型及重载模型">
+                tensorflow保存模型及重载模型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p7ewxflh7.bkt.clouddn.com/blog/180419/HLjKj2G0g1.jpg?imageslim"
+                alt="Mao Zezhong" />
+            
+              <p class="site-author-name" itemprop="name">Mao Zezhong</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/maozezhong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/maozezhong0/article/category/6103396" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-copyright"></i>CSDN</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.cvpapers.com/" title="CV papers" target="_blank">CV papers</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.bodybuilding.com/category/training" title="bodybuilding" target="_blank">bodybuilding</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.ted.com/" title="TED" target="_blank">TED</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用yolov3检测红绿灯"><span class="nav-number">2.</span> <span class="nav-text">使用yolov3检测红绿灯</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#机器配置"><span class="nav-number">2.0.1.</span> <span class="nav-text">机器配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#环境配置"><span class="nav-number">2.0.2.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装darknet及下载yolov3与训练权重"><span class="nav-number">2.0.3.</span> <span class="nav-text">安装darknet及下载yolov3与训练权重</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#voc格式数据集制作"><span class="nav-number">2.0.4.</span> <span class="nav-text">voc格式数据集制作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#训练以及检测"><span class="nav-number">2.0.5.</span> <span class="nav-text">训练以及检测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展"><span class="nav-number">3.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-理解yolo的输出含义（译文）"><span class="nav-number">3.0.1.</span> <span class="nav-text">1.理解yolo的输出含义（译文）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-批量测试yolo模型效果"><span class="nav-number">3.0.2.</span> <span class="nav-text">2.批量测试yolo模型效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-别的一些训练数据集"><span class="nav-number">3.0.3.</span> <span class="nav-text">3. 别的一些训练数据集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-训练中遇到的问题"><span class="nav-number">3.0.4.</span> <span class="nav-text">4.训练中遇到的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-再拓展"><span class="nav-number">3.0.5.</span> <span class="nav-text">5. 再拓展</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Mao Zezhong</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">13.7k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("RTvdOBFO4gz5pfi6pEn68OiN-gzGzoHsz#<app_id>", "HFWydLMt547doJmyPzRUNhGU#<app_key>");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
