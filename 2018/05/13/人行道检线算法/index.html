@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="背景 项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录  方案方案1: Hough检直线 参考road_lane_line_detection 步骤： 过滤颜色（github教程中图片是车辆道路线，分为黄，白，所以只过滤留下黄白就行）；cv.inrange()造掩膜，cv.bitwise_and()去淹膜外背景。 图片灰度化 高斯模糊（平滑）：中心点的像素值为周围点像素值的加权平均，">
+<meta name="description" content="背景 项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录">
 <meta name="keywords" content="人行道检线">
 <meta property="og:type" content="article">
 <meta property="og:title" content="人行道检线算法">
 <meta property="og:url" content="http://yoursite.com/2018/05/13/人行道检线算法/index.html">
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
-<meta property="og:description" content="背景 项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录  方案方案1: Hough检直线 参考road_lane_line_detection 步骤： 过滤颜色（github教程中图片是车辆道路线，分为黄，白，所以只过滤留下黄白就行）；cv.inrange()造掩膜，cv.bitwise_and()去淹膜外背景。 图片灰度化 高斯模糊（平滑）：中心点的像素值为周围点像素值的加权平均，">
+<meta property="og:description" content="背景 项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/maozezhong/road_lane_line_detection/master/laneLines_thirdPass.jpg">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180513/KALmgFacD3.jpg?imageslim">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180513/meHfL2lJhk.jpg?imageslim">
-<meta property="og:updated_time" content="2018-05-13T04:14:36.814Z">
+<meta property="og:updated_time" content="2018-05-13T04:27:00.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="人行道检线算法">
-<meta name="twitter:description" content="背景 项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录  方案方案1: Hough检直线 参考road_lane_line_detection 步骤： 过滤颜色（github教程中图片是车辆道路线，分为黄，白，所以只过滤留下黄白就行）；cv.inrange()造掩膜，cv.bitwise_and()去淹膜外背景。 图片灰度化 高斯模糊（平滑）：中心点的像素值为周围点像素值的加权平均，">
+<meta name="twitter:description" content="背景 项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/maozezhong/road_lane_line_detection/master/laneLines_thirdPass.jpg">
 
 
@@ -418,6 +418,7 @@
         <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
 <li>项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录</li>
 </ul>
+<a id="more"></a>
 <h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><h4 id="方案1-Hough检直线"><a href="#方案1-Hough检直线" class="headerlink" title="方案1: Hough检直线"></a>方案1: Hough检直线</h4><ul>
 <li>参考<a href="https://github.com/georgesung/road_lane_line_detection" target="_blank" rel="noopener">road_lane_line_detection</a></li>
 <li>步骤：<ul>

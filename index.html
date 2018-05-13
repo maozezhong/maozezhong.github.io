@@ -410,56 +410,16 @@
 
       
         
-          
-            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
 <li>项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录</li>
 </ul>
-<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><h4 id="方案1-Hough检直线"><a href="#方案1-Hough检直线" class="headerlink" title="方案1: Hough检直线"></a>方案1: Hough检直线</h4><ul>
-<li>参考<a href="https://github.com/georgesung/road_lane_line_detection" target="_blank" rel="noopener">road_lane_line_detection</a></li>
-<li>步骤：<ul>
-<li><strong>过滤颜色</strong>（github教程中图片是车辆道路线，分为黄，白，所以只过滤留下黄白就行）；cv.inrange()造掩膜，cv.bitwise_and()去淹膜外背景。</li>
-<li><strong>图片灰度化</strong></li>
-<li><strong>高斯模糊（平滑）</strong>：中心点的像素值为周围点像素值的加权平均，权值按照中心点为远点，其他点按照正太曲线上的位置分配权重</li>
-<li><strong>Canny算子进行边缘提取</strong>：<ul>
-<li>高斯滤波图像去噪</li>
-<li>计算图像中每个像素的梯度（使用Sobel算子）</li>
-<li>非极大值抑制，对每一个像素进行检查，看这个点的梯度是不是周围具有相同梯度方向的点中最大的，是的话就保留。</li>
-<li>滞后阈值（双阈值），确定哪些边界是真正的边界。设置一高一低两个阈值，梯度大于高阈值的被认为是真的边界，低于低阈值的则被抛弃，在高阈值和低阈值之间的则看起是否与真的边界相连。</li>
-<li>掩膜选取感兴趣的区域</li>
-<li>在检测到边缘并掩膜后的图片上Hough检测直线并画线</li>
-<li>图片加权（initial_img <em> α + img </em> β + λ， img为加上线后的图片，只有线有颜色，其他全为0，initial_img为原始图片）</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>&gt; - tips：
-    - draw_line中他因为场景需要（高速隔离道，就是一个梯形），把线分成了左右两组;所以想找人行道斑马线的时候，需要把draw_line改一下
-    - 而且他的region_of_interest为梯度形状的
-</code></pre><ul>
-<li><p>扩充参考：</p>
-<ul>
-<li><a href="https://blog.csdn.net/ssw_1990/article/details/53213515" target="_blank" rel="noopener">Canny边缘检测原理</a></li>
-<li><a href="https://blog.csdn.net/tina_ttl/article/details/53063341" target="_blank" rel="noopener">Hough变换原始形式-直线检测</a></li>
-<li><a href="https://blog.csdn.net/dcrmg/article/details/78880046" target="_blank" rel="noopener">OpenCV-Python 霍夫直线检测-HoughLinesP函数参数</a></li>
-</ul>
-</li>
-<li><p>检测结果</p>
-<ul>
-<li>官方检测图片<img src="https://raw.githubusercontent.com/maozezhong/road_lane_line_detection/master/laneLines_thirdPass.jpg" alt=""></li>
-<li>跑斑马线的效果并不好，只能检查出几条线，调整了：<ul>
-<li>min_line_length = 10 -&gt; 200</li>
-<li>draw_lines -&gt; draw_lines_1(画出所有的直线)</li>
-<li>filter_colors里面白色的阈值从200-&gt;185</li>
-</ul>
-</li>
-<li>斑马线原图<br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180513/KALmgFacD3.jpg?imageslim" alt="mark"></li>
-<li>检测图片<br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180513/meHfL2lJhk.jpg?imageslim" alt="mark"></li>
-</ul>
-</li>
-</ul>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/13/人行道检线算法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
