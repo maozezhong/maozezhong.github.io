@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="哈弗曼树," />
+  <meta name="keywords" content="人行道检线," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="转自哈夫曼树算法及C++实现">
-<meta name="keywords" content="哈弗曼树">
+<meta name="description" content="背景 项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录  方案方案1: Hough检直线 参考road_lane_line_detection 步骤： 过滤颜色（github教程中图片是车辆道路线，分为黄，白，所以只过滤留下黄白就行）；cv.inrange()造掩膜，cv.bitwise_and()去淹膜外背景。 图片灰度化 高斯模糊（平滑）：中心点的像素值为周围点像素值的加权平均，">
+<meta name="keywords" content="人行道检线">
 <meta property="og:type" content="article">
-<meta property="og:title" content="构造哈弗曼树（转）">
-<meta property="og:url" content="http://yoursite.com/2018/04/21/构造哈弗曼树（转）/index.html">
+<meta property="og:title" content="人行道检线算法">
+<meta property="og:url" content="http://yoursite.com/2018/05/13/人行道检线算法/index.html">
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
-<meta property="og:description" content="转自哈夫曼树算法及C++实现">
+<meta property="og:description" content="背景 项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录  方案方案1: Hough检直线 参考road_lane_line_detection 步骤： 过滤颜色（github教程中图片是车辆道路线，分为黄，白，所以只过滤留下黄白就行）；cv.inrange()造掩膜，cv.bitwise_and()去淹膜外背景。 图片灰度化 高斯模糊（平滑）：中心点的像素值为周围点像素值的加权平均，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-01T03:36:53.576Z">
+<meta property="og:updated_time" content="2018-05-13T02:29:39.246Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="构造哈弗曼树（转）">
-<meta name="twitter:description" content="转自哈夫曼树算法及C++实现">
+<meta name="twitter:title" content="人行道检线算法">
+<meta name="twitter:description" content="背景 项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录  方案方案1: Hough检直线 参考road_lane_line_detection 步骤： 过滤颜色（github教程中图片是车辆道路线，分为黄，白，所以只过滤留下黄白就行）；cv.inrange()造掩膜，cv.bitwise_and()去淹膜外背景。 图片灰度化 高斯模糊（平滑）：中心点的像素值为周围点像素值的加权平均，">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/21/构造哈弗曼树（转）/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/13/人行道检线算法/"/>
 
 
 
 
 
-  <title>构造哈弗曼树（转） | Zezhong's Blog</title>
+  <title>人行道检线算法 | Zezhong's Blog</title>
   
 
 
@@ -279,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/21/构造哈弗曼树（转）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/13/人行道检线算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mao Zezhong">
@@ -296,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">构造哈弗曼树（转）</h1>
+          <h1 class="post-title" itemprop="name headline">人行道检线算法</h1>
         
 
         <div class="post-meta">
@@ -308,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T21:41:09+08:00">
-                2018-04-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-13T09:52:52+08:00">
+                2018-05-13
               </time>
             
 
@@ -331,8 +331,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/基础-经典算法/" itemprop="url" rel="index">
-                    <span itemprop="name">基础/经典算法</span>
+                  <a href="/categories/图片处理/" itemprop="url" rel="index">
+                    <span itemprop="name">图片处理</span>
                   </a>
                 </span>
 
@@ -348,7 +348,7 @@
 
           
           
-             <span id="/2018/04/21/构造哈弗曼树（转）/" class="leancloud_visitors" data-flag-title="构造哈弗曼树（转）">
+             <span id="/2018/05/13/人行道检线算法/" class="leancloud_visitors" data-flag-title="人行道检线算法">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  755字
+                  493字
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  2分钟
                 </span>
               
             </div>
@@ -411,183 +411,45 @@
       
 
       
-        <h2 id="转自哈夫曼树算法及C-实现"><a href="#转自哈夫曼树算法及C-实现" class="headerlink" title="转自哈夫曼树算法及C++实现"></a>转自<a href="https://www.cnblogs.com/smile233/p/8184492.html" target="_blank" rel="noopener">哈夫曼树算法及C++实现</a></h2><a id="more"></a>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include&lt;iostream&gt;
-#include &lt;iomanip&gt;//这个头文件是声明一些 “流操作符”的
-//比较常用的有:setw(int);//设置显示宽度，left//right//设置左右对齐。 setprecision(int);//设置浮点数的精确度。
-
-using namespace std;
-// 哈夫曼树的结点结构
-struct element
-{
-    int weight;        // 权值域
-    int lchild, rchild, parent;  // 该结点的左、右、双亲结点在数组中的下标
-};
-
-// 选取权值最小的两个结点
-void selectMin(element a[],int n, int &amp;s1, int &amp;s2)
-{
-    for (int i = 0; i &lt; n; i++)
-    {
-        if (a[i].parent == -1)// 初始化s1,s1的双亲为-1
-        {
-            s1 = i;
-            break;
-        }
-    }
-    for (int i = 0; i &lt; n; i++)// s1为权值最小的下标
-    {
-        if (a[i].parent == -1 &amp;&amp; a[s1].weight &gt; a[i].weight)
-            s1 = i;
-    }
-    for (int j = 0; j &lt; n; j++)
-    {
-        if (a[j].parent == -1&amp;&amp;j!=s1)// 初始化s2,s2的双亲为-1
-        {
-            s2 = j;
-            break;
-        }
-    }
-    for (int j = 0; j &lt; n; j++)// s2为另一个权值最小的结点
-    {
-        if (a[j].parent == -1 &amp;&amp; a[s2].weight &gt; a[j].weight&amp;&amp;j != s1)
-            s2 = j;
-    }
-}
-
-// 哈夫曼算法
-// n个叶子结点的权值保存在数组w中
-void HuffmanTree(element huftree[], int w[], int n)
-{
-    for (int i = 0; i &lt; 2*n-1; i++)    // 初始化，所有结点均没有双亲和孩子
-    {
-        huftree[i].parent = -1;
-        huftree[i].lchild = -1;
-        huftree[i].rchild = -1;
-    }
-    for (int i = 0; i &lt; n; i++)    // 构造只有根节点的n棵二叉树
-    {
-        huftree[i].weight = w[i];
-    }
-    for (int k = n; k &lt; 2 * n - 1; k++) // n-1次合并
-    {
-        int i1, i2; 
-        selectMin(huftree, k, i1, i2); // 查找权值最小的俩个根节点，下标为i1,i2
-        // 将i1，i2合并，且i1和i2的双亲为k
-        huftree[i1].parent = k;
-        huftree[i2].parent = k;
-        huftree[k].lchild = i1;
-        huftree[k].rchild = i2;
-        huftree[k].weight = huftree[i1].weight + huftree[i2].weight;
-    }
-
-}
-
-// 打印哈夫曼树
-void print(element hT[],int n)
-{
-    cout &lt;&lt; &quot;index weight parent lChild rChild&quot; &lt;&lt; endl;
-    cout &lt;&lt; left;    // 左对齐输出 
-    for (int i = 0; i &lt; n; ++i) 
-    {
-        cout &lt;&lt; setw(5) &lt;&lt; i &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; setw(6) &lt;&lt; hT[i].weight &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; setw(6) &lt;&lt; hT[i].parent &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; setw(6) &lt;&lt; hT[i].lchild &lt;&lt; &quot; &quot;;
-        cout &lt;&lt; setw(6) &lt;&lt; hT[i].rchild &lt;&lt; endl;
-    }
-}
-
-int main()
-{
-    int x[] = { 5,29,7,8,14,23,3,11 };        // 权值集合
-    element *hufftree=new element[2*8-1];    // 动态创建数组
-    HuffmanTree(hufftree, x, 8);
-    print(hufftree,15);
-    system(&quot;pause&quot;);
-    return 0;
-}
-</code></pre><p>——————————————- 2018年5月1日11:36:09更新 ——————————————-</p>
-<h2 id="代码题目"><a href="#代码题目" class="headerlink" title="代码题目"></a>代码题目</h2><pre><code>//给你一个数组，返回哈弗曼树的头结点
-#include&lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;vector&gt;
-using namespace std;
-
-struct TreeNode{
-    TreeNode* left;
-    TreeNode* right;
-    int val;
-    TreeNode(int value):val(value),left(NULL),right(NULL){};
-};
-
-vector&lt;int&gt; pickTwoMin(vector&lt;TreeNode*&gt; nums, vector&lt;bool&gt; &amp;visited)
-{
-    vector&lt;int&gt; res(2);
-    int i1, i2;
-    for(int i=0;i&lt;nums.size();i++)
-    {
-        if(!visited[i])
-        {
-            i1 = i;
-            break;
-        }
-    }
-    for(int i=0;i&lt;nums.size();i++)
-    {
-        if(!visited[i] &amp;&amp; nums[i]&lt;nums[i1])
-            i1 = i;
-    }
-    for(int i=0;i&lt;nums.size();i++)
-    {
-        if(!visited[i]&amp;&amp;i!=i1)
-        {
-            i2 = i;
-            break;
-        }
-    }
-    for(int i=0;i&lt;nums.size();i++)
-    {
-        if(!visited[i] &amp;&amp; i!=i1 &amp;&amp; nums[i]&lt;nums[i2])
-            i2 = i;
-    }
-    res[0] = i1;
-    res[1] = i2;
-    return res;
-}
-
-TreeNode* getHaffMan(vector&lt;TreeNode*&gt; &amp;nums)
-{
-    vector&lt;bool&gt; visited(2*nums.size()-1, false);
-    int times = nums.size();
-    for(int i=0;i&lt;times-1;i++)
-    {
-        vector&lt;int&gt; indexs = pickTwoMin(nums, visited);
-        visited[indexs[0]] = true;
-        visited[indexs[1]] = true;
-        TreeNode* head = new TreeNode(nums[indexs[0]]-&gt;val+nums[indexs[1]]-&gt;val);
-        head-&gt;left = nums[indexs[0]];
-        head-&gt;right = nums[indexs[1]];
-        nums.push_back(head);
-    }
-    return nums[nums.size()-1];
-}
-
-int main()
-{
-    int n;
-    cin&gt;&gt;n;
-    vector&lt;TreeNode*&gt; nums;
-    for (int i=0;i&lt;n;i++)
-    {
-        int val;
-        cin&gt;&gt;val;
-        nums.push_back(new TreeNode(val));
-    }
-    TreeNode* h1 = getHaffMan(nums);
-    system(&quot;pause&quot;);
-    return 0;
-</code></pre><p>}</p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li>项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录</li>
+</ul>
+<h2 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h2><h4 id="方案1-Hough检直线"><a href="#方案1-Hough检直线" class="headerlink" title="方案1: Hough检直线"></a>方案1: Hough检直线</h4><ul>
+<li>参考<a href="https://github.com/georgesung/road_lane_line_detection" target="_blank" rel="noopener">road_lane_line_detection</a></li>
+<li>步骤：<ul>
+<li><strong>过滤颜色</strong>（github教程中图片是车辆道路线，分为黄，白，所以只过滤留下黄白就行）；cv.inrange()造掩膜，cv.bitwise_and()去淹膜外背景。</li>
+<li><strong>图片灰度化</strong></li>
+<li><strong>高斯模糊（平滑）</strong>：中心点的像素值为周围点像素值的加权平均，权值按照中心点为远点，其他点按照正太曲线上的位置分配权重</li>
+<li><strong>Canny算子进行边缘提取</strong>：<ul>
+<li>高斯滤波图像去噪</li>
+<li>计算图像中每个像素的梯度（使用Sobel算子）</li>
+<li>非极大值抑制，对每一个像素进行检查，看这个点的梯度是不是周围具有相同梯度方向的点中最大的，是的话就保留。</li>
+<li>滞后阈值（双阈值），确定哪些边界是真正的边界。设置一高一低两个阈值，梯度大于高阈值的被认为是真的边界，低于低阈值的则被抛弃，在高阈值和低阈值之间的则看起是否与真的边界相连。</li>
+<li>掩膜选取感兴趣的区域</li>
+<li>在检测到边缘并掩膜后的图片上Hough检测直线并画线</li>
+<li>图片加权（initial_img <em> α + img </em> β + λ， img为加上线后的图片，只有线有颜色，其他全为0，initial_img为原始图片）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>&gt; - tips：
+    - draw_line中他因为场景需要（高速隔离道，就是一个梯形），把线分成了左右两组;所以想找人行道斑马线的时候，需要把draw_line改一下
+    - 而且他的region_of_interest为梯度形状的
+</code></pre><ul>
+<li><p>扩充参考：</p>
+<ul>
+<li><a href="https://blog.csdn.net/ssw_1990/article/details/53213515" target="_blank" rel="noopener">Canny边缘检测原理</a></li>
+<li><a href="https://blog.csdn.net/tina_ttl/article/details/53063341" target="_blank" rel="noopener">Hough变换原始形式-直线检测</a></li>
+<li><a href="https://blog.csdn.net/dcrmg/article/details/78880046" target="_blank" rel="noopener">OpenCV-Python 霍夫直线检测-HoughLinesP函数参数</a></li>
+</ul>
+</li>
+<li><p>检测结果</p>
+<ul>
+<li>效果并不好，只能检查出几条线，看后续再调整代码</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -605,7 +467,7 @@ int main()
       
         <div class="post-tags">
           
-            <a href="/tags/哈弗曼树/" rel="tag"># 哈弗曼树</a>
+            <a href="/tags/人行道检线/" rel="tag"># 人行道检线</a>
           
         </div>
       
@@ -618,8 +480,8 @@ int main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/19/hash表/" rel="next" title="hash表">
-                <i class="fa fa-chevron-left"></i> hash表
+              <a href="/2018/05/07/yolo系列-3-：yolov3扩充数据集-KITTI数据集转换为voc格式/" rel="next" title="yolo系列(3)：yolov3扩充数据集,KITTI数据集转换为voc格式">
+                <i class="fa fa-chevron-left"></i> yolo系列(3)：yolov3扩充数据集,KITTI数据集转换为voc格式
               </a>
             
           </div>
@@ -627,10 +489,6 @@ int main()
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/29/yolo系列（1）：使用yolov3检测红绿灯/" rel="prev" title="yolo系列(1)：使用yolov3检测红绿灯">
-                yolo系列(1)：使用yolov3检测红绿灯 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -830,7 +688,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#转自哈夫曼树算法及C-实现"><span class="nav-number">1.</span> <span class="nav-text">转自哈夫曼树算法及C++实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码题目"><span class="nav-number">3.</span> <span class="nav-text">代码题目</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方案"><span class="nav-number">2.</span> <span class="nav-text">方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方案1-Hough检直线"><span class="nav-number">2.0.1.</span> <span class="nav-text">方案1: Hough检直线</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>

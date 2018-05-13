@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[人行道检线算法]]></title>
+    <url>%2F2018%2F05%2F13%2F%E4%BA%BA%E8%A1%8C%E9%81%93%E6%A3%80%E7%BA%BF%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[背景 项目要求，需要检测人行道斑马线，所以寻找相关检线算法，此文记录 方案方案1: Hough检直线 参考road_lane_line_detection 步骤： 过滤颜色（github教程中图片是车辆道路线，分为黄，白，所以只过滤留下黄白就行）；cv.inrange()造掩膜，cv.bitwise_and()去淹膜外背景。 图片灰度化 高斯模糊（平滑）：中心点的像素值为周围点像素值的加权平均，权值按照中心点为远点，其他点按照正太曲线上的位置分配权重 Canny算子进行边缘提取： 高斯滤波图像去噪 计算图像中每个像素的梯度（使用Sobel算子） 非极大值抑制，对每一个像素进行检查，看这个点的梯度是不是周围具有相同梯度方向的点中最大的，是的话就保留。 滞后阈值（双阈值），确定哪些边界是真正的边界。设置一高一低两个阈值，梯度大于高阈值的被认为是真的边界，低于低阈值的则被抛弃，在高阈值和低阈值之间的则看起是否与真的边界相连。 掩膜选取感兴趣的区域 在检测到边缘并掩膜后的图片上Hough检测直线并画线 图片加权（initial_img α + img β + λ， img为加上线后的图片，只有线有颜色，其他全为0，initial_img为原始图片） &gt; - tips： - draw_line中他因为场景需要（高速隔离道，就是一个梯形），把线分成了左右两组;所以想找人行道斑马线的时候，需要把draw_line改一下 - 而且他的region_of_interest为梯度形状的 扩充参考： Canny边缘检测原理 Hough变换原始形式-直线检测 OpenCV-Python 霍夫直线检测-HoughLinesP函数参数 检测结果 效果并不好，只能检查出几条线，看后续再调整代码]]></content>
+      <categories>
+        <category>图片处理</category>
+      </categories>
+      <tags>
+        <tag>人行道检线</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[yolo系列(3)：yolov3扩充数据集,KITTI数据集转换为voc格式]]></title>
     <url>%2F2018%2F05%2F07%2Fyolo%E7%B3%BB%E5%88%97-3-%EF%BC%9Ayolov3%E6%89%A9%E5%85%85%E6%95%B0%E6%8D%AE%E9%9B%86-KITTI%E6%95%B0%E6%8D%AE%E9%9B%86%E8%BD%AC%E6%8D%A2%E4%B8%BAvoc%E6%A0%BC%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[加油 背景 由于项目需求，数据集需要扩展，包括车辆行人等类别，于是找到KITTI数据集，现需将其转换为voc格式 KITTI数据集下载：Object Detection Evaluation 2012 参考博客（所有内容均来自这个博客，只是针对yolo需要的格式进行截取及小改，感谢博主！）:SSD: Single Shot MultiBox Detector 训练KITTI数据集（1） 转换步骤参考博客中下载好数据集，并建立好文件夹后： 1. 转换KITTI类别 我需要的类别是车辆和行人，所以跟博客中一样，未修改。需要注意的是博客中的脚本是直接在原始文件上修改并覆盖的，所以这边我加了几行代码备份了一下原始文件。脚本：modify_annotations_txt.py 2. 转换txt标注信息为xml格式 脚本：txt_to_xml.py 3. 生成训练验证集和测试集列表 博客中生成的txt中只有图片名称，我这边由于yolo格式需要加入了图片绝对路径 脚本：create_train_test_txt.py]]></content>
