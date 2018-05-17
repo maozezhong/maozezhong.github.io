@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="SIFT," />
+  <meta name="keywords" content="平面内距离最短点对," />
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="原文链接 SIFT实验楼转载整理  一、SIFT介绍1 简介SIFT 算法是在一幅图片不同的尺度空间上检测图像关键点的局部特征算法。SIFT算法通过关键点进行匹配，检测图片中物体的位置尺度和旋转不变量，使得分类器有良好的效果。该算法的应用范围很广，在图像导航、追踪、动作识别等方面都有较深刻的应用。 2 知识点 卷积模糊概念 高斯卷积模糊 图像金字塔 关键点选取 描述子生成">
-<meta name="keywords" content="SIFT">
+<meta name="description" content="题目描述 给你一系列二维点对，让你求其中的最短距离">
+<meta name="keywords" content="平面内距离最短点对">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SIFT特征提取分析算法">
-<meta property="og:url" content="http://yoursite.com/2018/04/14/图片处理/SIFT特征提取分析算法/index.html">
+<meta property="og:title" content="平面内距离最短点对">
+<meta property="og:url" content="http://yoursite.com/2018/05/17/基础_经典算法/平面内距离最短点对/index.html">
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
-<meta property="og:description" content="原文链接 SIFT实验楼转载整理  一、SIFT介绍1 简介SIFT 算法是在一幅图片不同的尺度空间上检测图像关键点的局部特征算法。SIFT算法通过关键点进行匹配，检测图片中物体的位置尺度和旋转不变量，使得分类器有良好的效果。该算法的应用范围很广，在图像导航、追踪、动作识别等方面都有较深刻的应用。 2 知识点 卷积模糊概念 高斯卷积模糊 图像金字塔 关键点选取 描述子生成">
+<meta property="og:description" content="题目描述 给你一系列二维点对，让你求其中的最短距离">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://i4.bvimg.com/640273/c515aaa165b90672.png">
-<meta property="og:updated_time" content="2018-04-14T14:55:39.547Z">
+<meta property="og:updated_time" content="2018-05-17T02:18:45.538Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SIFT特征提取分析算法">
-<meta name="twitter:description" content="原文链接 SIFT实验楼转载整理  一、SIFT介绍1 简介SIFT 算法是在一幅图片不同的尺度空间上检测图像关键点的局部特征算法。SIFT算法通过关键点进行匹配，检测图片中物体的位置尺度和旋转不变量，使得分类器有良好的效果。该算法的应用范围很广，在图像导航、追踪、动作识别等方面都有较深刻的应用。 2 知识点 卷积模糊概念 高斯卷积模糊 图像金字塔 关键点选取 描述子生成">
-<meta name="twitter:image" content="http://i4.bvimg.com/640273/c515aaa165b90672.png">
+<meta name="twitter:title" content="平面内距离最短点对">
+<meta name="twitter:description" content="题目描述 给你一系列二维点对，让你求其中的最短距离">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/14/图片处理/SIFT特征提取分析算法/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/17/基础_经典算法/平面内距离最短点对/"/>
 
 
 
 
 
-  <title>SIFT特征提取分析算法 | Zezhong's Blog</title>
+  <title>平面内距离最短点对 | Zezhong's Blog</title>
   
 
 
@@ -281,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/14/图片处理/SIFT特征提取分析算法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/17/基础_经典算法/平面内距离最短点对/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mao Zezhong">
@@ -298,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SIFT特征提取分析算法</h1>
+          <h1 class="post-title" itemprop="name headline">平面内距离最短点对</h1>
         
 
         <div class="post-meta">
@@ -310,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-14T19:58:33+08:00">
-                2018-04-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T10:12:58+08:00">
+                2018-05-17
               </time>
             
 
@@ -333,8 +331,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图片处理/" itemprop="url" rel="index">
-                    <span itemprop="name">图片处理</span>
+                  <a href="/categories/基础-经典算法/" itemprop="url" rel="index">
+                    <span itemprop="name">基础/经典算法</span>
                   </a>
                 </span>
 
@@ -350,7 +348,7 @@
 
           
           
-             <span id="/2018/04/14/图片处理/SIFT特征提取分析算法/" class="leancloud_visitors" data-flag-title="SIFT特征提取分析算法">
+             <span id="/2018/05/17/基础_经典算法/平面内距离最短点对/" class="leancloud_visitors" data-flag-title="平面内距离最短点对">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -376,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,145字
+                  508字
                 </span>
               
 
@@ -392,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4分钟
+                  2分钟
                 </span>
               
             </div>
@@ -413,61 +411,98 @@
       
 
       
-        <h1 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a>原文链接</h1><ul>
-<li><a href="https://www.shiyanlou.com/courses/1011#" target="_blank" rel="noopener">SIFT实验楼转载整理</a></li>
-</ul>
-<h2 id="一、SIFT介绍"><a href="#一、SIFT介绍" class="headerlink" title="一、SIFT介绍"></a>一、SIFT介绍</h2><h3 id="1-简介"><a href="#1-简介" class="headerlink" title="1 简介"></a>1 简介</h3><p>SIFT 算法是在一幅图片不同的尺度空间上检测图像关键点的局部特征算法。SIFT算法通过关键点进行匹配，检测图片中物体的位置尺度和旋转不变量，使得分类器有良好的效果。该算法的应用范围很广，在图像导航、追踪、动作识别等方面都有较深刻的应用。</p>
-<h3 id="2-知识点"><a href="#2-知识点" class="headerlink" title="2 知识点"></a>2 知识点</h3><ul>
-<li>卷积模糊概念</li>
-<li>高斯卷积模糊</li>
-<li>图像金字塔</li>
-<li>关键点选取</li>
-<li>描述子生成</li>
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><ul>
+<li>给你一系列二维点对，让你求其中的最短距离</li>
 </ul>
 <a id="more"></a>
-<h2 id="二、步骤"><a href="#二、步骤" class="headerlink" title="二、步骤"></a>二、步骤</h2><ol>
-<li>图像卷积运算</li>
-<li>高斯模糊<ul>
-<li>高斯函数卷积核：高斯函数的 “3delta” 原则(delta为标准差)，当距离中心点的距离大于 “3delta” 之后，其效果可以忽略在。进行高斯核的确定时，仅选用距离中心点小于3delta 的点进行模板选取，模板大小为 “(6<em>delta+1)</em>(6*delta+1)”。</li>
-<li>分离高斯模糊：当使用二维模板进行图像处理时损失的图像信息由模板大小决定。模板无法匹配到的点将丢失。经验证二维高斯模糊可以由水平方向上的一维高斯模糊和竖直方向上的一维高斯模糊相加得到，这也称作是高斯函数的分离性。</li>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><ul>
+<li>分治，分别求分界点左边的最短距离和右边的最短距离，然后看左边和右边之间的点有无小于左右最短距离的。只需要比较距离中心轴为d的区域内的点对即可，可以证明该区域内一个最多只需要和6个点计算距离，复杂度为6n。</li>
+<li>距离解析参考：<a href="https://blog.csdn.net/hnu2012/article/details/70894678" target="_blank" rel="noopener">Link</a></li>
 </ul>
-</li>
-<li>高斯金字塔<ul>
-<li>降维采样：对于每层的图进行隔点采样</li>
-<li>高斯采样：高斯金字塔的建立与简单的降维采样不同的是：高斯金字塔采样出的每一层实际上是一组数据，而简单降维采样每一层仅仅是一幅图像。<br><img src="http://i4.bvimg.com/640273/c515aaa165b90672.png" alt=""></li>
-<li>高斯差分金字塔采样：将<strong>每一组图片中的相邻两幅图片进行相减</strong>，将原高斯金字塔生成新的每组含有N−1幅图像的高斯差分金字塔。</li>
-</ul>
-</li>
-<li>关键点检测<ul>
-<li>寻找关键点<ul>
-<li>粗略搜索：找到某一点，将其和相邻的两个尺度空间内的两个相同坐标点及这三个坐标点在同尺度空间相邻的八个一共26个（3×8+2）坐标点进行比较。若该点大于或小于其他所有点，那么这个点可能是我们要寻找的关键点。所判断点的邻域可以理解成为一个三阶魔方的形状。</li>
-<li>定位关键点：对DOG金字塔函数使用泰勒展开，带入候选关键点。</li>
-<li>去除边缘效应：使用Hessian矩阵计算主曲率，主曲率与矩阵的迹的平方与行列式之比成正比，当矩阵的迹的平方与行列式之比大于某个值时，忽略该点</li>
-</ul>
-</li>
-<li>求关键点方向<ul>
-<li>求梯度方向直方图：梯度方向直方图的横轴为梯度方向，纵轴为在该方向上的梯度幅值累加值。将邻域中的点的幅值进行分解，将其分解到每隔45度一个横轴方向的坐标中，最终得到一个横轴为八个方向的坐标系。</li>
-<li>确定关键点主方向：在直方图中，选取梯度幅度累加值最大的对应方向为该关键点的主方向，若有其他方向的累加值大于主方向累加值的80%时，将该方向认定为该关键点的辅方向。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>描述子生成<ul>
-<li>采样区域</li>
-<li>计算直方图描述子生成：将每一个图像块中的方向进行类似之前计算关键点的步骤，将其分解到八个方向上。在一个描述子中有16个图像块，每一个图像块中有  88  维特征值，这样在一个描述子中即可获得128维的描述。</li>
-</ul>
-</li>
-<li>生成描述子的流程解释<ul>
-<li>在高斯差分金字塔中寻找某一点，该点为其尺度空间间隔为1的邻域中的最大值或者最小值。</li>
-<li>将该点的DOG函数用泰勒展开式进行展开并将极值点带入</li>
-<li>删除其边缘效应，得到准确的关键点。</li>
-<li>求出关键点的梯度分布直方图，将其分解到间隔为45度的梯度方向上，将最大的方向设置为该点的主方向。</li>
-<li>在关键点周围选取采样区域，并将坐标系旋转至该点的主方向上。</li>
-<li>计算直方图，得出128维特征向量，并进行归一化处理。</li>
-</ul>
-</li>
-</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><pre><code>#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+using namespace std;
 
+static bool sort_by_x(vector&lt;double&gt; coor1, vector&lt;double&gt;coor2)
+{
+    return coor1[0]&lt;coor2[0];
+}
+
+static bool sort_by_y(vector&lt;double&gt; coor1, vector&lt;double&gt; coor2)
+{
+    return coor1[1] &lt; coor2[1];
+}
+
+double getDistance(vector&lt;double&gt; coor1, vector&lt;double&gt; coor2)
+{
+    return sqrt(pow(coor1[0]-coor2[0],2) + pow(coor1[1]-coor2[1],2));
+}
+
+double minDistance(vector&lt;vector&lt;double&gt;&gt;&amp; coords, int start, int end)
+{
+    if (end-start==1) //只有两个点 
+    {
+        return getDistance(coords[start], coords[end]);
+    }
+    else if(end-start==2) //只有三个点
+    {
+        double t1 = getDistance(coords[start], coords[start+1]);
+        double t2 = getDistance(coords[start], coords[end]);
+        double t3 = getDistance(coords[start+1], coords[end]);
+        return min(min(t1, t3), t2);
+    }
+    else //分治，左最小，右最小，以及全局最小
+    {
+        int mid = start + (end-start)/2;
+        double l_min = minDistance(coords, start, mid);
+        double r_min = minDistance(coords, mid+1, end);
+        double d = min(l_min, r_min);
+
+        //得到所有距离中心分割点小于d的坐标
+        vector&lt;vector&lt;double&gt;&gt; res;
+        for(int i=0;i&lt;coords.size();i++)
+        {
+            if(abs(coords[i][0]-coords[mid][0]) &lt;= d)
+                res.push_back(coords[i]);
+        }
+
+        //按照y坐标排序
+        sort(res.begin(), res.end(), sort_by_y);
+
+        //在res中分别计算是否有距离小于d的点对，对于每个点，只需要它与距离它宽为d高为2d的矩形区域内点做对比；可以证明对于每个点，它只需要与6个点求距离
+        for(int i=0;i&lt;res.size();i++)
+        {
+            for(int j=i+1;j&lt;res.size();j++)
+            {
+                if(res[j][1]-res[i][1]&gt;d)
+                    break;
+                if(getDistance(res[i], res[j])&lt;d)
+                {
+                    d = getDistance(res[i], res[j]);
+                }
+            }
+        }
+        return d;
+    }
+}
+
+
+int main()
+{
+    int n;
+    cin&gt;&gt;n;
+    vector&lt;vector&lt;double&gt;&gt; coords(n, vector&lt;double&gt;(2, 0));
+    for(int i=0;i&lt;n;i++)
+        cin&gt;&gt;coords[i][0]&gt;&gt;coords[i][1];
+    //按照x坐标升序
+    sort(coords.begin(), coords.end(), sort_by_x);
+    double res = minDistance(coords, 0, coords.size()-1);
+    cout&lt;&lt;res;
+    system(&quot;pause&quot;);
+    return 0;
+}
+</code></pre>
       
     </div>
     
@@ -484,7 +519,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/SIFT/" rel="tag"># SIFT</a>
+            <a href="/tags/平面内距离最短点对/" rel="tag"># 平面内距离最短点对</a>
           
         </div>
       
@@ -497,8 +532,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/14/基础_经典算法/三分找极点/" rel="next" title="三分找极点">
-                <i class="fa fa-chevron-left"></i> 三分找极点
+              <a href="/2018/05/13/图片处理/人行道检线算法/" rel="next" title="人行道检线算法">
+                <i class="fa fa-chevron-left"></i> 人行道检线算法
               </a>
             
           </div>
@@ -506,10 +541,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/15/tensorflow/tensorflow实现softmax分类/" rel="prev" title="tensorflow实现softmax分类">
-                tensorflow实现softmax分类 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -709,7 +740,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原文链接"><span class="nav-number">1.</span> <span class="nav-text">原文链接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、SIFT介绍"><span class="nav-number">1.1.</span> <span class="nav-text">一、SIFT介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-简介"><span class="nav-number">1.1.1.</span> <span class="nav-text">1 简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-知识点"><span class="nav-number">1.1.2.</span> <span class="nav-text">2 知识点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、步骤"><span class="nav-number">1.2.</span> <span class="nav-text">二、步骤</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">3.</span> <span class="nav-text">代码</span></a></li></ol></div>
             
 
           </div>
