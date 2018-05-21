@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[彩图转256色图]]></title>
+    <url>%2F2018%2F05%2F21%2F%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%2F%E5%BD%A9%E5%9B%BE%E8%BD%AC256%E8%89%B2%E5%9B%BE%2F</url>
+    <content type="text"><![CDATA[题目 一个RGB图像，变成一个只有256种颜色组成的伪彩色图像，怎么挑选这256种颜色，来使得处理后图像和原图像尽可能像 思路 流行色算法 RGB图一共有2^24次方种颜色，可以搞一个2^24长度的数组，然后遍历RGB图，每个像素位置的RGB构成24位数，数组中该数索引+1；然后排序，取频率最高的前256中颜色作为调色板，为0的去掉，不为0的选择与256种颜色“距离最近”的作为替代色；遍历RGB图，如果RGB值对应的是前256种颜色的一种，则取该颜色，否则取与该颜色最近的256种颜色中的一种。 当然也可以取RGB每个的前4位组成12位的数，然后搞一个2^12长度的数组。 中位切分算法 RGB三轴形成256边长的立方体，将该立方体切分成256个小立方体；取每个小立方体的中心点构成256种颜色的调色板。 参考 原真彩图转256色图]]></content>
+      <categories>
+        <category>图片处理</category>
+      </categories>
+      <tags>
+        <tag>彩图转256色图</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[外部排序，多路归并]]></title>
+    <url>%2F2018%2F05%2F21%2F%E5%9F%BA%E7%A1%80_%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%2F%E5%A4%96%E9%83%A8%E6%8E%92%E5%BA%8F%EF%BC%8C%E5%A4%9A%E8%B7%AF%E5%BD%92%E5%B9%B6%2F</url>
+    <content type="text"><![CDATA[题目 写一个函数，输入是很多个文件，每个文件中是很多float的数值，文件内部无序。输出是一个有序的大文件，内存约束2个G，具体怎么实现比较高效？ 思路 大文件分小文件(分治)-&gt;每个小文件内部排序（可以用堆）-&gt;得到k个有序的小文件后，多路归并 多路归并方法： 方法一：暴力 选择每个有序小文件的第一位，组成一个长度为k的数组，再排序（堆），取最小值写入大数组；然后在取出数对应的小文件中再取出一个数放入数组继续 方法二：败者树 构建k个叶子节点的数，每对叶子节点的父节点存这对叶子节点中最小值（如果你设置的是想要最大值的话；或者最大值，看你设置的规定）的索引，然后胜者跟下一对叶子节点的胜者对比。败者树求得最小值的复杂度为O(logN)；采用败者树而不采用胜者数的原因是败者树在维护的时候更方便，因为败者树的重构只需要与其父结点比较。 参考 海量数据多路归并排序的c++实现（归并时利用了败者树） 胜者树与败者树]]></content>
+      <categories>
+        <category>基础/经典算法</category>
+      </categories>
+      <tags>
+        <tag>多路归并</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[二分查找扩充]]></title>
     <url>%2F2018%2F05%2F17%2F%E5%9F%BA%E7%A1%80_%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95%2F%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%89%A9%E5%85%85%2F</url>
     <content type="text"><![CDATA[题目 旋转数组的最小数字 代码class Solution { public: /* 1）考虑1011 2）mid只与end对比 */ int minNumberInRotateArray(vector&lt;int&gt; rotateArray) { if(rotateArray.size()==0) return 0; int start = 0, end = rotateArray.size()-1; while(start&lt;end) { int mid = start + (end-start)/2; if(rotateArray[mid]&gt;rotateArray[end]) start = mid+1; else if(rotateArray[mid]==rotateArray[end]) end = end-1; else end = mid; } return rotateArray[start]; } };]]></content>
@@ -78,7 +100,7 @@
   <entry>
     <title><![CDATA[yolov系列(2)：yolovv3论文笔记]]></title>
     <url>%2F2018%2F05%2F05%2Fyolo%E7%B3%BB%E5%88%97%2Fyolov%E7%B3%BB%E5%88%97-2-%EF%BC%9Ayolov3%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[又是被自己菜醒的一天 背景 论文：YOLOv3：An Incremental Improvement 官网：YOLO: Real-Time Object Detection 官方代码：github 概况 yolov3相对于v2的提升版本 使用dimeansion分簇来得到anchor boxes 每个框预测多标签的类别的时候使用2类的交叉熵作为损失函数 跨图像规模的预测，即隔一段时间resize输入图像的大小 特征提取网络结合了resNet的思想加入了shorcut，有53个卷积层。 方法1. bounding box预测 其中tx，ty，tw，th分别为网络预测层输出的框(的中心横坐标，纵坐标，框的宽度，框的高度，不对应该只是一个网络的输出并不是上述的含义,这个应该是借鉴faster RCNN的，等看了那篇论文再来解释，ok，上述第二图为解释tx,ty,tw,th的由来，截取自YOLOv2 论文笔记)；pw，ph为先验框（anchor boxes）的宽度和高度；cx，cy为预测中心点所在cell相对图片左上角点的偏移；通过上图公式将预测输出最终转换为框的中心点左边bx，by，框的宽度和高度bw，bh 如果一个先验框并不是最好的但是其覆盖ground true超过一定阈值，论文中取的是0.5，则忽略这个预测结果且不计算进损失中 2. 类预测 每个框可能需要预测包含多标签的类，论文中没使用softmax而是用的独立的逻辑斯蒂分类。因为使用softmax的前提假设是一个框中只包含一个类，而现实情况并不是这样的。 3. box的跨尺度预测（针对之前yolo小目标检测不到的诟病） yolov3在三个尺度上做预测 参考的FPN（特征金字塔）网络，下图引自FPN最新的目标检测算法。每种尺度预测三个box，anchor的设计方式仍然使用聚类的方法得到9 个聚类中心，再将其按照大小均分给3种尺度。尺度1：在基础网络之后添加一些卷积层再输出box信息；尺度2：从尺度1中的倒数第二层的卷积层上采样再与最后一个16×16大小的特征图相加，再次通过多个卷积层后输出box信息，相比尺度1变大两倍；尺度3：与尺度2类似使用了32×32大小的特征图。可以参考网络结构定义文件yolov3.cfg。 把高层特征做2倍上采样（最邻近上采样法），然后将其和对应的前一层特征结合（前一层要经过1 * 1的卷积核才能用，目的是改变channels，应该是要和后一层的channels相同），结合方式就是做像素间的加法。重复迭代该过程，直至生成最精细的特征图。 论文使用kmean获得先验anchor boxes 4. 特征提取 Darknet53,53个卷积层，加上shorcut，下图为其网络结构 5. 训练 训练方法和yolov2相同，多尺度（隔一段epoch改变输入的图片大小，有小有大），BN等 性能及总结 性能 总结 改进后的yolov3能够更好的检测小目标（引入了跨尺度预测），但是相对的中中等及大尺寸的目标效果有所降低 其他都很好哇，666]]></content>
+    <content type="text"><![CDATA[又是被自己菜醒的一天 背景 论文：YOLOv3：An Incremental Improvement 官网：YOLO: Real-Time Object Detection 官方代码：github 概况 yolov3相对于v2的提升版本 使用dimeansion分簇来得到anchor boxes 每个框预测多标签的类别的时候使用2类的交叉熵作为损失函数 跨图像规模的预测，即隔一段时间resize输入图像的大小 特征提取网络结合了resNet的思想加入了shorcut，有53个卷积层。 方法1. bounding box预测 其中tx，ty，tw，th分别为网络预测层输出的框(的中心横坐标，纵坐标，框的宽度，框的高度，不对应该只是一个网络的输出并不是上述的含义,这个应该是借鉴faster RCNN的，等看了那篇论文再来解释，ok，上述第二图为解释tx,ty,tw,th的由来，截取自YOLOv2 论文笔记)作者这边不是用的这个方法计算的框的x和y，而是预测相对网格cell的位置，并且通过逻辑斯蒂归一化；pw，ph为先验框（anchor boxes）的宽度和高度；cx，cy为预测中心点所在cell相对图片左上角点的偏移；通过上图公式将预测输出最终转换为框的中心点左边bx，by，框的宽度和高度bw，bh 如果一个先验框并不是最好的但是其覆盖ground true超过一定阈值，论文中取的是0.5，则忽略这个预测结果且不计算进损失中 2. 类预测 每个框可能需要预测包含多标签的类，论文中没使用softmax而是用的独立的逻辑斯蒂分类。因为使用softmax的前提假设是一个框中只包含一个类，而现实情况并不是这样的。 3. box的跨尺度预测（针对之前yolo小目标检测不到的诟病） yolov3在三个尺度上做预测 参考的FPN（特征金字塔）网络，下图引自FPN最新的目标检测算法。每种尺度预测三个box，anchor的设计方式仍然使用聚类的方法得到9 个聚类中心，再将其按照大小均分给3种尺度。尺度1：在基础网络之后添加一些卷积层再输出box信息；尺度2：从尺度1中的倒数第二层的卷积层上采样再与最后一个16×16大小的特征图相加，再次通过多个卷积层后输出box信息，相比尺度1变大两倍；尺度3：与尺度2类似使用了32×32大小的特征图。可以参考网络结构定义文件yolov3.cfg。 把高层特征做2倍上采样（最邻近上采样法），然后将其和对应的前一层特征结合（前一层要经过1 * 1的卷积核才能用，目的是改变channels，应该是要和后一层的channels相同），结合方式就是做像素间的加法。重复迭代该过程，直至生成最精细的特征图。 论文使用kmean获得先验anchor boxes 4. 特征提取 Darknet53,53个卷积层，加上shorcut，下图为其网络结构 5. 训练 训练方法和yolov2相同，多尺度（隔一段epoch改变输入的图片大小，有小有大），BN等 性能及总结 性能 总结 改进后的yolov3能够更好的检测小目标（引入了跨尺度预测），但是相对的中中等及大尺寸的目标效果有所降低 其他都很好哇，666]]></content>
       <categories>
         <category>yolo系列</category>
       </categories>

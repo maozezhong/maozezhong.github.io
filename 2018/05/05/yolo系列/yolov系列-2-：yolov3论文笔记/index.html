@@ -92,7 +92,7 @@
 <meta property="og:image" content="https://img-blog.csdn.net/20170117220248335?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVzc2VfTXg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180505/JFdmmEaBiA.png?imageslim">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180505/B1G4k3L6Kd.png?imageslim">
-<meta property="og:updated_time" content="2018-05-15T07:44:32.475Z">
+<meta property="og:updated_time" content="2018-05-18T09:17:54.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yolov系列(2)：yolovv3论文笔记">
 <meta name="twitter:description" content="又是被自己菜醒的一天">
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  863字
+                  905字
                 </span>
               
 
@@ -437,7 +437,7 @@
 <div align="center"><br> <img src="http://p7ewxflh7.bkt.clouddn.com/blog/180505/7acBI1721h.png?imageslim"><br> <img src="http://p7ewxflh7.bkt.clouddn.com/blog/180505/G35icF660K.png?imageslim"><br> </div>
 </blockquote>
 <ul>
-<li><p>其中tx，ty，tw，th分别为网络预测层输出的框(<del>的中心横坐标，纵坐标，框的宽度，框的高度</del>，不对应该只是一个网络的输出并不是上述的含义,这个应该是借鉴faster RCNN的，等看了那篇论文再来解释，ok，上述第二图为解释tx,ty,tw,th的由来，截取自<a href="https://blog.csdn.net/jesse_mx/article/details/53925356" target="_blank" rel="noopener">YOLOv2 论文笔记</a>)；pw，ph为先验框（anchor boxes）的宽度和高度；cx，cy为预测中心点所在cell相对图片左上角点的偏移；通过上图公式将预测输出最终转换为框的中心点左边bx，by，框的宽度和高度bw，bh</p>
+<li><p>其中tx，ty，tw，th分别为网络预测层输出的框(<del>的中心横坐标，纵坐标，框的宽度，框的高度，不对应该只是一个网络的输出并不是上述的含义,这个应该是借鉴faster RCNN的，等看了那篇论文再来解释，</del>ok，上述第二图为解释tx,ty,tw,th的由来，截取自<a href="https://blog.csdn.net/jesse_mx/article/details/53925356" target="_blank" rel="noopener">YOLOv2 论文笔记</a>)作者这边不是用的这个方法计算的框的x和y，而是预测相对网格cell的位置，并且通过逻辑斯蒂归一化；pw，ph为先验框（anchor boxes）的宽度和高度；cx，cy为预测中心点所在cell相对图片左上角点的偏移；通过上图公式将预测输出最终转换为框的中心点左边bx，by，框的宽度和高度bw，bh</p>
 </li>
 <li><p>如果一个先验框并不是最好的但是其覆盖ground true超过一定阈值，论文中取的是0.5，则忽略这个预测结果且不计算进损失中</p>
 </li>
@@ -630,7 +630,7 @@ var jiathis_config={
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -652,7 +652,7 @@ var jiathis_config={
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -757,7 +757,7 @@ var jiathis_config={
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.7k</span>
+    <span title="Site words total count">15.3k</span>
   
 </div>
 
