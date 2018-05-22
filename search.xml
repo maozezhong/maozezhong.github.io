@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Faster R-CNN论文笔记]]></title>
+    <url>%2F2018%2F05%2F22%2Fpaper%2FFaster-R-CNN%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[背景 论文：Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks 代码：github，python版本 概述 相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。 融合RPN和fast R-CNN，两者共享前面的卷积层部分，其中RPN充当了attention的机制，其得到的候选区域用于fast R-CNN做预测，RPN在这边充当了”attention”的机制，通过这个网络来引导fast R-CNN所要关注的区域。 内容 faster R-CNN由RPN和fast R-CNN组成，RPN相当于”attention”机制，为fast R-CNN提供可能存在object的区域。 RPN 卷积层最后一层的输出feature map作为RPN的输入，RPN通过一个n*n的卷积核（论文中n为3），对该feature map进行滑窗卷积，在滑窗过程中个，卷积核所处的3*3区域会产生k个anchors。 Anchors 在滑窗的过程中，卷积核所处的位置会产生k个anchors，即有k个proposals。因此回归层会有4k个输出（每个proposal4个坐标位置），分类层有2k个输出（每个proposal1个有object的概率和1个无object的概率），k个poposal对应k个anchors。论文中k取的3，通过3个不同的尺度，以及3个不同的横纵比例。 那么怎么理解anchors呢？论文中作者假设3*3的卷积核对应的feature map窗口是原始图片通过spp池化而来，而这个池化的区域的面积以及比例就是一个个的anchors，换句话说，对于每个3x3窗口，作者假定它来自9种不同原始区域的池化。（spp是对不同尺度的图像输入resize到固定的尺度输出）。那么通过已知的3*3的输出作者逆向推得输入是多个不同尺度的feature，论文中假设了9个不同的尺度。 论文中的anchors有转移不变性(translation-invariant)。即如果一张图中同一个object转移到另外一个位置，那么proposal也会转移并且相应的预测得到的anchors应该是跟未转移前对应的（这边理解的不太好） 多尺度anchors及回归参考。之前处理多尺度的方法有以下几种：1）特征金字塔，通过图像金字塔得到，费时；2）不同大小的filters，可抽象为“滤波金字塔”，与第一种方法经常联合使用。作者则创造了anchors金字塔。 损失函数 设置positive/negative label的方法，对于与ground-truth box IOU最大的anchor设置位positive，或者对于IOU大于0.7的设为正；论文中出于一些考虑（采用第二种方法的话在一些场景中会没有negative label），选择了第一种方法。IOU小于0.3的非positive anchors则被置为negative。 坐标计算 训练 为了防止negative的样本在训练的时候dominate，作者采用随机抽样256个样本，且正负样本1:1的方案，如果正样本anchors没有128个则用负样本补齐。 RPN和fast R-CNN共享特征 Step1：训练RPN step2：更具Step1得到的proposals训练fast R-CNN。 Step3：用fast R-CNN的参数初始化RPN，并固定共享的卷积层参数，只fine-tune单属于RPN的层。到这一步，RPN和fast R-CNN开始共享卷积层了。 Step4：维持共享的卷积层固定，fine-tune属于fast R-CNN的层。 Step1-4迭代多步。 参考 faster rcnn中rpn的anchor，sliding windows，proposals？ 一文读懂：R-CNN、Fast R-CNN、Faster R-CNN、YOLO、SSD]]></content>
+      <categories>
+        <category>paper</category>
+      </categories>
+      <tags>
+        <tag>Faster R-CNN</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[FPN论文笔记]]></title>
     <url>%2F2018%2F05%2F22%2Fpaper%2FFPN%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[背景 论文：feature pyramid networks for object detection 概述 原来多数的object detection算法都是只采用顶层特征做预测，但我们知道低层的特征语义信息比较少，但是目标位置准确；高层的特征语义信息比较丰富，但是目标位置比较粗略。另外虽然也有些算法采用多尺度特征融合的方式，但是一般是采用融合后的特征做预测，而论文中不一样的地方在于预测是在不同特征层独立进行的。 内容 old-&gt;now a)图是使用图像金字塔建立的特征金字塔（从不同尺度的图像中得到的特征），每个特征独立的用于预测，速度慢。 b)图是普通的单尺度特征，速度快。 c)图是每个卷积后的特征独立用于预测。 d)图是论文中提出的FPN网络，顶层通过上采样和低层特征融合，每层独立做预测。 对比 当然也有跟作者类似的经过多次上采样并融合特征，拿最后一步生成的特征做预测。 作者的则是每一层独立预测。 FPN详解 Bottom-up pathway：普通前向传播 Lateral connections：横向连接 Top-down pathway：融合高层和低层的特征；高层语义特征丰富，目标位置粗糙；低层语义特征少，但目标位置准确。注意，在融合之后feature map还要经过3*3的卷积核卷积来消除上采样导致的混淆现象（aliasing effect）]]></content>

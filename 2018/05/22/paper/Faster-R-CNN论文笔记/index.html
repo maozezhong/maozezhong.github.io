@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Faster R-CNN," />
 
 
 
@@ -79,13 +79,23 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zezhong&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/翻转字符串/index.html">
+<meta name="description" content="背景 论文：Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks 代码：github，python版本  概述 相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。 融合RP">
+<meta name="keywords" content="Faster R-CNN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Faster R-CNN论文笔记">
+<meta property="og:url" content="http://yoursite.com/2018/05/22/paper/Faster-R-CNN论文笔记/index.html">
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
+<meta property="og:description" content="背景 论文：Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks 代码：github，python版本  概述 相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。 融合RP">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/Gc3E6m1jh4.png?imageslim">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/8Ec9Ih54hi.png?imageslim">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/glLgLC595K.png?imageslim">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/AABcm4Hk2E.png?imageslim">
+<meta property="og:updated_time" content="2018-05-22T12:54:41.956Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zezhong&#39;s Blog">
+<meta name="twitter:title" content="Faster R-CNN论文笔记">
+<meta name="twitter:description" content="背景 论文：Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks 代码：github，python版本  概述 相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。 融合RP">
+<meta name="twitter:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/Gc3E6m1jh4.png?imageslim">
 
 
 
@@ -115,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/翻转字符串/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/22/paper/Faster-R-CNN论文笔记/"/>
 
 
 
 
 
-  <title>标签: 翻转字符串 | Zezhong's Blog</title>
+  <title>Faster R-CNN论文笔记 | Zezhong's Blog</title>
   
 
 
@@ -140,7 +150,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 	
 	<a href="https://github.com/maozezhong" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
@@ -260,54 +270,296 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>翻转字符串<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/paper/Faster-R-CNN论文笔记/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mao Zezhong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180419/HLjKj2G0g1.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zezhong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/05/17/基础_经典算法/不改变正负数相对顺序重新排列数组/" itemprop="url">
-              
-                <span itemprop="name">不改变正负数相对顺序重新排列数组</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Faster R-CNN论文笔记</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-17T11:18:06+08:00"
-              content="2018-05-17" >
-          05-17
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T19:49:26+08:00">
+                2018-05-22
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/paper/" itemprop="url" rel="index">
+                    <span itemprop="name">paper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/05/22/paper/Faster-R-CNN论文笔记/" class="leancloud_visitors" data-flag-title="Faster R-CNN论文笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  892字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li>论文：<a href="https://arxiv.org/abs/1506.01497" target="_blank" rel="noopener">Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks</a></li>
+<li>代码：<a href="https://github.com/rbgirshick/py-faster-rcnn" target="_blank" rel="noopener">github，python版本</a></li>
+</ul>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。</li>
+<li>融合RPN和fast R-CNN，两者共享前面的卷积层部分，其中RPN充当了attention的机制，其得到的候选区域用于fast R-CNN做预测，RPN在这边充当了”attention”的机制，通过这个网络来引导fast R-CNN所要关注的区域。</li>
+</ul>
+<a id="more"></a>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
+<li>faster R-CNN由RPN和fast R-CNN组成，RPN相当于”attention”机制，为fast R-CNN提供可能存在object的区域。</li>
+<li><p>RPN</p>
+<ul>
+<li>卷积层最后一层的输出feature map作为RPN的输入，RPN通过一个n*n的卷积核（论文中n为3），对该feature map进行滑窗卷积，在滑窗过程中个，卷积核所处的3*3区域会产生k个anchors。</li>
+<li><p>Anchors</p>
+<ul>
+<li><p>在滑窗的过程中，卷积核所处的位置会产生k个anchors，即有k个proposals。因此回归层会有4k个输出（每个proposal4个坐标位置），分类层有2k个输出（每个proposal1个有object的概率和1个无object的概率），k个poposal对应k个anchors。论文中k取的3，通过3个不同的尺度，以及3个不同的横纵比例。</p>
+<div align="center"><br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180522/Gc3E6m1jh4.png?imageslim"><br></div></li>
+<li><p>那么<strong>怎么理解anchors</strong>呢？论文中作者假设3*3的卷积核对应的feature map窗口是原始图片通过spp池化而来，而这个池化的区域的面积以及比例就是一个个的anchors，换句话说，对于每个3x3窗口，作者假定它来自9种不同原始区域的池化。（spp是对不同尺度的图像输入resize到固定的尺度输出）。那么通过已知的3*3的输出作者逆向推得输入是多个不同尺度的feature，论文中假设了9个不同的尺度。</p>
+</li>
+<li><p>论文中的anchors有<strong>转移不变性</strong>(translation-invariant)。即如果一张图中同一个object转移到另外一个位置，那么proposal也会转移并且相应的预测得到的anchors应该是跟未转移前对应的（这边理解的不太好）</p>
+</li>
+<li><p>多尺度anchors及回归参考。之前处理多尺度的方法有以下几种：1）特征金字塔，通过图像金字塔得到，费时；2）不同大小的filters，可抽象为“滤波金字塔”，与第一种方法经常联合使用。作者则创造了anchors金字塔。</p>
+<div align="center"><br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180522/8Ec9Ih54hi.png?imageslim"><br></div>
+</li>
+</ul>
+</li>
+<li><p>损失函数</p>
+<ul>
+<li><p>设置positive/negative label的方法，对于与ground-truth box IOU最大的anchor设置位positive，或者对于IOU大于0.7的设为正；论文中出于一些考虑（采用第二种方法的话在一些场景中会没有negative label），选择了第一种方法。IOU小于0.3的非positive anchors则被置为negative。</p>
+<div align="center"><br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180522/glLgLC595K.png?imageslim"><br></div>
+</li>
+<li><p>坐标计算</p>
+<div align="center"><br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180522/AABcm4Hk2E.png?imageslim"><br></div>
+</li>
+</ul>
+</li>
+<li><p>训练</p>
+<ul>
+<li>为了防止negative的样本在训练的时候dominate，作者采用随机抽样256个样本，且正负样本1:1的方案，如果正样本anchors没有128个则用负样本补齐。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>RPN和fast R-CNN共享特征</p>
+<ul>
+<li>Step1：训练RPN</li>
+<li>step2：更具Step1得到的proposals训练fast R-CNN。</li>
+<li>Step3：用fast R-CNN的参数初始化RPN，并固定共享的卷积层参数，只fine-tune单属于RPN的层。到这一步，RPN和fast R-CNN开始共享卷积层了。</li>
+<li>Step4：维持共享的卷积层固定，fine-tune属于fast R-CNN的层。</li>
+<li>Step1-4迭代多步。</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="https://www.zhihu.com/question/42205480" target="_blank" rel="noopener">faster rcnn中rpn的anchor，sliding windows，proposals？</a></li>
+<li><a href="https://blog.csdn.net/v_july_v/article/details/80170182" target="_blank" rel="noopener">一文读懂：R-CNN、Fast R-CNN、Faster R-CNN、YOLO、SSD
+</a></li>
+</ul>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Faster-R-CNN/" rel="tag"># Faster R-CNN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/22/paper/FPN论文笔记/" rel="next" title="FPN论文笔记">
+                <i class="fa fa-chevron-left"></i> FPN论文笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -315,6 +567,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -335,8 +591,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -438,6 +703,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内容"><span class="nav-number">3.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -594,6 +875,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
