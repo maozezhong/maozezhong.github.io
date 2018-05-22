@@ -372,7 +372,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  892字
+                  895字
                 </span>
               
 
@@ -410,12 +410,16 @@
 
       
         
-          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+          <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol>
 <li>论文：<a href="https://arxiv.org/abs/1506.01497" target="_blank" rel="noopener">Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks</a></li>
+</ol>
+<ul>
 <li>代码：<a href="https://github.com/rbgirshick/py-faster-rcnn" target="_blank" rel="noopener">github，python版本</a></li>
 </ul>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
 <li>相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。</li>
+</ol>
+<ul>
 <li>融合RPN和fast R-CNN，两者共享前面的卷积层部分，其中RPN充当了attention的机制，其得到的候选区域用于fast R-CNN做预测，RPN在这边充当了”attention”的机制，通过这个网络来引导fast R-CNN所要关注的区域。</li>
 </ul>
           <!--noindex-->

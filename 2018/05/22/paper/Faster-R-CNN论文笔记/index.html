@@ -79,22 +79,22 @@
 
 
 
-<meta name="description" content="背景 论文：Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks 代码：github，python版本  概述 相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。 融合RP">
+<meta name="description" content="背景 论文：Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks   代码：github，python版本  概述 相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。">
 <meta name="keywords" content="Faster R-CNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Faster R-CNN论文笔记">
 <meta property="og:url" content="http://yoursite.com/2018/05/22/paper/Faster-R-CNN论文笔记/index.html">
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
-<meta property="og:description" content="背景 论文：Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks 代码：github，python版本  概述 相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。 融合RP">
+<meta property="og:description" content="背景 论文：Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks   代码：github，python版本  概述 相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/Gc3E6m1jh4.png?imageslim">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/8Ec9Ih54hi.png?imageslim">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/glLgLC595K.png?imageslim">
 <meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/AABcm4Hk2E.png?imageslim">
-<meta property="og:updated_time" content="2018-05-22T12:54:41.956Z">
+<meta property="og:updated_time" content="2018-05-22T13:01:11.063Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Faster R-CNN论文笔记">
-<meta name="twitter:description" content="背景 论文：Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks 代码：github，python版本  概述 相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。 融合RP">
+<meta name="twitter:description" content="背景 论文：Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks   代码：github，python版本  概述 相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。">
 <meta name="twitter:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/Gc3E6m1jh4.png?imageslim">
 
 
@@ -379,7 +379,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  892字
+                  895字
                 </span>
               
 
@@ -416,17 +416,23 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol>
 <li>论文：<a href="https://arxiv.org/abs/1506.01497" target="_blank" rel="noopener">Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks</a></li>
+</ol>
+<ul>
 <li>代码：<a href="https://github.com/rbgirshick/py-faster-rcnn" target="_blank" rel="noopener">github，python版本</a></li>
 </ul>
-<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
 <li>相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。</li>
+</ol>
+<ul>
 <li>融合RPN和fast R-CNN，两者共享前面的卷积层部分，其中RPN充当了attention的机制，其得到的候选区域用于fast R-CNN做预测，RPN在这边充当了”attention”的机制，通过这个网络来引导fast R-CNN所要关注的区域。</li>
 </ul>
 <a id="more"></a>
-<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ol>
 <li>faster R-CNN由RPN和fast R-CNN组成，RPN相当于”attention”机制，为fast R-CNN提供可能存在object的区域。</li>
+</ol>
+<ul>
 <li><p>RPN</p>
 <ul>
 <li>卷积层最后一层的输出feature map作为RPN的输入，RPN通过一个n*n的卷积核（论文中n为3），对该feature map进行滑窗卷积，在滑窗过程中个，卷积核所处的3*3区域会产生k个anchors。</li>
