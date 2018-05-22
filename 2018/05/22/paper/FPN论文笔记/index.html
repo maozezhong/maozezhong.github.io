@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="tensorflow," />
+  <meta name="keywords" content="FPN," />
 
 
 
@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="tensorflow报错锦集">
-<meta name="keywords" content="tensorflow">
+<meta name="description" content="背景 论文：feature pyramid networks for object detection  概述 原来多数的object detection算法都是只采用顶层特征做预测，但我们知道低层的特征语义信息比较少，但是目标位置准确；高层的特征语义信息比较丰富，但是目标位置比较粗略。另外虽然也有些算法采用多尺度特征融合的方式，但是一般是采用融合后的特征做预测，而论文中不一样的地方在于预测是在不">
+<meta name="keywords" content="FPN">
 <meta property="og:type" content="article">
-<meta property="og:title" content="跑tensorflow踩过的坑">
-<meta property="og:url" content="http://yoursite.com/2018/05/03/tensorflow/跑tensorflow踩过的坑/index.html">
+<meta property="og:title" content="FPN论文笔记">
+<meta property="og:url" content="http://yoursite.com/2018/05/22/paper/FPN论文笔记/index.html">
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
-<meta property="og:description" content="tensorflow报错锦集">
+<meta property="og:description" content="背景 论文：feature pyramid networks for object detection  概述 原来多数的object detection算法都是只采用顶层特征做预测，但我们知道低层的特征语义信息比较少，但是目标位置准确；高层的特征语义信息比较丰富，但是目标位置比较粗略。另外虽然也有些算法采用多尺度特征融合的方式，但是一般是采用融合后的特征做预测，而论文中不一样的地方在于预测是在不">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-03T15:08:00.404Z">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/kE0JD2he7b.png?imageslim">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/dKGdd82ee3.png?imageslim">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/khjL58K8fC.png?imageslim">
+<meta property="og:updated_time" content="2018-05-22T02:28:49.926Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="跑tensorflow踩过的坑">
-<meta name="twitter:description" content="tensorflow报错锦集">
+<meta name="twitter:title" content="FPN论文笔记">
+<meta name="twitter:description" content="背景 论文：feature pyramid networks for object detection  概述 原来多数的object detection算法都是只采用顶层特征做预测，但我们知道低层的特征语义信息比较少，但是目标位置准确；高层的特征语义信息比较丰富，但是目标位置比较粗略。另外虽然也有些算法采用多尺度特征融合的方式，但是一般是采用融合后的特征做预测，而论文中不一样的地方在于预测是在不">
+<meta name="twitter:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180522/kE0JD2he7b.png?imageslim">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/03/tensorflow/跑tensorflow踩过的坑/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/22/paper/FPN论文笔记/"/>
 
 
 
 
 
-  <title>跑tensorflow踩过的坑 | Zezhong's Blog</title>
+  <title>FPN论文笔记 | Zezhong's Blog</title>
   
 
 
@@ -279,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/03/tensorflow/跑tensorflow踩过的坑/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/paper/FPN论文笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mao Zezhong">
@@ -296,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">跑tensorflow踩过的坑</h1>
+          <h1 class="post-title" itemprop="name headline">FPN论文笔记</h1>
         
 
         <div class="post-meta">
@@ -308,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-03T23:03:48+08:00">
-                2018-05-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T10:01:00+08:00">
+                2018-05-22
               </time>
             
 
@@ -331,8 +335,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tensorflow/" itemprop="url" rel="index">
-                    <span itemprop="name">tensorflow</span>
+                  <a href="/categories/paper/" itemprop="url" rel="index">
+                    <span itemprop="name">paper</span>
                   </a>
                 </span>
 
@@ -348,7 +352,7 @@
 
           
           
-             <span id="/2018/05/03/tensorflow/跑tensorflow踩过的坑/" class="leancloud_visitors" data-flag-title="跑tensorflow踩过的坑">
+             <span id="/2018/05/22/paper/FPN论文笔记/" class="leancloud_visitors" data-flag-title="FPN论文笔记">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -374,7 +378,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  571字
+                  401字
                 </span>
               
 
@@ -390,7 +394,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3分钟
+                  1分钟
                 </span>
               
             </div>
@@ -411,26 +415,42 @@
       
 
       
-        <blockquote>
-<p>tensorflow报错锦集</p>
-</blockquote>
-<a id="more"></a>
-<h4 id="2018年5月3日"><a href="#2018年5月3日" class="headerlink" title="2018年5月3日"></a>2018年5月3日</h4><ul>
-<li>Q1: 在自定义损失函数的时候，求tf.sqrt()用到了类型转换tf.bitcast；然后报错<code>LookupError: No gradient defined for operation &#39;loss/Bitcast&#39; (op type: Bitcast)</code>；</li>
-<li>A1：用tf.to_float转类型试试，实测已经解决</li>
-<li>Q2：<code>ValueError: Cannot feed value of shape (485686,) for Tensor &#39;input_y:0&#39;, which has shape &#39;(?, 485686)&#39;</code></li>
-<li>A2：维度问题，<code>tf.expand_dims(y, 0)，0为在前面加维度，1为加在第二维，-1为加在最后一维</code>应该可以解决；不对用这个方法还是报错<code>TypeError: The value of a feed cannot be a tf.Tensor object. Acceptable feed values include Python scalars, strings, lists, numpy ndarrays, or TensorHandles.For reference, the tensor object was Tensor(&quot;ExpandDims:0&quot;, shape=(1, 485686), dtype=float64) which was passed to the feed with key Tensor(&quot;input_y:0&quot;, shape=(?, 485686), dtype=float32).</code>，看来得用np.reshape,解决</li>
-<li>Q3：<code>InvalidArgumentError (see above for traceback): Nan in summary histogram for: conv-maxpool-3/W_0/grad/hist
-   [[Node: conv-maxpool-3/W_0/grad/hist = HistogramSummary[T=DT_FLOAT, _device=&quot;/job:localhost/replica:0/task:0/device:CPU:0&quot;](conv-maxpool-3/W_0/grad/hist/tag, gradients/conv-maxpool-3/conv_grad/tuple/control_dependency_1)]]</code></li>
-<li>A3：<a href="https://stackoverflow.com/questions/39854390/nan-in-summary-histogram" target="_blank" rel="noopener">问题解答</a>;可能是梯度爆炸，在计算距离的时候可能商为0？在商上面加个很小的值看看；不行，还是会报错。试试数据类型转高精度to_double,同时把学习率给折半了5 e-4，还是不行；把hist写入的那个关了。</li>
-<li>Q4：tensorflow加载模型的时候报错：<code>tensorflow.python.framework.errors_impl.DataLossError: Unable to open table file</code>；</li>
-<li>A4：<a href="https://blog.csdn.net/thriving_fcl/article/details/71423039" target="_blank" rel="noopener">TensorFlow 模型保存/载入</a>；saver.restore()时填的文件名，因为在saver.save的时候，每个checkpoint会保存三个文件，如<br>my-model-10000.meta, my-model-10000.index, my-model-10000.data-00000-of-00001<br>在import_meta_graph时填的就是meta文件名，我们知道权值都保存在my-model-10000.data-00000-of-00001这个文件中，但是如果在restore方法中填这个文件名，就会报错，应该填的是前缀，这个前缀可以使用tf.train.latest_checkpoint(checkpoint_dir)这个方法获取。</li>
-<li>Q5：`ValueError: The name ‘global_step’ refers to an Operation, not a Tensor. Tensor names must be of the form “&lt;op_name&gt;:&lt;output_index&gt;”.</li>
-<li>A5：.get_operation_by_name(‘’).outputs[0]（亲测可以）或者.get_collection(‘’)没试过</li>
-<li>Q6：<code>KeyError: &quot;The name &#39;loss&#39; refers to an Operation not in the graph.&quot;</code>，loss是在scope(“loss”)下面的，重载模型后不知道名字应该是啥，应为loss没命名名字，只是放在scope(“loss”)下面</li>
-<li>A6：貌似无解，因为loss不是张量。直接定义调用？</li>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li>论文：<a href="https://arxiv.org/abs/1612.03144" target="_blank" rel="noopener">feature pyramid networks for object detection</a></li>
 </ul>
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ul>
+<li>原来多数的object detection算法都是只采用顶层特征做预测，但我们知道低层的特征语义信息比较少，但是目标位置准确；高层的特征语义信息比较丰富，但是目标位置比较粗略。另外虽然也有些算法采用多尺度特征融合的方式，但是一般是采用融合后的特征做预测，而论文中不一样的地方在于预测是在不同特征层独立进行的。 </li>
+</ul>
+<a id="more"></a>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><ul>
+<li>old-&gt;now<ul>
+<li>a)图是使用图像金字塔建立的特征金字塔（从不同尺度的图像中得到的特征），每个特征独立的用于预测，速度慢。</li>
+<li>b)图是普通的单尺度特征，速度快。</li>
+<li>c)图是每个卷积后的特征独立用于预测。</li>
+<li>d)图是论文中提出的FPN网络，顶层通过上采样和低层特征融合，每层独立做预测。</li>
+</ul>
+</li>
+</ul>
+<div align="center"><br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180522/kE0JD2he7b.png?imageslim"><br></div>
 
+<ul>
+<li>对比<ul>
+<li>当然也有跟作者类似的经过多次上采样并融合特征，拿最后一步生成的特征做预测。</li>
+<li>作者的则是每一层独立预测。</li>
+</ul>
+</li>
+</ul>
+<div align="center"><br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180522/dKGdd82ee3.png?imageslim"><br></div>
+
+<ul>
+<li>FPN详解<ul>
+<li>Bottom-up pathway：普通前向传播</li>
+<li>Lateral connections：横向连接</li>
+<li>Top-down pathway：融合高层和低层的特征；高层语义特征丰富，目标位置粗糙；低层语义特征少，但目标位置准确。注意，在融合之后feature map还要经过3*3的卷积核卷积来消除上采样导致的混淆现象（aliasing effect）</li>
+</ul>
+</li>
+</ul>
+<div align="center"><br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180522/khjL58K8fC.png?imageslim"><br></div>
       
     </div>
     
@@ -447,7 +467,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
+            <a href="/tags/FPN/" rel="tag"># FPN</a>
           
         </div>
       
@@ -460,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/03/tensorflow/tensorflow保存模型及重载模型/" rel="next" title="tensorflow保存模型及重载模型">
-                <i class="fa fa-chevron-left"></i> tensorflow保存模型及重载模型
+              <a href="/2018/05/21/图片处理/彩图转256色图/" rel="next" title="彩图转256色图">
+                <i class="fa fa-chevron-left"></i> 彩图转256色图
               </a>
             
           </div>
@@ -469,10 +489,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/03/yolo系列/yolo系列(1)续：python调用yolov3并作图/" rel="prev" title="yolo系列(1)续：python调用yolov3并作图（转）">
-                yolo系列(1)续：python调用yolov3并作图（转） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -672,7 +688,7 @@ var jiathis_config={
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#2018年5月3日"><span class="nav-number">1.</span> <span class="nav-text">2018年5月3日</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">2.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内容"><span class="nav-number">3.</span> <span class="nav-text">内容</span></a></li></ol></div>
             
 
           </div>
