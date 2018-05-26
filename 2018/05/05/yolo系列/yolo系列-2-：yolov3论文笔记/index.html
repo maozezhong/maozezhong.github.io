@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="yolo," />
 
 
 
@@ -79,13 +79,24 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Zezhong&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2018/05/index.html">
+<meta name="description" content="又是被自己菜醒的一天">
+<meta name="keywords" content="yolo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="yolo系列(2)：yolov3论文笔记">
+<meta property="og:url" content="http://yoursite.com/2018/05/05/yolo系列/yolo系列-2-：yolov3论文笔记/index.html">
 <meta property="og:site_name" content="Zezhong&#39;s Blog">
+<meta property="og:description" content="又是被自己菜醒的一天">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180505/7acBI1721h.png?imageslim">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180505/G35icF660K.png?imageslim">
+<meta property="og:image" content="https://img-blog.csdn.net/20170117220248335?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVzc2VfTXg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180505/JFdmmEaBiA.png?imageslim">
+<meta property="og:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180505/B1G4k3L6Kd.png?imageslim">
+<meta property="og:updated_time" content="2018-05-23T01:21:47.079Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Zezhong&#39;s Blog">
+<meta name="twitter:title" content="yolo系列(2)：yolov3论文笔记">
+<meta name="twitter:description" content="又是被自己菜醒的一天">
+<meta name="twitter:image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180505/7acBI1721h.png?imageslim">
 
 
 
@@ -115,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2018/05/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/05/yolo系列/yolo系列-2-：yolov3论文笔记/"/>
 
 
 
 
 
-  <title>归档 | Zezhong's Blog</title>
+  <title>yolo系列(2)：yolov3论文笔记 | Zezhong's Blog</title>
   
 
 
@@ -140,7 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 	
 	<a href="https://github.com/maozezhong" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
@@ -260,411 +271,305 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/05/yolo系列/yolo系列-2-：yolov3论文笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mao Zezhong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p7ewxflh7.bkt.clouddn.com/blog/180419/HLjKj2G0g1.jpg?imageslim">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zezhong's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">yolo系列(2)：yolov3论文笔记</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-05T10:33:41+08:00">
+                2018-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 28 篇日志。 继续努力。
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/yolo系列/" itemprop="url" rel="index">
+                    <span itemprop="name">yolo系列</span>
+                  </a>
+                </span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
+             <span id="/2018/05/05/yolo系列/yolo系列-2-：yolov3论文笔记/" class="leancloud_visitors" data-flag-title="yolo系列(2)：yolov3论文笔记">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+             </span>
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/25/paper/spp-net论文笔记/" itemprop="url">
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">spp-net论文笔记</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  905字
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-25T09:02:03+08:00"
-              content="2018-05-25" >
-          05-25
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3分钟
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/24/paper/R-CNN系列相关总结（转）/" itemprop="url">
-              
-                <span itemprop="name">R-CNN系列相关总结（转）</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-24T16:53:49+08:00"
-              content="2018-05-24" >
-          05-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/22/paper/Faster-R-CNN论文笔记/" itemprop="url">
-              
-                <span itemprop="name">Faster R-CNN论文笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-22T19:49:26+08:00"
-              content="2018-05-22" >
-          05-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <blockquote>
+<p>又是被自己菜醒的一天</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
+<li>论文：<a href="https://pjreddie.com/media/files/papers/YOLOv3.pdf" target="_blank" rel="noopener">YOLOv3：An Incremental Improvement</a></li>
+<li>官网：<a href="https://pjreddie.com/darknet/yolo/" target="_blank" rel="noopener">YOLO: Real-Time Object Detection</a></li>
+<li>官方代码：<a href="https://github.com/pjreddie/darknet" target="_blank" rel="noopener">github</a></li>
+</ul>
+<h2 id="概况"><a href="#概况" class="headerlink" title="概况"></a>概况</h2><ul>
+<li>yolov3相对于v2的提升版本</li>
+<li>使用dimeansion分簇来得到anchor boxes</li>
+<li>每个框预测多标签的类别的时候使用2类的交叉熵作为损失函数</li>
+<li>跨图像规模的预测，即隔一段时间resize输入图像的大小</li>
+<li>特征提取网络结合了resNet的思想加入了shorcut，有53个卷积层。</li>
+</ul>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h5 id="1-bounding-box预测"><a href="#1-bounding-box预测" class="headerlink" title="1. bounding box预测"></a>1. bounding box预测</h5><blockquote>
+<div align="center"><br> <img src="http://p7ewxflh7.bkt.clouddn.com/blog/180505/7acBI1721h.png?imageslim"><br> <img src="http://p7ewxflh7.bkt.clouddn.com/blog/180505/G35icF660K.png?imageslim"><br> </div>
+</blockquote>
+<ul>
+<li><p>其中tx，ty，tw，th分别为网络预测层输出的框(<del>的中心横坐标，纵坐标，框的宽度，框的高度，不对应该只是一个网络的输出并不是上述的含义,这个应该是借鉴faster RCNN的，等看了那篇论文再来解释，</del>ok，上述第二图为解释tx,ty,tw,th的由来，截取自<a href="https://blog.csdn.net/jesse_mx/article/details/53925356" target="_blank" rel="noopener">YOLOv2 论文笔记</a>)作者这边不是用的这个方法计算的框的x和y，而是预测相对网格cell的位置，并且通过逻辑斯蒂归一化；pw，ph为先验框（anchor boxes）的宽度和高度；cx，cy为预测中心点所在cell相对图片左上角点的偏移；通过上图公式将预测输出最终转换为框的中心点左边bx，by，框的宽度和高度bw，bh</p>
+</li>
+<li><p>如果一个先验框并不是最好的但是其覆盖ground true超过一定阈值，论文中取的是0.5，则忽略这个预测结果且不计算进损失中</p>
+</li>
+</ul>
+<h5 id="2-类预测"><a href="#2-类预测" class="headerlink" title="2. 类预测"></a>2. 类预测</h5><ul>
+<li>每个框可能需要预测包含多标签的类，论文中没使用softmax而是用的独立的逻辑斯蒂分类。因为使用softmax的前提假设是一个框中只包含一个类，而现实情况并不是这样的。</li>
+</ul>
+<h5 id="3-box的跨尺度预测（针对之前yolo小目标检测不到的诟病）"><a href="#3-box的跨尺度预测（针对之前yolo小目标检测不到的诟病）" class="headerlink" title="3. box的跨尺度预测（针对之前yolo小目标检测不到的诟病）"></a>3. box的跨尺度预测（针对之前yolo小目标检测不到的诟病）</h5><ul>
+<li><p>yolov3在三个尺度上做预测</p>
+<ul>
+<li><p>参考的FPN（特征金字塔）网络，下图引自<a href="http://p7ewxflh7.bkt.clouddn.com/blog/180515/FalGjKcIF0.png?imageslim" target="_blank" rel="noopener">FPN最新的目标检测算法</a>。每种尺度预测三个box，anchor的设计方式仍然使用聚类的方法得到9 个聚类中心，再将其按照大小均分给3种尺度。尺度1：在基础网络之后添加一些卷积层再输出box信息；尺度2：从尺度1中的倒数第二层的卷积层上采样再与最后一个16×16大小的特征图相加，再次通过多个卷积层后输出box信息，相比尺度1变大两倍；尺度3：与尺度2类似使用了32×32大小的特征图。可以参考网络结构定义文件yolov3.cfg。</p>
+<blockquote>
+<p>把高层特征做2倍上采样（最邻近上采样法），然后将其和对应的前一层特征结合（前一层要经过1 * 1的卷积核才能用，目的是改变channels，应该是要和后一层的channels相同），结合方式就是做像素间的加法。重复迭代该过程，直至生成最精细的特征图。</p>
+  <div align="center"><br>  <img src="https://img-blog.csdn.net/20170117220248335?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSmVzc2VfTXg=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast"><br>  </div>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>论文使用kmean获得先验anchor boxes</p>
+</li>
+</ul>
+<h5 id="4-特征提取"><a href="#4-特征提取" class="headerlink" title="4. 特征提取"></a>4. 特征提取</h5><ul>
+<li>Darknet53,53个卷积层，加上shorcut，下图为其网络结构</li>
+</ul>
+<blockquote>
+<div align="center"><br> <img src="http://p7ewxflh7.bkt.clouddn.com/blog/180505/JFdmmEaBiA.png?imageslim"><br> </div> 
+</blockquote>
+<h5 id="5-训练"><a href="#5-训练" class="headerlink" title="5. 训练"></a>5. 训练</h5><ul>
+<li>训练方法和yolov2相同，多尺度（隔一段epoch改变输入的图片大小，有小有大），BN等</li>
+</ul>
+<h2 id="性能及总结"><a href="#性能及总结" class="headerlink" title="性能及总结"></a>性能及总结</h2><ul>
+<li><p>性能</p>
+<blockquote>
+<div align="center"><br><img src="http://p7ewxflh7.bkt.clouddn.com/blog/180505/B1G4k3L6Kd.png?imageslim"><br></div> 
+</blockquote>
+</li>
+<li><p>总结</p>
+<ul>
+<li>改进后的yolov3能够更好的检测小目标（引入了跨尺度预测），但是相对的中中等及大尺寸的目标效果有所降低</li>
+<li>其他都很好哇，666</li>
+</ul>
+</li>
+</ul>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/22/paper/FPN论文笔记/" itemprop="url">
-              
-                <span itemprop="name">FPN论文笔记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-22T10:01:00+08:00"
-              content="2018-05-22" >
-          05-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/21/图片处理/彩图转256色图/" itemprop="url">
-              
-                <span itemprop="name">彩图转256色图</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-21T20:55:47+08:00"
-              content="2018-05-21" >
-          05-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/21/基础_经典算法/外部排序，多路归并/" itemprop="url">
-              
-                <span itemprop="name">外部排序，多路归并</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-21T20:29:47+08:00"
-              content="2018-05-21" >
-          05-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/17/基础_经典算法/二分查找扩充/" itemprop="url">
-              
-                <span itemprop="name">二分查找扩充</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-17T16:55:11+08:00"
-              content="2018-05-17" >
-          05-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/17/基础_经典算法/不改变正负数相对顺序重新排列数组/" itemprop="url">
-              
-                <span itemprop="name">不改变正负数相对顺序重新排列数组</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-17T11:18:06+08:00"
-              content="2018-05-17" >
-          05-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/17/基础_经典算法/平面内距离最短点对/" itemprop="url">
-              
-                <span itemprop="name">平面内距离最短点对</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-17T10:12:58+08:00"
-              content="2018-05-17" >
-          05-17
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/05/13/图片处理/人行道检线算法/" itemprop="url">
-              
-                <span itemprop="name">人行道检线算法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-05-13T09:52:52+08:00"
-              content="2018-05-13" >
-          05-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/yolo/" rel="tag"># yolo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/03/python/python运行命令行-sudo/" rel="next" title="python运行命令行,sudo">
+                <i class="fa fa-chevron-left"></i> python运行命令行,sudo
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/05/基础_经典算法/求数组中只无重复的数/" rel="prev" title="求数组中只无重复的数">
+                求数组中只无重复的数 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2018/05/page/2/">2</a><a class="extend next" rel="next" href="/archives/2018/05/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+<span class="jiathis_txt">分享到：</span>
+<a class="jiathis_button_fav">收藏夹</a>
+<a class="jiathis_button_copy">复制网址</a>
+<a class="jiathis_button_email">邮件</a>
+<a class="jiathis_button_weixin">微信</a>
+<a class="jiathis_button_qzone">QQ空间</a>
+<a class="jiathis_button_tqq">腾讯微博</a>
+<a class="jiathis_button_douban">豆瓣</a>
+<a class="jiathis_button_share">一键分享</a>
+
+<a href="http://www.jiathis.com/share?uid=2140465" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+var jiathis_config={
+  data_track_clickback:true,
+  summary:"",
+  shortUrl:false,
+  hideMore:false
+}
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+      
+    </div>
+  </div>
 
 
           </div>
@@ -672,6 +577,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -692,8 +601,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -795,6 +713,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#概况"><span class="nav-number">2.</span> <span class="nav-text">概况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-bounding-box预测"><span class="nav-number">3.0.0.1.</span> <span class="nav-text">1. bounding box预测</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-类预测"><span class="nav-number">3.0.0.2.</span> <span class="nav-text">2. 类预测</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-box的跨尺度预测（针对之前yolo小目标检测不到的诟病）"><span class="nav-number">3.0.0.3.</span> <span class="nav-text">3. box的跨尺度预测（针对之前yolo小目标检测不到的诟病）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-特征提取"><span class="nav-number">3.0.0.4.</span> <span class="nav-text">4. 特征提取</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-训练"><span class="nav-number">3.0.0.5.</span> <span class="nav-text">5. 训练</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#性能及总结"><span class="nav-number">4.</span> <span class="nav-text">性能及总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -951,6 +885,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

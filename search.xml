@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[spp-net论文笔记]]></title>
+    <url>%2F2018%2F05%2F25%2Fpaper%2Fspp-net%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[背景 论文:Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition 概述 相比原先的需要对输入图片裁剪(crop)或者拉伸resize(warp)变成固定大小才输入模型，sppnet可以接受任意大小的输入，其改动就是在最后一层卷积层后面加入了空间金字塔池化(spatial pyramid pooling)。 不管候选窗口有多少，spp只需要对整张图片进行一次特征提取计算；然后根据原始图片的窗口映射到feature map上的窗口，spp-net再对映射过来的窗口进行特征提取。 内容 SPP的特征： 对于任意大小的输入，spp可以产生固定大小的输出特征 spp使用multi-level spatial bins，多层的空间仓；多层池化鲁棒性更强。 由于输入尺度的多样性，spp可以提取不同尺度的特征 空间金字塔池化层 对于最后一个卷积层输出的feature map，可以将其划分为k*k大小的块，然后对每块进行池化（maxpool, averagepool等）。如果feature map的尺度为a*a, 且如果一个金字塔层的bins数目为n*n，那么滑动窗口的大小win=ceiling(a/n)，步长str=floor(a/n)，金字塔有l层的话就有l个输出，然后将l层输出concat一下作为全连接层的输入。 图中l=3, n={4,2,1}，concat后的特征尺度为21*256 事实上n为1的时候即为global pool spp的训练 single-size training：固定输入大小 multi-size training：假设输入有两个尺度，分别为224*224,180*180，那么有两个网络分别为180网络（固定输入尺度为180*180的网络）和224网络；对于180网络，所有图片resize到180*180，然后进行训练，224类似；由于通过spp pool层后特征尺度是一样的，所以180网络和224网络的权值参数个数实际上是一样的，所以可以共享权值；这样就相当于训练了一个input size可变的网络。在训练的时候，一个epoch训180，一个epoch训224，这样迭代。类似的可以训练多个不同输入尺度的。在测试的时候直接输入任意尺度的图片就行。]]></content>
+      <categories>
+        <category>paper</category>
+      </categories>
+      <tags>
+        <tag>spp-net</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[R-CNN系列相关总结（转）]]></title>
+    <url>%2F2018%2F05%2F24%2Fpaper%2FR-CNN%E7%B3%BB%E5%88%97%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93%EF%BC%88%E8%BD%AC%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[转自 一文读懂：R-CNN、Fast R-CNN、Faster R-CNN、YOLO、SSD 背景 论文1：Rich feature hierarchies for accurate object detection and semantic segmentation 论文2：Fast R-CNN 论文3：Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks 小结RCNN 在图像中确定约1000-2000个候选框 (使用选择性搜索Selective Search,根据颜色，纹理啥的得到候选框) 每个候选框内图像块缩放至相同大小，并输入到CNN内进行特征提取 对候选框中提取出的特征，使用分类器判别是否属于一个特定类 对于属于某一特征的候选框，用回归器进一步调整其位置 Fast R-CNN 在图像中确定约1000-2000个候选框 (使用选择性搜索Selective Search) 对整张图片输进CNN，得到feature map 找到每个候选框在feature map上的映射patch，将此patch作为每个候选框的卷积特征输入到SPP layer和之后的层 对候选框中提取出的特征，使用分类器判别是否属于一个特定类 对于属于某一特征的候选框，用回归器进一步调整其位置 Faster R-CNN 对整张图片输进CNN，得到feature map 卷积特征输入到RPN，得到候选框的特征信息 对候选框中提取出的特征，使用分类器判别是否属于一个特定类 对于属于某一特征的候选框，用回归器进一步调整其位置]]></content>
+      <categories>
+        <category>paper</category>
+      </categories>
+      <tags>
+        <tag>R-CNN系列</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Faster R-CNN论文笔记]]></title>
     <url>%2F2018%2F05%2F22%2Fpaper%2FFaster-R-CNN%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[背景 论文：Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks 代码：github，python版本 概述 相对于之前的通过selective search来选择预选框，作者提出了区域选择网络(Region Proposal Network,RPN)，通过该网络模型来得到候选区域。 融合RPN和fast R-CNN，两者共享前面的卷积层部分，其中RPN充当了attention的机制，其得到的候选区域用于fast R-CNN做预测，RPN在这边充当了”attention”的机制，通过这个网络来引导fast R-CNN所要关注的区域。 内容 faster R-CNN由RPN和fast R-CNN组成，RPN相当于”attention”机制，为fast R-CNN提供可能存在object的区域。 RPN 卷积层最后一层的输出feature map作为RPN的输入，RPN通过一个n*n的卷积核（论文中n为3），对该feature map进行滑窗卷积，在滑窗过程中个，卷积核所处的3*3区域会产生k个anchors。 Anchors 在滑窗的过程中，卷积核所处的位置会产生k个anchors，即有k个proposals。因此回归层会有4k个输出（每个proposal4个坐标位置），分类层有2k个输出（每个proposal1个有object的概率和1个无object的概率），k个poposal对应k个anchors。论文中k取的3，通过3个不同的尺度，以及3个不同的横纵比例。 那么怎么理解anchors呢？论文中作者假设3*3的卷积核对应的feature map窗口是原始图片通过spp池化而来，而这个池化的区域的面积以及比例就是一个个的anchors，换句话说，对于每个3x3窗口，作者假定它来自9种不同原始区域的池化。（spp是对不同尺度的图像输入resize到固定的尺度输出）。那么通过已知的3*3的输出作者逆向推得输入是多个不同尺度的feature，论文中假设了9个不同的尺度。 论文中的anchors有转移不变性(translation-invariant)。即如果一张图中同一个object转移到另外一个位置，那么proposal也会转移并且相应的预测得到的anchors应该是跟未转移前对应的（这边理解的不太好） 多尺度anchors及回归参考。之前处理多尺度的方法有以下几种：1）特征金字塔，通过图像金字塔得到，费时；2）不同大小的filters，可抽象为“滤波金字塔”，与第一种方法经常联合使用。作者则创造了anchors金字塔。 损失函数 设置positive/negative label的方法，对于与ground-truth box IOU最大的anchor设置位positive，或者对于IOU大于0.7的设为正；论文中出于一些考虑（采用第二种方法的话在一些场景中会没有negative label），选择了第一种方法。IOU小于0.3的非positive anchors则被置为negative。 坐标计算 训练 为了防止negative的样本在训练的时候dominate，作者采用随机抽样256个样本，且正负样本1:1的方案，如果正样本anchors没有128个则用负样本补齐。 RPN和fast R-CNN共享特征 Step1：训练RPN step2：更具Step1得到的proposals训练fast R-CNN。 Step3：用fast R-CNN的参数初始化RPN，并固定共享的卷积层参数，只fine-tune单属于RPN的层。到这一步，RPN和fast R-CNN开始共享卷积层了。 Step4：维持共享的卷积层固定，fine-tune属于fast R-CNN的层。 Step1-4迭代多步。 参考 faster rcnn中rpn的anchor，sliding windows，proposals？ 一文读懂：R-CNN、Fast R-CNN、Faster R-CNN、YOLO、SSD]]></content>
@@ -120,8 +142,8 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[yolov系列(2)：yolovv3论文笔记]]></title>
-    <url>%2F2018%2F05%2F05%2Fyolo%E7%B3%BB%E5%88%97%2Fyolov%E7%B3%BB%E5%88%97-2-%EF%BC%9Ayolov3%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%2F</url>
+    <title><![CDATA[yolo系列(2)：yolov3论文笔记]]></title>
+    <url>%2F2018%2F05%2F05%2Fyolo%E7%B3%BB%E5%88%97%2Fyolo%E7%B3%BB%E5%88%97-2-%EF%BC%9Ayolov3%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[又是被自己菜醒的一天 背景 论文：YOLOv3：An Incremental Improvement 官网：YOLO: Real-Time Object Detection 官方代码：github 概况 yolov3相对于v2的提升版本 使用dimeansion分簇来得到anchor boxes 每个框预测多标签的类别的时候使用2类的交叉熵作为损失函数 跨图像规模的预测，即隔一段时间resize输入图像的大小 特征提取网络结合了resNet的思想加入了shorcut，有53个卷积层。 方法1. bounding box预测 其中tx，ty，tw，th分别为网络预测层输出的框(的中心横坐标，纵坐标，框的宽度，框的高度，不对应该只是一个网络的输出并不是上述的含义,这个应该是借鉴faster RCNN的，等看了那篇论文再来解释，ok，上述第二图为解释tx,ty,tw,th的由来，截取自YOLOv2 论文笔记)作者这边不是用的这个方法计算的框的x和y，而是预测相对网格cell的位置，并且通过逻辑斯蒂归一化；pw，ph为先验框（anchor boxes）的宽度和高度；cx，cy为预测中心点所在cell相对图片左上角点的偏移；通过上图公式将预测输出最终转换为框的中心点左边bx，by，框的宽度和高度bw，bh 如果一个先验框并不是最好的但是其覆盖ground true超过一定阈值，论文中取的是0.5，则忽略这个预测结果且不计算进损失中 2. 类预测 每个框可能需要预测包含多标签的类，论文中没使用softmax而是用的独立的逻辑斯蒂分类。因为使用softmax的前提假设是一个框中只包含一个类，而现实情况并不是这样的。 3. box的跨尺度预测（针对之前yolo小目标检测不到的诟病） yolov3在三个尺度上做预测 参考的FPN（特征金字塔）网络，下图引自FPN最新的目标检测算法。每种尺度预测三个box，anchor的设计方式仍然使用聚类的方法得到9 个聚类中心，再将其按照大小均分给3种尺度。尺度1：在基础网络之后添加一些卷积层再输出box信息；尺度2：从尺度1中的倒数第二层的卷积层上采样再与最后一个16×16大小的特征图相加，再次通过多个卷积层后输出box信息，相比尺度1变大两倍；尺度3：与尺度2类似使用了32×32大小的特征图。可以参考网络结构定义文件yolov3.cfg。 把高层特征做2倍上采样（最邻近上采样法），然后将其和对应的前一层特征结合（前一层要经过1 * 1的卷积核才能用，目的是改变channels，应该是要和后一层的channels相同），结合方式就是做像素间的加法。重复迭代该过程，直至生成最精细的特征图。 论文使用kmean获得先验anchor boxes 4. 特征提取 Darknet53,53个卷积层，加上shorcut，下图为其网络结构 5. 训练 训练方法和yolov2相同，多尺度（隔一段epoch改变输入的图片大小，有小有大），BN等 性能及总结 性能 总结 改进后的yolov3能够更好的检测小目标（引入了跨尺度预测），但是相对的中中等及大尺寸的目标效果有所降低 其他都很好哇，666]]></content>
       <categories>
         <category>yolo系列</category>
