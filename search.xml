@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[yolov1~3系列ppt总结]]></title>
+    <url>%2F2018%2F05%2F29%2Fyolo%E7%B3%BB%E5%88%97%2Fyolov1-3%E7%B3%BB%E5%88%97ppt%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[背景 寝室论文分享做的一个yolo系列的ppt ##]]></content>
+      <categories>
+        <category>yolo系列</category>
+      </categories>
+      <tags>
+        <tag>yolo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[spp-net论文笔记]]></title>
     <url>%2F2018%2F05%2F25%2Fpaper%2Fspp-net%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[背景 论文:Spatial Pyramid Pooling in Deep Convolutional Networks for Visual Recognition 概述 相比原先的需要对输入图片裁剪(crop)或者拉伸resize(warp)变成固定大小才输入模型，sppnet可以接受任意大小的输入，其改动就是在最后一层卷积层后面加入了空间金字塔池化(spatial pyramid pooling)。 不管候选窗口有多少，spp只需要对整张图片进行一次特征提取计算；然后根据原始图片的窗口映射到feature map上的窗口，spp-net再对映射过来的窗口进行特征提取。 内容 SPP的特征： 对于任意大小的输入，spp可以产生固定大小的输出特征 spp使用multi-level spatial bins，多层的空间仓；多层池化鲁棒性更强。 由于输入尺度的多样性，spp可以提取不同尺度的特征 空间金字塔池化层 对于最后一个卷积层输出的feature map，可以将其划分为k*k大小的块，然后对每块进行池化（maxpool, averagepool等）。如果feature map的尺度为a*a, 且如果一个金字塔层的bins数目为n*n，那么滑动窗口的大小win=ceiling(a/n)，步长str=floor(a/n)，金字塔有l层的话就有l个输出，然后将l层输出concat一下作为全连接层的输入。 图中l=3, n={4,2,1}，concat后的特征尺度为21*256 事实上n为1的时候即为global pool spp的训练 single-size training：固定输入大小 multi-size training：假设输入有两个尺度，分别为224*224,180*180，那么有两个网络分别为180网络（固定输入尺度为180*180的网络）和224网络；对于180网络，所有图片resize到180*180，然后进行训练，224类似；由于通过spp pool层后特征尺度是一样的，所以180网络和224网络的权值参数个数实际上是一样的，所以可以共享权值；这样就相当于训练了一个input size可变的网络。在训练的时候，一个epoch训180，一个epoch训224，这样迭代。类似的可以训练多个不同输入尺度的。在测试的时候直接输入任意尺度的图片就行。]]></content>
